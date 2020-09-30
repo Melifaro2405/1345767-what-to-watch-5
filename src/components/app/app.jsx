@@ -3,10 +3,14 @@ import Main from "../main/main";
 
 const App = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {errorsCount} = props;
+  const {title, genre, year} = props;
 
   return (
-    <Main errorsCount={errorsCount} />
+    <Main
+      title={title}
+      genre={genre}
+      year={year}
+    />
   );
 };
 
