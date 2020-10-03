@@ -60,7 +60,7 @@ const Main = ({title, genre, year}) => {
                   type="button"
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
+                    <use xlinkHref="#play-s"/>
                   </svg>
                   <span>Play</span>
                 </button>
@@ -69,7 +69,7 @@ const Main = ({title, genre, year}) => {
                   type="button"
                 >
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    <use xlinkHref="#add"/>
                   </svg>
                   <span>My list</span>
                 </button>
