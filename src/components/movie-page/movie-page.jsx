@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {filmProptypes} from "../../proptypesValid";
 
 const MoviePage = ({film}) => {
   return (
@@ -217,34 +218,7 @@ const MoviePage = ({film}) => {
 };
 
 MoviePage.propTypes = {
-  film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    preview: PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
-    }),
-    moreInfo: PropTypes.shape({
-      backGroundSrc: PropTypes.string.isRequired,
-      posterSrc: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-      releaseDate: PropTypes.number.isRequired,
-      playVideoSrc: PropTypes.string.isRequired,
-      isAddToMyList: PropTypes.bool.isRequired
-    }),
-    overview: PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      rating: PropTypes.string.isRequired,
-      ratingDescription: PropTypes.string.isRequired,
-      ratingCount: PropTypes.number.isRequired,
-      director: PropTypes.string.isRequired,
-      actorsList: PropTypes.string.isRequired,
-    }),
-    details: PropTypes.shape({
-      director: PropTypes.string.isRequired,
-      allActors: PropTypes.string.isRequired,
-      runtime: PropTypes.number.isRequired
-    }),
-  }),
+  film: PropTypes.shape(filmProptypes),
 };
 
 export default MoviePage;

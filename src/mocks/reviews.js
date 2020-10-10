@@ -1,22 +1,20 @@
-import {random} from 'lodash';
+import {random} from "lodash";
+import {FilmRating, FILMCOUNT} from "../mocks/consts";
 
-const generateCommentTime = () => {
-  const time = parseInt(new Date().getTime(), 10);
-  return random(time);
-};
+const generateCommentTime = () => random(Number(new Date()));
 
-const generateReview = () => {
-  return {
+const generateReview = () => (
+  {
     text: `there will be a review`,
-    rate: random(1.1, 10).toFixed(1),
+    rate: random(FilmRating.MIN, FilmRating.MAX).toFixed(1),
     author: `noname`,
     time: generateCommentTime()
-  };
-};
+  }
+);
 
 const generateReviews = () => {
   const reviews = [];
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < FILMCOUNT; i++) {
     reviews.push(generateReview());
   }
   return reviews;

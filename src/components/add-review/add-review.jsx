@@ -2,15 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import FormReview from "../form-review/form-review";
 import {Link} from "react-router-dom";
+import {filmProptypes} from "../../proptypesValid";
 
-const AddReview = ({id, title}) => {
+const AddReview = ({film}) => {
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
           <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
+            src={film.moreInfo.backGroundSrc}
+            alt={film.preview.title}
           />
         </div>
 
@@ -28,8 +29,8 @@ const AddReview = ({id, title}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">
-                  {title}
+                <Link to={`/films/${film.id}`} className="breadcrumbs__link">
+                  {film.preview.title}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
@@ -52,8 +53,8 @@ const AddReview = ({id, title}) => {
 
         <div className="movie-card__poster movie-card__poster--small">
           <img
-            src="img/the-grand-budapest-hotel-poster.jpg"
-            alt="The Grand Budapest Hotel poster"
+            src={film.moreInfo.posterSrc}
+            alt={film.preview.title}
             width="218"
             height="327"
           />
@@ -68,8 +69,7 @@ const AddReview = ({id, title}) => {
 };
 
 AddReview.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  film: PropTypes.shape(filmProptypes),
 };
 
 export default AddReview;

@@ -6,7 +6,7 @@ export default class FormReview extends PureComponent {
 
     this.state = {
       value: ``,
-      rateValue: `3`
+      rateValue: ``
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,6 +37,7 @@ export default class FormReview extends PureComponent {
               type="radio"
               name="rating"
               value="1"
+              defaultChecked={this.state.rateValue === `1`}
             />
             <label className="rating__label" htmlFor="star-1">
               Rating 1
@@ -48,6 +49,7 @@ export default class FormReview extends PureComponent {
               type="radio"
               name="rating"
               value="2"
+              defaultChecked={this.state.rateValue === `2`}
             />
             <label className="rating__label" htmlFor="star-2">
               Rating 2
@@ -59,7 +61,7 @@ export default class FormReview extends PureComponent {
               type="radio"
               name="rating"
               value="3"
-              defaultChecked
+              defaultChecked={this.state.rateValue === `3`}
             />
             <label className="rating__label" htmlFor="star-3">
               Rating 3
@@ -71,6 +73,7 @@ export default class FormReview extends PureComponent {
               type="radio"
               name="rating"
               value="4"
+              defaultChecked={this.state.rateValue === `4`}
             />
             <label className="rating__label" htmlFor="star-4">
               Rating 4
@@ -82,6 +85,7 @@ export default class FormReview extends PureComponent {
               type="radio"
               name="rating"
               value="5"
+              defaultChecked={this.state.rateValue === `5`}
             />
             <label className="rating__label" htmlFor="star-5">
               Rating 5

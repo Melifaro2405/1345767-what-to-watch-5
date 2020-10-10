@@ -2,12 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-const SmallMovieCard = (props) => {
-  const src = props.preview.src;
-  const title = props.preview.title;
-  const id = props.id;
-  const onMouseOverHandler = props.onMouseOverHandler;
-  const onMouseOutHandler = props.onMouseOutHandler;
+const SmallMovieCard = ({id, preview, onMouseOverHandler, onMouseOutHandler}) => {
+  const {src, title} = preview;
 
   return (
     <article className="small-movie-card catalog__movies-card" onMouseOver={() => onMouseOverHandler()} onMouseOut={() => onMouseOutHandler()}>

@@ -7,7 +7,7 @@ import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
-import {allFilmsProptypes, allReviewsProptypes} from "../../utils";
+import {filmProptypes, reviewProptypes} from "../../proptypesValid";
 
 const App = ({filmSettings, films, reviews}) => {
   return (
@@ -27,15 +27,13 @@ const App = ({filmSettings, films, reviews}) => {
         }}
         />
         <Route exact path="/films/:id" render={({match}) => {
-          const id = match.params.id;
-          const film = films.find((item) => item.id === parseInt(id, 10));
+          const film = films.find(({id}) => id === Number(match.params.id));
           return <MoviePage film={film} />;
         }}
         />
         <Route exact path="/films/:id/review" render={({match}) => {
-          const id = match.params.id;
-          const film = films.find((item) => item.id === parseInt(id, 10));
-          return <AddReview id={id} title={film.preview.title}/>;
+          const film = films.find(({id}) => id === Number(match.params.id));
+          return <AddReview film={film}/>;
         }}
         />
         <Route exact path="/player/:id" component={Player} />
@@ -47,10 +45,11 @@ const App = ({filmSettings, films, reviews}) => {
 export default App;
 
 App.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
+  filmSettings: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired
+  }).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)).isRequired,
 };
-
-App.propTypes = allFilmsProptypes;
-App.propTypes = allReviewsProptypes;
