@@ -1,14 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import {filmProptypes} from "../../proptypesValid";
 
-const MoviePage = () => {
+const MoviePage = ({film}) => {
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img
-              src="img/bg-the-grand-budapest-hotel.jpg"
-              alt="The Grand Budapest Hotel"
+              src={film.moreInfo.backGroundSrc}
+              alt={film.preview.title}
             />
           </div>
 
@@ -16,11 +19,11 @@ const MoviePage = () => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to={`/`} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
@@ -37,10 +40,10 @@ const MoviePage = () => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{film.preview.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{film.moreInfo.genre}</span>
+                <span className="movie-card__year">{film.moreInfo.releaseDate}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -62,9 +65,9 @@ const MoviePage = () => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">
+                <Link to={`/films/${film.id}/review`} className="btn movie-card__button">
                   Add review
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -74,7 +77,7 @@ const MoviePage = () => {
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
+                src={film.moreInfo.posterSrc}
                 alt="The Grand Budapest Hotel poster"
                 width="218"
                 height="327"
@@ -103,36 +106,21 @@ const MoviePage = () => {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
+                <div className="movie-rating__score">{film.overview.rating}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">240 ratings</span>
+                  <span className="movie-rating__level">{film.overview.ratingDescription}</span>
+                  <span className="movie-rating__count">{film.overview.ratingCount}</span>
                 </p>
               </div>
 
               <div className="movie-card__text">
-                <p>
-                  In the 1930s, the Grand Budapest Hotel is a popular European
-                  ski resort, presided over by concierge Gustave H. (Ralph
-                  Fiennes). Zero, a junior lobby boy, becomes Gustave&rsquo;s
-                  friend and protege.
-                </p>
-                <p>
-                  Gustave prides himself on providing first-class service to the
-                  hotel&rsquo;s guests, including satisfying the sexual needs of
-                  the many elderly women who stay there. When one of
-                  Gustave&rsquo;s lovers dies mysteriously, Gustave finds
-                  himself the recipient of a priceless painting and the chief
-                  suspect in her murder.
-                </p>
+                {film.overview.description}
                 <p className="movie-card__director">
-                  <strong>Director: Wes Andreson</strong>
+                  <strong>Director: {film.overview.director}</strong>
                 </p>
-                Владислав Новак, [02.10.20 20:57]
                 <p className="movie-card__starring">
                   <strong>
-                    Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-                    and other
+                    Starring: {film.overview.actorsList}
                   </strong>
                 </p>
               </div>
@@ -229,4 +217,9 @@ const MoviePage = () => {
   );
 };
 
+MoviePage.propTypes = {
+  film: PropTypes.shape(filmProptypes),
+};
+
 export default MoviePage;
+
