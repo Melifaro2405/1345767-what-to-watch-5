@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list";
-import {filmProptypes, reviewProptypes} from "../../proptypesValid";
+import {filmProptypes} from "../../proptypesValid";
 
 const Main = ({filmSettings, films}) => {
 
@@ -171,8 +171,7 @@ Main.propTypes = {
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
   }).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired
 };
 
 export default Main;

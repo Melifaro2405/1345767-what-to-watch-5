@@ -5,13 +5,15 @@ import {Link} from "react-router-dom";
 import {filmProptypes} from "../../proptypesValid";
 
 const AddReview = ({film}) => {
+  const {id, moreInfo: {backGroundSrc, posterSrc}, preview: {title}} = film;
+
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
           <img
-            src={film.moreInfo.backGroundSrc}
-            alt={film.preview.title}
+            src={backGroundSrc}
+            alt={title}
           />
         </div>
 
@@ -29,8 +31,8 @@ const AddReview = ({film}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${film.id}`} className="breadcrumbs__link">
-                  {film.preview.title}
+                <Link to={`/films/${id}`} className="breadcrumbs__link">
+                  {title}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
@@ -53,8 +55,8 @@ const AddReview = ({film}) => {
 
         <div className="movie-card__poster movie-card__poster--small">
           <img
-            src={film.moreInfo.posterSrc}
-            alt={film.preview.title}
+            src={posterSrc}
+            alt={title}
             width="218"
             height="327"
           />
@@ -69,7 +71,7 @@ const AddReview = ({film}) => {
 };
 
 AddReview.propTypes = {
-  film: PropTypes.shape(filmProptypes),
+  film: PropTypes.shape(filmProptypes).isRequired
 };
 
 export default AddReview;

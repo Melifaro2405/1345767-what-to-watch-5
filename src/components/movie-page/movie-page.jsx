@@ -4,14 +4,21 @@ import {Link} from "react-router-dom";
 import {filmProptypes} from "../../proptypesValid";
 
 const MoviePage = ({film}) => {
+  const {
+    id,
+    moreInfo: {backGroundSrc, genre, releaseDate, posterSrc},
+    preview: {title},
+    overview: {rating, ratingDescription, ratingCount, description, director, actorsList}
+  } = film;
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img
-              src={film.moreInfo.backGroundSrc}
-              alt={film.preview.title}
+              src={backGroundSrc}
+              alt={title}
             />
           </div>
 
@@ -40,10 +47,10 @@ const MoviePage = ({film}) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{film.preview.title}</h2>
+              <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{film.moreInfo.genre}</span>
-                <span className="movie-card__year">{film.moreInfo.releaseDate}</span>
+                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__year">{releaseDate}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -65,7 +72,7 @@ const MoviePage = ({film}) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={`/films/${film.id}/review`} className="btn movie-card__button">
+                <Link to={`/films/${id}/review`} className="btn movie-card__button">
                   Add review
                 </Link>
               </div>
@@ -77,7 +84,7 @@ const MoviePage = ({film}) => {
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
               <img
-                src={film.moreInfo.posterSrc}
+                src={posterSrc}
                 alt="The Grand Budapest Hotel poster"
                 width="218"
                 height="327"
@@ -106,21 +113,21 @@ const MoviePage = ({film}) => {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">{film.overview.rating}</div>
+                <div className="movie-rating__score">{rating}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{film.overview.ratingDescription}</span>
-                  <span className="movie-rating__count">{film.overview.ratingCount}</span>
+                  <span className="movie-rating__level">{ratingDescription}</span>
+                  <span className="movie-rating__count">{ratingCount}</span>
                 </p>
               </div>
 
               <div className="movie-card__text">
-                {film.overview.description}
+                {description}
                 <p className="movie-card__director">
-                  <strong>Director: {film.overview.director}</strong>
+                  <strong>Director: {director}</strong>
                 </p>
                 <p className="movie-card__starring">
                   <strong>
-                    Starring: {film.overview.actorsList}
+                    Starring: {actorsList}
                   </strong>
                 </p>
               </div>
