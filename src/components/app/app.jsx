@@ -36,7 +36,11 @@ const App = ({filmSettings, films, reviews}) => {
           return <AddReview film={film}/>;
         }}
         />
-        <Route exact path="/player/:id" component={Player} />
+        <Route exact path="/player/:id" render={({match}) => {
+          const film = films.find(({id}) => id === Number(match.params.id));
+          return <Player film={film}/>;
+        }}
+        />
       </Switch>
     </BrowserRouter>
   );

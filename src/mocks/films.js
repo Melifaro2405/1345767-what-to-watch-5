@@ -4,7 +4,7 @@ import {FilmRating, FILMCOUNT, ReleaseDateFilm} from "../mocks/consts";
 
 const generateId = () => Date.now() + parseInt(Math.random() * 10000, 10);
 
-const Titles = [
+const TITLES = [
   `Harry Potter and the Prisoner of Azkaban`,
   `Underwater`,
   `Star Wars The Rise of Skywalker`,
@@ -23,7 +23,7 @@ const Titles = [
   `The Lion King`
 ];
 
-const Directors = [
+const DIRECTORS = [
   `Anne Wigton`,
   `Heinz Herald`,
   `Richard Weil`,
@@ -31,7 +31,7 @@ const Directors = [
   `Nicholas Joseph`
 ];
 
-const Actors = [
+const ACTORS = [
   `Nicholas Joseph`,
   `Richard Chambers`,
   `Philip Parrish`,
@@ -43,7 +43,7 @@ const Actors = [
   `Willem Dafoe`
 ];
 
-const Genres = [
+const GENRES = [
   `Drama`,
   `Criminal`,
   `Mystery`,
@@ -82,16 +82,16 @@ const generateDescription = () => {
   return shuffle(text.split(`. `)).slice(0, random(1, 5)).join(`. `);
 };
 
-const generateActors = (count) => {
-  const randomActors = shuffle(Actors).slice(0, random(2, count));
+const generateACTORS = (count) => {
+  const randomActors = shuffle(ACTORS).slice(0, random(2, count));
 
   return Array.from(new Set(randomActors)).join(`, `);
 };
 
 const generateFilm = () => {
-  const title = Titles[random(0, Titles.length - 1)];
+  const title = TITLES[random(0, TITLES.length - 1)];
   const rating = random(FilmRating.MIN, FilmRating.MAX).toFixed(1);
-  const director = Directors[random(0, Directors.length - 1)];
+  const director = DIRECTORS[random(0, DIRECTORS.length - 1)];
 
   return {
     id: generateId(),
@@ -102,7 +102,7 @@ const generateFilm = () => {
     moreInfo: {
       backGroundSrc: getImage(title),
       posterSrc: getImage(title),
-      genre: Genres[random(0, Genres.length - 1)],
+      genre: GENRES[random(0, GENRES.length - 1)],
       releaseDate: Math.min(random(ReleaseDateFilm.MIN, ReleaseDateFilm.MAX)),
       playVideoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       isAddToMyList: Boolean(random(0, 1))
@@ -113,10 +113,10 @@ const generateFilm = () => {
       ratingDescription: getRatingDescription(rating),
       ratingCount: random(0, 400),
       director,
-      actorsList: generateActors(4)
+      actorsList: generateACTORS(4)
     },
     details: {
-      allActors: generateActors(8),
+      allActors: generateACTORS(8),
       runtime: random(60, 200),
     }
   };
