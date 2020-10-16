@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {filmProptypes} from "../../proptypesValid";
+import {filmProptypes, reviewProptypes} from "../../proptypesValid";
+import Tabs from "../tabs/tabs";
+import MoviesList from "../movies-list/movies-list";
 
-const MoviePage = ({film}) => {
-  const {
-    id,
-    moreInfo: {backGroundSrc, genre, releaseDate, posterSrc},
-    preview: {title},
-    overview: {rating, ratingDescription, ratingCount, description, director, actorsList}
-  } = film;
+const MoviePage = ({films, film, reviews}) => {
+  const COUNT_LIKE_GENRE_FILMS = 4;
+
+  const {id, moreInfo, preview} = film;
+  const {backGroundSrc, genre, releaseDate, posterSrc} = moreInfo;
+  const {title} = preview;
+  const likeGenreFilms = films.filter((likeFilm) => genre === likeFilm.moreInfo.genre && likeFilm.id !== id).slice(0, COUNT_LIKE_GENRE_FILMS);
 
   return (
     <React.Fragment>
@@ -85,52 +87,14 @@ const MoviePage = ({film}) => {
             <div className="movie-card__poster movie-card__poster--big">
               <img
                 src={posterSrc}
-                alt="The Grand Budapest Hotel poster"
+                alt={title}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">
-                      Overview
-                    </a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">
-                      Details
-                    </a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">
-                      Reviews
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="movie-rating">
-                <div className="movie-rating__score">{rating}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{ratingDescription}</span>
-                  <span className="movie-rating__count">{ratingCount}</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                {description}
-                <p className="movie-card__director">
-                  <strong>Director: {director}</strong>
-                </p>
-                <p className="movie-card__starring">
-                  <strong>
-                    Starring: {actorsList}
-                  </strong>
-                </p>
-              </div>
+              <Tabs film={film} reviews={reviews} />
             </div>
           </div>
         </div>
@@ -138,72 +102,7 @@ const MoviePage = ({film}) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                  alt="Fantastic Beasts: The Crimes of Grindelwald"
-                  width="280"
-                  height="175"
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Fantastic Beasts: The Crimes of Grindelwald
-                </a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/bohemian-rhapsody.jpg"
-                  alt="Bohemian Rhapsody"
-                  width="280"
-                  height="175"
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Bohemian Rhapsody
-                </a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/macbeth.jpg"
-                  alt="Macbeth"
-                  width="280"
-                  height="175"
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Macbeth
-                </a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/aviator.jpg"
-                  alt="Aviator"
-                  width="280"
-                  height="175"
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Aviator
-                </a>
-              </h3>
-            </article>
-          </div>
+          <MoviesList films={likeGenreFilms} />
         </section>
 
         <footer className="page-footer">
@@ -226,6 +125,8 @@ const MoviePage = ({film}) => {
 
 MoviePage.propTypes = {
   film: PropTypes.shape(filmProptypes),
+  films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)).isRequired
 };
 
 export default MoviePage;

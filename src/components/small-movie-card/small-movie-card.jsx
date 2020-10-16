@@ -12,16 +12,16 @@ export default class SmallMovieCard extends PureComponent {
     this._timeoutId = null;
 
     this.state = {isPlayingVideo: false};
-    this.onMouseOverHandler = this.onMouseOverHandler.bind(this);
-    this.onMouseOutHandler = this.onMouseOutHandler.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
   }
 
   render() {
     return (
       <article className="small-movie-card catalog__movies-card">
         <div className="small-movie-card__image"
-          onMouseOver={() => this.onMouseOverHandler()}
-          onMouseOut={() => this.onMouseOutHandler()}>
+          onMouseOver={() => this.handleMouseOver()}
+          onMouseOut={() => this.handleMouseOut()}>
           {this.getImageOrVideo()}
         </div>
         <h3 className="small-movie-card__title">
@@ -41,13 +41,13 @@ export default class SmallMovieCard extends PureComponent {
     );
   }
 
-  onMouseOverHandler() {
+  handleMouseOver() {
     this._timeoutId = setTimeout(() => {
       this.setState({isPlayingVideo: true});
     }, 1000);
   }
 
-  onMouseOutHandler() {
+  handleMouseOut() {
     this.setState({isPlayingVideo: false});
     clearTimeout(this._timeoutId);
     this._timeoutId = null;
