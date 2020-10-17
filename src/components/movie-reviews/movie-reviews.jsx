@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {reviewProptypes} from "../../proptypesValid";
+import {reviewProptypes} from "../../props-validation";
 import ReviewsList from "../reviews-list/reviews-list";
 
 const MovieReviews = ({reviews}) => {

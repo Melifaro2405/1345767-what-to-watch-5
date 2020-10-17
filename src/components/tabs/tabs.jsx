@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {filmProptypes, reviewProptypes} from "../../proptypesValid";
+import {filmProptypes, reviewProptypes} from "../../props-validation";
 import {MovieTabs, TabsList} from "./tabs.consts";
 import MovieOverview from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
@@ -14,16 +14,16 @@ export default class Tabs extends PureComponent {
       activeTab: MovieTabs.OVERVIEW,
     };
 
-    this.handleClickTab = this.handleClickTab.bind(this);
-    this.getTab = this.getTab.bind(this);
+    this._handleClickTab = this._handleClickTab.bind(this);
+    this._getTabContent = this._getTabContent.bind(this);
   }
 
-  handleClickTab(tab) {
+  _handleClickTab(tab) {
     this.setState({activeTab: tab});
   }
 
-  getTab() {
-    const activeTab = this.state.activeTab;
+  _getTabContent() {
+    const {activeTab} = this.state;
     const {film, reviews} = this.props;
 
     switch (activeTab) {
@@ -39,23 +39,22 @@ export default class Tabs extends PureComponent {
   }
 
   render() {
-    const handleClickTab = this.handleClickTab;
     return (
       <React.Fragment>
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">
-            {TabsList.map((tab, index) =>
+            {TabsList.map(({type}, index) =>
               <li key={index}
-                className={`movie-nav__item ` + (this.state.activeTab === tab.type ? `movie-nav__item--active` : ``)}>
-                <a href="#" className="movie-nav__link" onClick={function (evt) {
+                className={`movie-nav__item ` + (this.state.activeTab === type ? `movie-nav__item--active` : ``)}>
+                <a href="#" className="movie-nav__link" onClick={(evt) => {
                   evt.preventDefault();
-                  handleClickTab(tab.type);
-                }}>{tab.type}</a>
+                  this._handleClickTab(type);
+                }}>{type}</a>
               </li>
             )}
           </ul>
         </nav>
-        {this.getTab()}
+        {this._getTabContent()}
       </React.Fragment>
     );
   }

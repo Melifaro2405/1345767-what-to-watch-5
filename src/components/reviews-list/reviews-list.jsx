@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {reviewProptypes} from "../../proptypesValid";
+import {reviewProptypes} from "../../props-validation";
+import moment from "moment";
 
 
 const ReviewsList = ({reviews}) => {
   return (
-    reviews.map((review, i) => {
-      const {text, rating, author, time} = review;
+    reviews.map(({text, rating, author, time}, i) => {
       return (
         <div className="review" key={i}>
           <blockquote className="review__quote">
@@ -14,7 +14,9 @@ const ReviewsList = ({reviews}) => {
 
             <footer className="review__details">
               <cite className="review__author">{author}</cite>
-              <time className="review__date" dateTime="2016-12-20">{time}</time>
+              <time className="review__date" dateTime={moment(time).format(`YYYY-MM-DD`)}>
+                {moment(time).format(`MMMM DD, YYYY`)}
+              </time>
             </footer>
           </blockquote>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {filmProptypes} from "../../proptypesValid";
+import {filmProptypes} from "../../props-validation";
 
 const MovieDetails = ({film}) => {
   const {moreInfo, overview, details} = film;

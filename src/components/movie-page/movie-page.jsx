@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {filmProptypes, reviewProptypes} from "../../proptypesValid";
+import {filmProptypes, reviewProptypes} from "../../props-validation";
 import Tabs from "../tabs/tabs";
 import MoviesList from "../movies-list/movies-list";
 

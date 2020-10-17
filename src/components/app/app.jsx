@@ -7,7 +7,7 @@ import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
-import {filmProptypes, reviewProptypes} from "../../proptypesValid";
+import {filmProptypes, reviewProptypes} from "../../props-validation";
 
 const App = ({filmSettings, films, reviews}) => {
   return (
@@ -27,7 +27,7 @@ const App = ({filmSettings, films, reviews}) => {
         />
         <Route exact path="/films/:id" render={({match}) => {
           const film = films.find(({id}) => id === Number(match.params.id));
-          const currentFilmReviews = reviews.filter((review) => review.id === Number(match.params.id));
+          const currentFilmReviews = reviews.filter(({filmId}) => filmId === Number(match.params.id));
           return <MoviePage films={films} film={film} reviews={currentFilmReviews} />;
         }}
         />
