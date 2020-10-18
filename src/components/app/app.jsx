@@ -7,7 +7,7 @@ import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
-import {filmProptypes, reviewProptypes} from "../../proptypesValid";
+import {filmProptypes, reviewProptypes} from "../../props-validation";
 
 const App = ({filmSettings, films, reviews}) => {
   return (
@@ -17,7 +17,6 @@ const App = ({filmSettings, films, reviews}) => {
           <Main
             filmSettings={filmSettings}
             films={films}
-            reviews={reviews}
           />
         )}/>
         <Route exact path="/login" component={SignIn} />
@@ -28,7 +27,8 @@ const App = ({filmSettings, films, reviews}) => {
         />
         <Route exact path="/films/:id" render={({match}) => {
           const film = films.find(({id}) => id === Number(match.params.id));
-          return <MoviePage film={film} />;
+          const currentFilmReviews = reviews.filter(({filmId}) => filmId === Number(match.params.id));
+          return <MoviePage films={films} film={film} reviews={currentFilmReviews} />;
         }}
         />
         <Route exact path="/films/:id/review" render={({match}) => {
@@ -55,5 +55,5 @@ App.propTypes = {
     year: PropTypes.number.isRequired
   }).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)).isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)).isRequired
 };

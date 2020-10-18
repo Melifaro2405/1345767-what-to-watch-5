@@ -9,7 +9,7 @@ const MoviePreview = ({playVideoSrc, src}) => {
       poster={src}
       autoPlay
       muted
-    ></video>
+    />
   );
 };
 

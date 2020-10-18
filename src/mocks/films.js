@@ -82,8 +82,8 @@ const generateDescription = () => {
   return shuffle(text.split(`. `)).slice(0, random(1, 5)).join(`. `);
 };
 
-const generateACTORS = (count) => {
-  const randomActors = shuffle(ACTORS).slice(0, random(2, count));
+const generateAllActors = (count) => {
+  const randomActors = shuffle(ACTORS).slice(0, count);
 
   return Array.from(new Set(randomActors)).join(`, `);
 };
@@ -113,10 +113,10 @@ const generateFilm = () => {
       ratingDescription: getRatingDescription(rating),
       ratingCount: random(0, 400),
       director,
-      actorsList: generateACTORS(4)
+      actorsList: generateAllActors(3)
     },
     details: {
-      allActors: generateACTORS(8),
+      allActors: generateAllActors(8),
       runtime: random(60, 200),
     }
   };

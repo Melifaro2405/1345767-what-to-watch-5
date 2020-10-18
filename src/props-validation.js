@@ -30,7 +30,7 @@ export const filmProptypes = {
 
 export const reviewProptypes = {
   text: PropTypes.string.isRequired,
-  rate: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   time: PropTypes.number.isRequired
 };

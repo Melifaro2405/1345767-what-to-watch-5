@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list";
-import {filmProptypes} from "../../proptypesValid";
+import {filmProptypes} from "../../props-validation";
 
 const Main = ({filmSettings, films}) => {
 
