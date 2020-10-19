@@ -46,10 +46,11 @@ const ACTORS = [
 const GENRES = [
   `Drama`,
   `Criminal`,
-  `Mystery`,
+  `Horror`,
   `Western`,
   `Comedy`,
-  `Cartoon`
+  `Sci-Fi`,
+  `Thriller`
 ];
 
 const getImage = (title) => `img/${title}.jpg`;

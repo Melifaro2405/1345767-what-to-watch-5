@@ -16,7 +16,6 @@ const App = ({filmSettings, films, reviews}) => {
         <Route exact path="/" render={() => (
           <Main
             filmSettings={filmSettings}
-            films={films}
           />
         )}/>
         <Route exact path="/login" component={SignIn} />
