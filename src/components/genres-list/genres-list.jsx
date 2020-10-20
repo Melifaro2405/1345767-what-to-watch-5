@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 
 export const GenresList = ({genres, activeGenre, changeActiveFilter, changeFilmList}) => {
-
   return (
     <ul className="catalog__genres-list">
       {genres.map((genre, index) =>
@@ -19,17 +18,14 @@ export const GenresList = ({genres, activeGenre, changeActiveFilter, changeFilmL
   );
 };
 
-const mapStateToProps = (state) => ({
-  genres: state.genres,
-  activeGenre: state.activeGenre
-});
+const mapStateToProps = ({genres, activeGenre}) => ({genres, activeGenre});
 
 const mapDispatchToProps = (dispatch) => ({
-  changeActiveFilter(genreForFilter) {
-    dispatch(ActionCreator.changeActiveFilter(genreForFilter));
+  changeActiveFilter(genre) {
+    dispatch(ActionCreator.changeActiveFilter(genre));
   },
-  changeFilmList(genreForFilter) {
-    dispatch(ActionCreator.changeFilmList(genreForFilter));
+  changeFilmList(genre) {
+    dispatch(ActionCreator.changeFilmList(genre));
   },
 });
 

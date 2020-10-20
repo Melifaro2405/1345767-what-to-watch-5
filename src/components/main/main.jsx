@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {filmProptypes} from "../../props-validation";
 import MoviesList from "../movies-list/movies-list";
 import GenresList from "../genres-list/genres-list";
+import ButtonShowMore from "../button-show-more/button-show-more";
 
-const Main = ({filmSettings}) => {
-
+const Main = ({filmSettings, films, countShownFilms}) => {
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -86,14 +88,9 @@ const Main = ({filmSettings}) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenresList />
+          <MoviesList films={films.slice(0, countShownFilms)} />
+          {(films.length > countShownFilms) ? <ButtonShowMore /> : null}
 
-          <MoviesList />
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
         </section>
 
         <footer className="page-footer">
@@ -119,7 +116,12 @@ Main.propTypes = {
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired
-  }).isRequired
+  }).isRequired,
+  countShownFilms: PropTypes.number.isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired
 };
 
-export default Main;
+const mapStateToProps = ({films, countShownFilms}) => ({films, countShownFilms});
+
+export {Main};
+export default connect(mapStateToProps)(Main);

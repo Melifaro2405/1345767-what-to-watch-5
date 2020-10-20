@@ -1,12 +1,14 @@
 import {extend} from "../utils";
 import {ActionType} from "./action";
-import {ALL_GENRES, genres, getFilmsByGenre} from "../components/genres-list/genres.data";
+import {genres, getFilmsByGenre} from "../components/genres-list/genres.data";
 import {allFilms} from "../mocks/films";
+import {COUNT_SHOWN_FILMS} from "../consts";
 
 const initialState = {
-  activeGenre: ALL_GENRES,
+  activeGenre: genres[0],
   genres,
-  filteredFilms: allFilms
+  films: allFilms,
+  countShownFilms: COUNT_SHOWN_FILMS
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,7 +20,13 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.GET_FILM_LIST_BY_GENRE:
       return extend(state, {
-        filteredFilms: getFilmsByGenre(allFilms, action.payload)
+        films: getFilmsByGenre(allFilms, action.payload),
+        countShownFilms: COUNT_SHOWN_FILMS
+      });
+
+    case ActionType.CHANGE_COUNT_SHOWN_FILMS:
+      return extend(state, {
+        countShownFilms: action.payload
       });
   }
 

@@ -8,4 +8,4 @@ export const ReleaseDateFilm = {
   MAX: 2020
 };
 
-export const FILMCOUNT = 8;
+export const FILMCOUNT = 20;
