@@ -1,16 +1,22 @@
 export const ActionType = {
   CHANGE_FILTER_BY_GENRE: `CHANGE_FILTER_BY_GENRE`,
   GET_FILM_LIST_BY_GENRE: `GET_FILM_LIST_BY_GENRE`,
+  CHANGE_COUNT_SHOWN_FILMS: `CHANGE_COUNT_SHOWN_FILMS`
 };
 
 export const ActionCreator = {
-  changeActiveFilter: (genreForFilter) => ({
+  changeActiveFilter: (genre) => ({
     type: ActionType.CHANGE_FILTER_BY_GENRE,
-    payload: genreForFilter
+    payload: genre
   }),
 
-  changeFilmList: (genreForFilter) => ({
+  changeFilmList: (genre) => ({
     type: ActionType.GET_FILM_LIST_BY_GENRE,
-    payload: genreForFilter
+    payload: genre
+  }),
+
+  changeCountFilms: (count) => ({
+    type: ActionType.CHANGE_COUNT_SHOWN_FILMS,
+    payload: count
   }),
 };

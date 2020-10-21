@@ -11,7 +11,9 @@ const MoviePage = ({films, film, reviews}) => {
   const {id, moreInfo, preview} = film;
   const {backGroundSrc, genre, releaseDate, posterSrc} = moreInfo;
   const {title} = preview;
-  const likeGenreFilms = films.filter((likeFilm) => genre === likeFilm.moreInfo.genre && likeFilm.id !== id).slice(0, COUNT_LIKE_GENRE_FILMS);
+  const likeGenreFilms = films
+    .filter((likeFilm) => genre === likeFilm.moreInfo.genre && likeFilm.id !== id)
+    .slice(0, COUNT_LIKE_GENRE_FILMS);
 
   return (
     <React.Fragment>
@@ -130,4 +132,3 @@ MoviePage.propTypes = {
 };
 
 export default MoviePage;
-

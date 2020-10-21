@@ -20,7 +20,25 @@ const TITLES = [
   `Spider-Man`,
   `Greyhound`,
   `Ready Player One`,
-  `The Lion King`
+  `The Lion King`,
+  `Alita. Battle Angel`,
+  `Thor. Ragnarok`,
+  `The One and Only Ivan`,
+  `Beckman`,
+  `Captain Marvel`,
+  `Robot Riot`,
+  `Money Plane`,
+  `Project Power`,
+  `Joker`,
+  `The SpongeBob Movie`,
+  `The Tax Collector`,
+  `Shazam!`,
+  `Sonic the Hedgehog`,
+  `Avengers. Endgame`,
+  `Breaking Surface`,
+  `Birds of Prey`,
+  `Onward`,
+  `Bloodshot`
 ];
 
 const DIRECTORS = [
@@ -45,12 +63,21 @@ const ACTORS = [
 
 const GENRES = [
   `Drama`,
-  `Criminal`,
+  `Crime`,
   `Horror`,
   `Western`,
   `Comedy`,
   `Sci-Fi`,
-  `Thriller`
+  `Thriller`,
+  `Adventure`,
+  `Fantasy`,
+  `Romance`,
+  `Family`,
+  `Musical`,
+  `Biography`,
+  `Action`,
+  `Science fiction`,
+  `War`
 ];
 
 const getImage = (title) => `img/${title}.jpg`;
