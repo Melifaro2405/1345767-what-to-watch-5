@@ -1,3 +1,5 @@
+import {COUNT_SHOWN_FILMS} from "../consts";
+
 export const ActionType = {
   CHANGE_FILTER_BY_GENRE: `CHANGE_FILTER_BY_GENRE`,
   GET_FILM_LIST_BY_GENRE: `GET_FILM_LIST_BY_GENRE`,
@@ -15,8 +17,8 @@ export const ActionCreator = {
     payload: genre
   }),
 
-  changeCountFilms: (count) => ({
+  changeShownFilms: (count) => ({
     type: ActionType.CHANGE_COUNT_SHOWN_FILMS,
-    payload: count
+    payload: count + COUNT_SHOWN_FILMS
   }),
 };

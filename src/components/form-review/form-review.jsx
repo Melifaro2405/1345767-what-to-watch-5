@@ -1,114 +1,60 @@
-import React, {PureComponent} from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-export default class FormReview extends PureComponent {
-  constructor(props) {
-    super(props);
+const RATE_STARS = [1, 2, 3, 4, 5];
 
-    this.state = {
-      value: ``,
-      rateValue: ``
-    };
+const FormReview = ({onSubmit, onChangeText, onChangeRating, textValue, ratingValue}) => {
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleRateChange = this.handleRateChange.bind(this);
-  }
-
-  handleSubmit(evt) {
-    evt.preventDefault();
-  }
-
-  handleChange(evt) {
-    this.setState({value: evt.target.value});
-  }
-
-  handleRateChange(evt) {
-    this.setState({rateValue: evt.target.value});
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit} action="#" className="add-review__form">
-        <div className="rating">
-          <div className="rating__stars" onChange={this.handleRateChange}>
-            <input
-              className="rating__input"
-              id="star-1"
-              type="radio"
-              name="rating"
-              value="1"
-              defaultChecked={this.state.rateValue === `1`}
-            />
-            <label className="rating__label" htmlFor="star-1">
-              Rating 1
-            </label>
-
-            <input
-              className="rating__input"
-              id="star-2"
-              type="radio"
-              name="rating"
-              value="2"
-              defaultChecked={this.state.rateValue === `2`}
-            />
-            <label className="rating__label" htmlFor="star-2">
-              Rating 2
-            </label>
-
-            <input
-              className="rating__input"
-              id="star-3"
-              type="radio"
-              name="rating"
-              value="3"
-              defaultChecked={this.state.rateValue === `3`}
-            />
-            <label className="rating__label" htmlFor="star-3">
-              Rating 3
-            </label>
-
-            <input
-              className="rating__input"
-              id="star-4"
-              type="radio"
-              name="rating"
-              value="4"
-              defaultChecked={this.state.rateValue === `4`}
-            />
-            <label className="rating__label" htmlFor="star-4">
-              Rating 4
-            </label>
-
-            <input
-              className="rating__input"
-              id="star-5"
-              type="radio"
-              name="rating"
-              value="5"
-              defaultChecked={this.state.rateValue === `5`}
-            />
-            <label className="rating__label" htmlFor="star-5">
-              Rating 5
-            </label>
-          </div>
+  return (
+    <form onSubmit={onSubmit} action="#" className="add-review__form">
+      <div className="rating">
+        <div className="rating__stars" onChange={onChangeRating}>
+          {RATE_STARS.map((star) =>
+            <React.Fragment key={`${star}`}>
+              <input
+                className="rating__input"
+                id={`star-${star}`}
+                type="radio"
+                name="rating"
+                value={`${star}`}
+                defaultChecked={Number(ratingValue) === star}
+              />
+              <label
+                className="rating__label"
+                htmlFor={`star-${star}`}
+              >
+                {`Rating ${star}`}
+              </label>
+            </React.Fragment>
+          )}
         </div>
+      </div>
 
-        <div className="add-review__text">
-          <textarea
-            value={this.state.value}
-            onChange={this.handleChange}
-            className="add-review__textarea"
-            name="review-text"
-            id="review-text"
-            placeholder="Review text"
-          ></textarea>
-          <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">
-              Post
-            </button>
-          </div>
+      <div className="add-review__text">
+        <textarea
+          value={textValue}
+          onChange={onChangeText}
+          className="add-review__textarea"
+          name="review-text"
+          id="review-text"
+          placeholder="Review text"
+        ></textarea>
+        <div className="add-review__submit">
+          <button className="add-review__btn" type="submit">
+            Post
+          </button>
         </div>
-      </form>
-    );
-  }
-}
+      </div>
+    </form>
+  );
+};
+
+FormReview.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onChangeText: PropTypes.func.isRequired,
+  onChangeRating: PropTypes.func.isRequired,
+  textValue: PropTypes.string.isRequired,
+  ratingValue: PropTypes.string.isRequired,
+};
+
+export default FormReview;

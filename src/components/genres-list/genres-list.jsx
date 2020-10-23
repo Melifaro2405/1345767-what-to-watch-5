@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 
-export const GenresList = ({genres, activeGenre, changeActiveFilter, changeFilmList}) => {
+const GenresList = ({genres, activeGenre, changeActiveFilter, changeFilmList}) => {
   return (
     <ul className="catalog__genres-list">
       {genres.map((genre, index) =>
@@ -18,6 +18,13 @@ export const GenresList = ({genres, activeGenre, changeActiveFilter, changeFilmL
   );
 };
 
+GenresList.propTypes = {
+  genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  activeGenre: PropTypes.string.isRequired,
+  changeActiveFilter: PropTypes.func.isRequired,
+  changeFilmList: PropTypes.func.isRequired
+};
+
 const mapStateToProps = ({genres, activeGenre}) => ({genres, activeGenre});
 
 const mapDispatchToProps = (dispatch) => ({
@@ -29,11 +36,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-GenresList.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  activeGenre: PropTypes.string.isRequired,
-  changeActiveFilter: PropTypes.func.isRequired,
-  changeFilmList: PropTypes.func.isRequired
-};
-
+export {GenresList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenresList);

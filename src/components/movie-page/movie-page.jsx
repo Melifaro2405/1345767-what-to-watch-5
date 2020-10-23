@@ -4,6 +4,9 @@ import {Link} from "react-router-dom";
 import {filmProptypes, reviewProptypes} from "../../props-validation";
 import Tabs from "../tabs/tabs";
 import MoviesList from "../movies-list/movies-list";
+import withActiveTab from "../../hocs/with-active-tab/with-active-tab";
+
+const TabsWrapped = withActiveTab(Tabs);
 
 const MoviePage = ({films, film, reviews}) => {
   const COUNT_LIKE_GENRE_FILMS = 4;
@@ -96,7 +99,7 @@ const MoviePage = ({films, film, reviews}) => {
             </div>
 
             <div className="movie-card__desc">
-              <Tabs film={film} reviews={reviews} />
+              <TabsWrapped film={film} reviews={reviews} />
             </div>
           </div>
         </div>
