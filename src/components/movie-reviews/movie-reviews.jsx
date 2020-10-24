@@ -5,7 +5,6 @@ import ReviewsList from "../reviews-list/reviews-list";
 
 const MovieReviews = ({reviews}) => {
   const evenReviews = reviews.filter((_, index) => index % 2 !== 0);
-
   const oddReviews = reviews.filter((_, index) => index % 2 === 0);
 
   return (

@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import FormReview from "../form-review/form-review";
 import {Link} from "react-router-dom";
 import {filmProptypes} from "../../props-validation";
+import withChangeValues from "../../hocs/with-change-values/with-change-values";
+
+const FormReviewWrapped = withChangeValues(FormReview);
 
 const AddReview = ({film}) => {
   const {id, moreInfo: {backGroundSrc, posterSrc}, preview: {title}} = film;
@@ -64,7 +67,7 @@ const AddReview = ({film}) => {
       </div>
 
       <div className="add-review">
-        <FormReview />
+        <FormReviewWrapped />
       </div>
     </section>
   );

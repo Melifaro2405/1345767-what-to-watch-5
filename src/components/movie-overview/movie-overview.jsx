@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import {filmProptypes} from "../../props-validation";
 
 const MovieOverview = ({film}) => {
-  const {overview: {rating, ratingDescription, ratingCount, description, director, actorsList}} = film;
+  const {overview} = film;
+  const {rating, ratingDescription, ratingCount, description, director, actorsList} = overview;
 
   return (
     <React.Fragment>
