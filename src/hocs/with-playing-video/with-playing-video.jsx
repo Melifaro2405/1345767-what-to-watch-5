@@ -1,42 +1,97 @@
-import React, {PureComponent} from "react";
+import React, {PureComponent, createRef} from "react";
+import PropTypes from "prop-types";
+import {filmProptypes} from "../../props-validation";
 
 const withPlayingVideo = (Component) => {
   class WithPlayingVideo extends PureComponent {
     constructor(props) {
       super(props);
 
-      this._timeoutId = null;
-      this.state = {isPlayingVideo: false};
+      this._videoRef = createRef();
 
-      this._handleMouseOver = this._handleMouseOver.bind(this);
-      this._handleMouseOut = this._handleMouseOut.bind(this);
+      this.state = {
+        isPlaying: true,
+        videoProgress: null,
+        videoTimeLeft: null
+      };
+
+      this._handlePlayVideo = this._handlePlayVideo.bind(this);
+      this._handlePauseVideo = this._handlePauseVideo.bind(this);
+      this._handleClickFullScreen = this._handleClickFullScreen.bind(this);
+      this._handleTimeUpdate = this._handleTimeUpdate.bind(this);
     }
 
-    _handleMouseOver() {
-      this._timeoutId = setTimeout(() => {
-        this.setState({isPlayingVideo: true});
-      }, 1000);
+    componentDidMount() {
+      const video = this._videoRef.current;
+      const {playVideoSrc} = this.props.film.moreInfo;
+
+      video.src = playVideoSrc;
+      video.play();
     }
 
-    _handleMouseOut() {
-      this.setState({isPlayingVideo: false});
-      clearTimeout(this._timeoutId);
-      this._timeoutId = null;
+    componentDidUpdate() {
+      const video = this._videoRef.current;
+      const {isPlaying} = this.state;
+
+      return (isPlaying) ? video.play() : video.pause();
+    }
+
+    _handlePlayVideo() {
+      this.setState({isPlaying: true});
+    }
+
+    _handlePauseVideo() {
+      this.setState({isPlaying: false});
+    }
+
+    _handleClickFullScreen() {
+      const video = this._videoRef.current;
+      video.requestFullscreen();
+    }
+
+    _handleTimeUpdate() {
+      const video = this._videoRef.current;
+      this.setState({
+        videoProgress: video.currentTime * 100 / video.duration,
+        videoTimeLeft: video.duration - video.currentTime,
+      });
     }
 
     render() {
+      const {isPlaying, videoProgress, videoTimeLeft} = this.state;
+      const {onExitButtonClick} = this.props;
+      const {playVideoSrc} = this.props.film.moreInfo;
+
       return (
         <Component
           {...this.props}
-          onMouseOver={this._handleMouseOver}
-          onMouseOut={this._handleMouseOut}
-          isPlayingVideo={this.state.isPlayingVideo}
-        />
+          isPlaying={isPlaying}
+          handlePlayVideo={this._handlePlayVideo}
+          handlePauseVideo={this._handlePauseVideo}
+          handleClickFullScreen={this._handleClickFullScreen}
+          onExitButtonClick={onExitButtonClick}
+          videoProgress={videoProgress}
+          videoTimeLeft={videoTimeLeft}
+        >
+          <video
+            ref={this._videoRef}
+            onTimeUpdate={this._handleTimeUpdate}
+            className="player__video"
+            poster="img/player-poster.jpg"
+            src={playVideoSrc}
+          />
+        </Component>
       );
     }
   }
 
+  WithPlayingVideo.propTypes = {
+    film: PropTypes.shape(filmProptypes).isRequired,
+    onExitButtonClick: PropTypes.func.isRequired,
+  };
+
   return WithPlayingVideo;
 };
+
 
 export default withPlayingVideo;

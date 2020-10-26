@@ -1,17 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app";
-import {allFilms} from "./mocks/films";
+import {allFilms, promoFilm} from "./mocks/films";
 import {allReviews} from "./mocks/reviews";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import {reducer} from "./store/reducer";
-
-const FilmSettings = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  year: 2014
-};
 
 const store = createStore(
     reducer,
@@ -21,7 +15,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
       <App
-        filmSettings={FilmSettings}
+        promoFilm={promoFilm}
         films={allFilms}
         reviews={allReviews}
       />

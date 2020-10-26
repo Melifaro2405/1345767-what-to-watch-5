@@ -11,6 +11,7 @@ export const filmProptypes = {
     posterSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
+    playPreviewSrc: PropTypes.string.isRequired,
     playVideoSrc: PropTypes.string.isRequired,
     isAddToMyList: PropTypes.bool.isRequired
   }),

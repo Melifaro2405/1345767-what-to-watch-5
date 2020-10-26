@@ -8,14 +8,17 @@ import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import {filmProptypes, reviewProptypes} from "../../props-validation";
+import withPlayingVideo from "../../hocs/with-playing-video/with-playing-video";
 
-const App = ({filmSettings, films, reviews}) => {
+const PlayerWrapped = withPlayingVideo(Player);
+
+const App = ({promoFilm, films, reviews}) => {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" render={() => (
           <Main
-            filmSettings={filmSettings}
+            promoFilm={promoFilm}
           />
         )}/>
         <Route exact path="/login" component={SignIn} />
@@ -27,7 +30,11 @@ const App = ({filmSettings, films, reviews}) => {
         <Route exact path="/films/:id" render={({match}) => {
           const film = films.find(({id}) => id === Number(match.params.id));
           const currentFilmReviews = reviews.filter(({filmId}) => filmId === Number(match.params.id));
-          return <MoviePage films={films} film={film} reviews={currentFilmReviews} />;
+          return <MoviePage
+            films={films}
+            film={film}
+            reviews={currentFilmReviews}
+          />;
         }}
         />
         <Route exact path="/films/:id/review" render={({match}) => {
@@ -35,9 +42,12 @@ const App = ({filmSettings, films, reviews}) => {
           return <AddReview film={film}/>;
         }}
         />
-        <Route exact path="/player/:id" render={({match}) => {
+        <Route exact path="/player/:id" render={({match, history}) => {
           const film = films.find(({id}) => id === Number(match.params.id));
-          return <Player film={film}/>;
+          return <PlayerWrapped
+            film={film}
+            onExitButtonClick={() => history.goBack()}
+          />;
         }}
         />
       </Switch>
@@ -48,11 +58,7 @@ const App = ({filmSettings, films, reviews}) => {
 export default App;
 
 App.propTypes = {
-  filmSettings: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
-  }).isRequired,
+  promoFilm: PropTypes.shape(filmProptypes).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)).isRequired
 };

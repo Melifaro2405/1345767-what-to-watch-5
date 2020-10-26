@@ -1,15 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MoviesCatalog from "../movies-catalog/movies-catalog";
+import {Link} from "react-router-dom";
+import {filmProptypes} from "../../props-validation";
 
-const Main = ({filmSettings}) => {
+const Main = ({promoFilm}) => {
+  const {preview, moreInfo, id} = promoFilm;
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
+            src={moreInfo.backGroundSrc}
+            alt={preview.title}
           />
         </div>
 
@@ -40,30 +43,27 @@ const Main = ({filmSettings}) => {
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={moreInfo.posterSrc}
+                alt={preview.title}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{filmSettings.title}</h2>
+              <h2 className="movie-card__title">{preview.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{filmSettings.genre}</span>
-                <span className="movie-card__year">{filmSettings.year}</span>
+                <span className="movie-card__genre">{moreInfo.genre}</span>
+                <span className="movie-card__year">{moreInfo.releaseDate}</span>
               </p>
 
               <div className="movie-card__buttons">
-                <button
-                  className="btn btn--play movie-card__button"
-                  type="button"
-                >
+                <Link to={`/player/${id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button
                   className="btn btn--list movie-card__button"
                   type="button"
@@ -81,7 +81,6 @@ const Main = ({filmSettings}) => {
 
       <div className="page-content">
         <MoviesCatalog />
-
         <footer className="page-footer">
           <div className="logo">
             <a className="logo__link logo__link--light">
@@ -101,11 +100,7 @@ const Main = ({filmSettings}) => {
 };
 
 Main.propTypes = {
-  filmSettings: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
-  }).isRequired
+  promoFilm: PropTypes.shape(filmProptypes)
 };
 
 export default Main;
