@@ -34,7 +34,9 @@ const Player = ({
               Toggler
             </div>
           </div>
-          <div className="player__time-value">{returnElapsedTime(videoTimeLeft)}</div>
+          <div className="player__time-value">
+            {returnElapsedTime(videoTimeLeft)}
+          </div>
         </div>
 
         <div className="player__controls-row">

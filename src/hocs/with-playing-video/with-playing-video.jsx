@@ -50,17 +50,20 @@ const withPlayingVideo = (Component) => {
     }
 
     _handleTimeUpdate() {
-      const video = this._videoRef.current;
-      this.setState({
-        videoProgress: video.currentTime * 100 / video.duration,
-        videoTimeLeft: video.duration - video.currentTime,
-      });
+      const {currentTime, duration} = this._videoRef.current;
+
+      if (duration) {
+        this.setState({
+          videoProgress: currentTime * 100 / duration,
+          videoTimeLeft: duration - currentTime,
+        });
+      }
     }
 
     render() {
       const {isPlaying, videoProgress, videoTimeLeft} = this.state;
-      const {onExitButtonClick} = this.props;
-      const {playVideoSrc} = this.props.film.moreInfo;
+      const {onExitButtonClick, film} = this.props;
+      const {playVideoSrc} = film.moreInfo;
 
       return (
         <Component
