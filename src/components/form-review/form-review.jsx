@@ -16,7 +16,7 @@ const FormReview = ({onSubmit, onChangeText, onChangeRating, textValue, ratingVa
                 id={`star-${star}`}
                 type="radio"
                 name="rating"
-                value={`${star}`}
+                value={star}
                 defaultChecked={Number(ratingValue) === star}
               />
               <label

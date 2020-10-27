@@ -6,10 +6,10 @@ import {ActionCreator} from "../../store/action";
 const ButtonShowMore = ({countShownFilms, changeShownFilms}) => {
   return (
     <div className="catalog__more">
-      <button onClick={(evt) => {
-        evt.preventDefault();
-        changeShownFilms(countShownFilms);
-      }} className="catalog__button" type="button">Show more
+      <button onClick={() => changeShownFilms(countShownFilms)}
+        className="catalog__button"
+        type="button">
+          Show more
       </button>
     </div>
   );

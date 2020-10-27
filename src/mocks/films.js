@@ -132,7 +132,8 @@ const generateFilm = () => {
       posterSrc: getImage(title),
       genre: GENRES[random(0, GENRES.length - 1)],
       releaseDate: Math.min(random(ReleaseDateFilm.MIN, ReleaseDateFilm.MAX)),
-      playVideoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      playPreviewSrc: `https://media.istockphoto.com/videos/footage-portrait-of-a-little-tabby-kitten-looking-at-camera-video-id1174943541?b=1&k=6&m=1174943541&h=JIYHxcnJRNwaxLftgeJokyWfM3AXLGgnth_aJIYzQPA=`,
+      playVideoSrc: `https://player.vimeo.com/external/241674252.hd.mp4?s=6434703a4cdfaeeb338495ebeca4c71201671360&profile_id=174`,
       isAddToMyList: Boolean(random(0, 1))
     },
     overview: {
@@ -158,4 +159,7 @@ const generateFilms = () => {
   return Array.from(new Set(films));
 };
 
-export const allFilms = generateFilms();
+const allFilms = generateFilms();
+const promoFilm = allFilms[random(0, allFilms.length - 1)];
+
+export {allFilms, promoFilm};

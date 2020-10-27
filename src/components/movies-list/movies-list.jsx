@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import SmallMovieCard from "../small-movie-card/small-movie-card";
 import {filmProptypes} from "../../props-validation";
-import withPlayingVideo from "../../hocs/with-playing-video/with-playing-video";
+import withPlayingPreviewVideo from "../../hocs/with-playing-preview-video/with-playing-preview-video";
 
-const SmallMovieCardWrapped = withPlayingVideo(SmallMovieCard);
+const SmallMovieCardWrapped = withPlayingPreviewVideo(SmallMovieCard);
 
 const MoviesList = ({films}) => {
   return (

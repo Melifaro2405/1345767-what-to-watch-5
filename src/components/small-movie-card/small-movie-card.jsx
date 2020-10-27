@@ -6,7 +6,7 @@ import {filmProptypes} from "../../props-validation";
 
 const SmallMovieCard = ({film, onMouseOver, onMouseOut, isPlayingVideo}) => {
   const {id, moreInfo, preview} = film;
-  const {playVideoSrc} = moreInfo;
+  const {playPreviewSrc} = moreInfo;
   const {src, title} = preview;
 
   return (
@@ -15,7 +15,7 @@ const SmallMovieCard = ({film, onMouseOver, onMouseOut, isPlayingVideo}) => {
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}>
         {isPlayingVideo
-          ? <MoviePreview playVideoSrc={playVideoSrc} src={src} />
+          ? <MoviePreview playVideoSrc={playPreviewSrc} src={src} />
           : <img src={src} alt={title} width="280" height="175" />
         }
       </div>
