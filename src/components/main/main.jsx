@@ -11,7 +11,7 @@ const Main = ({promoFilm}) => {
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src={moreInfo.backGroundSrc}
+            src={moreInfo.backgroundSrc}
             alt={preview.title}
           />
         </div>

@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {connect} from "react-redux";
 import Main from "../main/main";
 import SignIn from "../sign-in/sign-in";
 import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
+// import PrivateRoute from "../private-route/private-route";
 import {filmProptypes, reviewProptypes} from "../../props-validation";
 import withPlayingVideo from "../../hocs/with-playing-video/with-playing-video";
 
@@ -55,10 +57,17 @@ const App = ({promoFilm, films, reviews}) => {
   );
 };
 
-export default App;
-
 App.propTypes = {
   promoFilm: PropTypes.shape(filmProptypes).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)).isRequired
+  reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)) // позже поставить isRequired
 };
+
+const mapStateToProps = ({DATA}) => ({
+  films: DATA.films,
+  reviews: DATA.reviews,
+  promoFilm: DATA.films[0]
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

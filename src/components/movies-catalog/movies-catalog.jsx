@@ -23,7 +23,10 @@ MoviesCatalog.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired
 };
 
-const mapStateToProps = ({films, countShownFilms}) => ({films, countShownFilms});
+const mapStateToProps = ({DATA, APP_STATE}) => ({
+  films: DATA.films,
+  countShownFilms: APP_STATE.countShownFilms,
+});
 
 export {MoviesCatalog};
 export default connect(mapStateToProps)(MoviesCatalog);

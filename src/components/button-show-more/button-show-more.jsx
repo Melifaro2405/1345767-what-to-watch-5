@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
+import {changeShownFilms} from "../../store/action";
 
-const ButtonShowMore = ({countShownFilms, changeShownFilms}) => {
+const ButtonShowMore = ({countShownFilms, changeShownFilmsAction}) => {
   return (
     <div className="catalog__more">
-      <button onClick={() => changeShownFilms(countShownFilms)}
+      <button onClick={() => changeShownFilmsAction(countShownFilms)}
         className="catalog__button"
         type="button">
           Show more
@@ -17,14 +17,16 @@ const ButtonShowMore = ({countShownFilms, changeShownFilms}) => {
 
 ButtonShowMore.propTypes = {
   countShownFilms: PropTypes.number.isRequired,
-  changeShownFilms: PropTypes.func.isRequired,
+  changeShownFilmsAction: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({countShownFilms}) => ({countShownFilms});
+const mapStateToProps = ({APP_STATE}) => ({
+  countShownFilms: APP_STATE.countShownFilms
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  changeShownFilms(countShownFilms) {
-    dispatch(ActionCreator.changeShownFilms(countShownFilms));
+  changeShownFilmsAction(countShownFilms) {
+    dispatch(changeShownFilms(countShownFilms));
   }
 });
 
