@@ -24,6 +24,10 @@ const withPlayingPreviewVideo = (Component) => {
       this._timeoutId = null;
     }
 
+    componentWillUnmount() {
+      clearTimeout(this._timeoutId);
+    }
+
     render() {
       return (
         <Component

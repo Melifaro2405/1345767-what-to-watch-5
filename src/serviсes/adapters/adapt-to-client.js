@@ -1,4 +1,4 @@
-export const adaptFilmsToClient = (data) => {
+export const adaptFilmToClient = (data) => {
   return {
     id: data.id,
     preview: {

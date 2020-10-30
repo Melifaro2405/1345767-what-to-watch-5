@@ -9,34 +9,23 @@ import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 // import PrivateRoute from "../private-route/private-route";
-import {filmProptypes, reviewProptypes} from "../../props-validation";
+import {filmProptypes} from "../../props-validation";
 import withPlayingVideo from "../../hocs/with-playing-video/with-playing-video";
 
 const PlayerWrapped = withPlayingVideo(Player);
 
-const App = ({promoFilm, films, reviews}) => {
+const App = ({promoFilm, films}) => {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" render={() => (
-          <Main
-            promoFilm={promoFilm}
-          />
+          <Main promoFilm={promoFilm} />
         )}/>
         <Route exact path="/login" component={SignIn} />
-        <Route exact path="/mylist" render={() => {
-          const favoriteFilms = films.filter((film) => film.moreInfo.isAddToMyList);
-          return <MyList favoriteFilms={favoriteFilms} />;
-        }}
-        />
+        <Route exact path="/mylist" component={MyList} />
         <Route exact path="/films/:id" render={({match}) => {
-          const film = films.find(({id}) => id === Number(match.params.id));
-          const currentFilmReviews = reviews.filter(({filmId}) => filmId === Number(match.params.id));
-          return <MoviePage
-            films={films}
-            film={film}
-            reviews={currentFilmReviews}
-          />;
+          const id = Number(match.params.id);
+          return <MoviePage id={id} films={films}/>;
         }}
         />
         <Route exact path="/films/:id/review" render={({match}) => {
@@ -46,10 +35,7 @@ const App = ({promoFilm, films, reviews}) => {
         />
         <Route exact path="/player/:id" render={({match, history}) => {
           const film = films.find(({id}) => id === Number(match.params.id));
-          return <PlayerWrapped
-            film={film}
-            onExitButtonClick={() => history.goBack()}
-          />;
+          return <PlayerWrapped film={film} onExitButtonClick={() => history.goBack()} />;
         }}
         />
       </Switch>
@@ -60,13 +46,11 @@ const App = ({promoFilm, films, reviews}) => {
 App.propTypes = {
   promoFilm: PropTypes.shape(filmProptypes).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)) // позже поставить isRequired
 };
 
 const mapStateToProps = ({DATA}) => ({
   films: DATA.films,
-  reviews: DATA.reviews,
-  promoFilm: DATA.films[0]
+  promoFilm: DATA.promoFilm
 });
 
 export {App};

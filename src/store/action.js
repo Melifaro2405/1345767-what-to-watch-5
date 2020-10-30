@@ -1,9 +1,12 @@
 import {COUNT_SHOWN_FILMS} from "../consts";
 
 export const ActionType = {
+  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FILMS: `LOAD_FILMS`,
   UPDATE_GENRES: `UPDATE_GENRES`,
-  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  GET_FILM_BY_ID: `GET_FILM_BY_ID`,
+  LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
+  LOAD_COMMENTS_BY_FILM_ID: `LOAD_COMMENTS_BY_FILM_ID`,
   CHANGE_FILTER_BY_GENRE: `CHANGE_FILTER_BY_GENRE`,
   GET_FILM_LIST_BY_GENRE: `GET_FILM_LIST_BY_GENRE`,
   CHANGE_COUNT_SHOWN_FILMS: `CHANGE_COUNT_SHOWN_FILMS`,
@@ -30,6 +33,16 @@ export const loadFilms = (films) => ({
   payload: films
 });
 
+export const loadFavoriteFilms = (favoriteFilms) => ({
+  type: ActionType.LOAD_FAVORITE_FILMS,
+  payload: favoriteFilms
+});
+
+export const getFilmByID = (film) => ({
+  type: ActionType.GET_FILM_BY_ID,
+  payload: film
+});
+
 export const updateGenres = (genres) => ({
   type: ActionType.UPDATE_GENRES,
   payload: genres
@@ -38,6 +51,11 @@ export const updateGenres = (genres) => ({
 export const loadPromoFilm = (film) => ({
   type: ActionType.LOAD_PROMO_FILM,
   payload: film
+});
+
+export const loadComments = (comments) => ({
+  type: ActionType.LOAD_COMMENTS_BY_FILM_ID,
+  payload: comments
 });
 
 export const requireAuthorization = (status) => ({

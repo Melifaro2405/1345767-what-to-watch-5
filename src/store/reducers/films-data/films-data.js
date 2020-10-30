@@ -3,9 +3,12 @@ import {ActionType} from "../../action";
 import {COUNT_SHOWN_FILMS} from "../../../consts";
 
 const initialState = {
+  promoFilm: null,
   films: [],
+  favoriteFilms: [],
+  film: null,
   genres: [],
-  promoFilm: {},
+  comments: []
 };
 
 export const filmsData = (state = initialState, action) => {
@@ -16,9 +19,24 @@ export const filmsData = (state = initialState, action) => {
         films: action.payload,
       });
 
+    case ActionType.LOAD_FAVORITE_FILMS:
+      return extend(state, {
+        favoriteFilms: action.payload,
+      });
+
+    case ActionType.GET_FILM_BY_ID:
+      return extend(state, {
+        film: action.payload,
+      });
+
     case ActionType.LOAD_PROMO_FILM:
       return extend(state, {
         promoFilm: action.payload,
+      });
+
+    case ActionType.LOAD_COMMENTS_BY_FILM_ID:
+      return extend(state, {
+        comments: action.payload,
       });
 
     case ActionType.UPDATE_GENRES:
