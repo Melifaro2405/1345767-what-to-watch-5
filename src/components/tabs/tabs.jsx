@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {filmProptypes, reviewProptypes} from "../../props-validation";
+import {filmProptypes} from "../../props-validation";
 import {MovieTabs, TabsList} from "./tabs.consts";
 import MovieOverview from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
 import MovieReviews from "../movie-reviews/movie-reviews";
 
-const Tabs = ({activeTab, handleClickTab, film, reviews}) => {
+const Tabs = ({activeTab, handleClickTab, film, id}) => {
 
   const getTabContent = () => {
     switch (activeTab) {
@@ -15,7 +15,9 @@ const Tabs = ({activeTab, handleClickTab, film, reviews}) => {
       case MovieTabs.DETAILS:
         return <MovieDetails film={film} />;
       case MovieTabs.REVIEWS:
-        return <MovieReviews reviews={reviews} />;
+        return <MovieReviews
+          id={id}
+        />;
     }
     return null;
   };
@@ -42,7 +44,7 @@ const Tabs = ({activeTab, handleClickTab, film, reviews}) => {
 
 Tabs.propTypes = {
   film: PropTypes.shape(filmProptypes).isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.shape(reviewProptypes)).isRequired,
+  id: PropTypes.number.isRequired,
   activeTab: PropTypes.string.isRequired,
   handleClickTab: PropTypes.func.isRequired
 };

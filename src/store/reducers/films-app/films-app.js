@@ -1,7 +1,6 @@
 import {extend} from "../../../utils";
 import {ActionType} from "../../action";
-import {ALL_GENRES} from "../../../components/genres-list/genres.data";
-import {COUNT_SHOWN_FILMS} from "../../../consts";
+import {ALL_GENRES, COUNT_SHOWN_FILMS} from "../../../consts";
 
 const initialState = {
   activeGenre: ALL_GENRES,
@@ -12,7 +11,8 @@ export const filmsApp = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_FILTER_BY_GENRE:
       return extend(state, {
-        activeGenre: action.payload
+        activeGenre: action.payload,
+        countShownFilms: COUNT_SHOWN_FILMS
       });
 
     case ActionType.CHANGE_COUNT_SHOWN_FILMS:

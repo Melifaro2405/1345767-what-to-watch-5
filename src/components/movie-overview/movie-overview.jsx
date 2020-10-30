@@ -1,17 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {filmProptypes} from "../../props-validation";
+import {getRatingDescription} from "../../utils";
 
 const MovieOverview = ({film}) => {
   const {overview} = film;
-  const {rating, ratingDescription, ratingCount, description, director, actorsList} = overview;
+  const {rating, ratingCount, description, director, actorsList} = overview;
 
   return (
     <React.Fragment>
       <div className="movie-rating">
         <div className="movie-rating__score">{rating}</div>
         <p className="movie-rating__meta">
-          <span className="movie-rating__level">{ratingDescription}</span>
+          <span className="movie-rating__level">{getRatingDescription(rating)}</span>
           <span className="movie-rating__count">{ratingCount} ratings</span>
         </p>
       </div>
@@ -23,7 +24,7 @@ const MovieOverview = ({film}) => {
         </p>
         <p className="movie-card__starring">
           <strong>
-            Starring: {actorsList}
+            Starring: {actorsList.join(`, `)}
           </strong>
         </p>
       </div>
