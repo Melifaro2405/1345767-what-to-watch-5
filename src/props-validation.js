@@ -7,7 +7,8 @@ export const filmProptypes = {
     title: PropTypes.string.isRequired
   }),
   moreInfo: PropTypes.shape({
-    backGroundSrc: PropTypes.string.isRequired,
+    backgroundSrc: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
     posterSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
@@ -17,29 +18,23 @@ export const filmProptypes = {
   }),
   overview: PropTypes.shape({
     description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    ratingDescription: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
     ratingCount: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
-    actorsList: PropTypes.string.isRequired,
+    actorsList: PropTypes.arrayOf(PropTypes.string).isRequired
   }),
   details: PropTypes.shape({
-    allActors: PropTypes.string.isRequired,
     runtime: PropTypes.number.isRequired
   }),
 };
 
 export const reviewProptypes = {
-  text: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  time: PropTypes.number.isRequired
-};
-
-export const allFilmsProptypes = {
-  films: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
-
-export const allReviewsProptypes = {
-  reviews: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  id: PropTypes.number.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired
+  }),
+  rating: PropTypes.number.isRequired,
+  comment: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired
 };

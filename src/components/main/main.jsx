@@ -11,7 +11,7 @@ const Main = ({promoFilm}) => {
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src={moreInfo.backGroundSrc}
+            src={moreInfo.backgroundSrc}
             alt={preview.title}
           />
         </div>
@@ -29,12 +29,14 @@ const Main = ({promoFilm}) => {
 
           <div className="user-block">
             <div className="user-block__avatar">
-              <img
-                src="img/avatar.jpg"
-                alt="User avatar"
-                width="63"
-                height="63"
-              />
+              <Link to={`/mylist`}>
+                <img
+                  src="img/avatar.jpg"
+                  alt="User avatar"
+                  width="63"
+                  height="63"
+                />
+              </Link>
             </div>
           </div>
         </header>
