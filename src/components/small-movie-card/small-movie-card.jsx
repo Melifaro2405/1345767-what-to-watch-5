@@ -20,10 +20,10 @@ const SmallMovieCard = ({film, onMouseOver, onMouseOut, isPlayingVideo}) => {
             : <img src={src} alt={title} width="280" height="175" />
           }
         </div>
+        <h3 className="small-movie-card__title">
+          {title}
+        </h3>
       </Link>
-      <h3 className="small-movie-card__title">
-        {title}
-      </h3>
     </article>
   );
 };

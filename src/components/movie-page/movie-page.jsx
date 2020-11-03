@@ -5,39 +5,70 @@ import {filmProptypes} from "../../props-validation";
 import Tabs from "../tabs/tabs";
 import MoviesList from "../movies-list/movies-list";
 import withActiveTab from "../../hocs/with-active-tab/with-active-tab";
-import {fetchFilmByID} from "../../serviсes/api-actions";
+import {fetchFilmByID, updateFilmStatus} from "../../serviсes/api-actions";
 import {connect} from "react-redux";
-import {COUNT_LIKE_GENRE_FILMS} from "../../consts";
+import {AppRoute, AuthorizationStatus, COUNT_LIKE_GENRE_FILMS} from "../../consts";
+import {Footer} from "../footer/footer";
+import UserBlock from "../user-block/user-block";
 
 const TabsWrapped = withActiveTab(Tabs);
 
 class MoviePage extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      film: null,
+      status:
+    };
+
+    this._handleChangeFilmStatus = this._handleChangeFilmStatus.bind(this);
+  }
 
   componentDidMount() {
     const {getFilmByID, id} = this.props;
-    getFilmByID(id);
+    getFilmByID(id)
+    .then((film) => {
+      this.setState({film});
+    });
   }
 
   componentDidUpdate(prevProps) {
     const {getFilmByID, id} = this.props;
     if (id !== prevProps.id) {
-      getFilmByID(id);
+      getFilmByID(id)
+      .then((film) => {
+        this.setState({film});
+      });
     }
   }
 
+  _handleChangeFilmStatus() {
+    const {changeFilmStatus, id} = this.props;
+    const {film} = this.state;
+    console.log(`статус`, !film.moreInfo.isAddToMyList);
+    const status = Number(!film.moreInfo.isAddToMyList);
+
+    this.setState({
+      status: !this.state.status
+    });
+    changeFilmStatus(id, status);
+  }
+
   render() {
-    if (!this.props.film) {
+    const {film} = this.state;
+
+    if (!film) {
       return null;
     }
 
-    const {film, films, id} = this.props;
+    const {films, id, authorizationStatus} = this.props;
     const {moreInfo, preview} = film;
     const {backgroundSrc, genre, releaseDate, posterSrc} = moreInfo;
     const {title} = preview;
     const likeGenreFilms = films
     .filter((likeFilm) => genre === likeFilm.moreInfo.genre && likeFilm.id !== id)
     .slice(0, COUNT_LIKE_GENRE_FILMS);
-
 
     return (
       <React.Fragment>
@@ -54,25 +85,14 @@ class MoviePage extends PureComponent {
 
             <header className="page-header movie-card__head">
               <div className="logo">
-                <Link to={`/`} className="logo__link">
+                <Link to={AppRoute.ROOT} className="logo__link">
                   <span className="logo__letter logo__letter--1">W</span>
                   <span className="logo__letter logo__letter--2">T</span>
                   <span className="logo__letter logo__letter--3">W</span>
                 </Link>
               </div>
 
-              <div className="user-block">
-                <div className="user-block__avatar">
-                  <Link to={`/mylist`}>
-                    <img
-                      src="img/avatar.jpg"
-                      alt="User avatar"
-                      width="63"
-                      height="63"
-                    />
-                  </Link>
-                </div>
-              </div>
+              <UserBlock />
             </header>
 
             <div className="movie-card__wrap">
@@ -91,16 +111,23 @@ class MoviePage extends PureComponent {
                     <span>Play</span>
                   </Link>
 
-                  <button className="btn btn--list movie-card__button" type="button">
+                  <button
+                    onClick={this._handleChangeFilmStatus}
+                    className="btn btn--list movie-card__button"
+                    type="button"
+                  >
                     <svg viewBox="0 0 19 20" width="19" height="20">
                       <use xlinkHref="#add"/>
                     </svg>
                     <span>My list</span>
                   </button>
 
-                  <Link to={`/films/${id}/review`} className="btn movie-card__button">
-                    Add review
-                  </Link>
+                  {
+                    (authorizationStatus === AuthorizationStatus.AUTH) ?
+                      <Link to={`/films/${id}/review`} className="btn movie-card__button">
+                        Add review
+                      </Link> : ``
+                  }
                 </div>
               </div>
             </div>
@@ -129,19 +156,7 @@ class MoviePage extends PureComponent {
             <MoviesList films={likeGenreFilms} />
           </section>
 
-          <footer className="page-footer">
-            <div className="logo">
-              <Link to={`/`} className="logo__link logo__link--light">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="copyright">
-              <p>© 2019 What to watch Ltd.</p>
-            </div>
-          </footer>
+          <Footer />
         </div>
       </React.Fragment>
     );
@@ -152,16 +167,21 @@ MoviePage.propTypes = {
   film: PropTypes.shape(filmProptypes),
   films: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
   id: PropTypes.number.isRequired,
-  getFilmByID: PropTypes.func.isRequired
+  getFilmByID: PropTypes.func.isRequired,
+  changeFilmStatus: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
-const mapStateToProps = ({DATA}) => ({
-  film: DATA.film
+const mapStateToProps = ({USER}) => ({
+  authorizationStatus: USER.authorizationStatus
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getFilmByID(id) {
-    dispatch(fetchFilmByID(id));
+    return dispatch(fetchFilmByID(id));
+  },
+  changeFilmStatus(id, status) {
+    dispatch(updateFilmStatus(id, status));
   }
 });
 

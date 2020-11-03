@@ -1,33 +1,49 @@
-import {loadFilms, updateGenres, loadPromoFilm, loadComments, requireAuthorization, getFilmByID, loadFavoriteFilms} from "../store/action";
-import {AuthorizationStatus} from "../consts";
-import {adaptFilmToClient} from "./adapters/adapt-to-client";
+import {
+  loadFilms,
+  updateGenres,
+  loadPromoFilm,
+  loadComments,
+  requireAuthorization,
+  loadFavoriteFilms,
+  redirectToRoute,
+  getUserInfo,
+  addFilmTyMyList
+} from "../store/action";
+
+import {APIRoute, AppRoute, AuthorizationStatus} from "../consts";
+import {adaptFilmToClient, adaptUserInfoToClient} from "./adapters/adapt-to-client";
 import {getGenres} from "../utils";
+import {adaptFilmToServer} from "./adapters/adapt-to-server";
 
 export const fetchFilmList = () => (dispatch, _getState, api) => (
-  api.get(`/films`)
+  api.get(APIRoute.FILMS)
     .then(({data}) => {
-      const adaptData = data.map((item) => adaptFilmToClient(item));
       dispatch(loadFilms(data.map(adaptFilmToClient)));
-      dispatch(updateGenres(getGenres(adaptData)));
+      dispatch(updateGenres(getGenres(data.map(adaptFilmToClient))));
     })
 );
 
 export const fetchFavoriteFilmList = () => (dispatch, _getState, api) => (
-  api.get(`/favorite`)
+  api.get(APIRoute.FAVORITE_FILMS)
     .then(({data}) => {
       dispatch(loadFavoriteFilms(data.map(adaptFilmToClient)));
     })
 );
 
-export const fetchFilmByID = (id) => (dispatch, _getState, api) => (
-  api.get(`/films/${id}`)
+export const updateFilmStatus = (id, status) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${status}`)
     .then(({data}) => {
-      dispatch(getFilmByID(adaptFilmToClient(data)));
+      dispatch(addFilmTyMyList(adaptFilmToClient(data), id));
     })
 );
 
+export const fetchFilmByID = (id) => (_dispatch, _getState, api) => (
+  api.get(`/films/${id}`)
+    .then(({data}) => adaptFilmToClient(data))
+);
+
 export const fetchPromoFilm = () => (dispatch, _getState, api) => (
-  api.get(`/films/promo`)
+  api.get(APIRoute.PROMO_FILM)
   .then(({data}) => {
     dispatch(loadPromoFilm(adaptFilmToClient(data)));
   })
@@ -41,14 +57,18 @@ export const fetchReviews = (id) => (dispatch, _getState, api) => (
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
-  api.get(`/login`)
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-    .catch((err) => {
-      throw err;
+  api.get(APIRoute.LOGIN)
+    .then(({data}) => {
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(getUserInfo(adaptUserInfoToClient(data)));
+    })
+    .catch(() => {
+      dispatch(redirectToRoute(AppRoute.LOGIN));
     })
 );
 
-export const login = ({login: email, password}) => (dispatch, _getState, api) => (
-  api.post(`/login`, {email, password})
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+export const login = ({email, password}) => (dispatch, _getState, api) => (
+  api.post(APIRoute.LOGIN, {email, password})
+  .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+  .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
 );

@@ -4,23 +4,19 @@ export const ActionType = {
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FILMS: `LOAD_FILMS`,
   UPDATE_GENRES: `UPDATE_GENRES`,
-  GET_FILM_BY_ID: `GET_FILM_BY_ID`,
+  ADD_FILM_TO_MY_LIST: `ADD_FILM_TO_MY_LIST`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   LOAD_COMMENTS_BY_FILM_ID: `LOAD_COMMENTS_BY_FILM_ID`,
   CHANGE_FILTER_BY_GENRE: `CHANGE_FILTER_BY_GENRE`,
-  GET_FILM_LIST_BY_GENRE: `GET_FILM_LIST_BY_GENRE`,
   CHANGE_COUNT_SHOWN_FILMS: `CHANGE_COUNT_SHOWN_FILMS`,
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  GET_USER_INFO: `GET_USER_INFO`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
 };
 
 export const changeActiveFilter = (genre) => ({
   type: ActionType.CHANGE_FILTER_BY_GENRE,
   payload: genre
-});
-
-export const changeFilmList = (films) => ({
-  type: ActionType.GET_FILM_LIST_BY_GENRE,
-  payload: films
 });
 
 export const changeShownFilms = (count) => ({
@@ -38,9 +34,12 @@ export const loadFavoriteFilms = (favoriteFilms) => ({
   payload: favoriteFilms
 });
 
-export const getFilmByID = (film) => ({
-  type: ActionType.GET_FILM_BY_ID,
-  payload: film
+export const addFilmTyMyList = (film, id) => ({
+  type: ActionType.ADD_FILM_TO_MY_LIST,
+  payload: {
+    film,
+    id
+  }
 });
 
 export const updateGenres = (genres) => ({
@@ -61,4 +60,14 @@ export const loadComments = (comments) => ({
 export const requireAuthorization = (status) => ({
   type: ActionType.REQUIRED_AUTHORIZATION,
   payload: status,
+});
+
+export const getUserInfo = (user) => ({
+  type: ActionType.GET_USER_INFO,
+  payload: user,
+});
+
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
 });

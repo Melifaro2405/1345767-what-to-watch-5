@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import MoviesCatalog from "../movies-catalog/movies-catalog";
 import {Link} from "react-router-dom";
 import {filmProptypes} from "../../props-validation";
+import {Footer} from "../footer/footer";
+import UserBlock from "../user-block/user-block";
 
 const Main = ({promoFilm}) => {
   const {preview, moreInfo, id} = promoFilm;
@@ -26,19 +28,7 @@ const Main = ({promoFilm}) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <Link to={`/mylist`}>
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width="63"
-                  height="63"
-                />
-              </Link>
-            </div>
-          </div>
+          <UserBlock />
         </header>
 
         <div className="movie-card__wrap">
@@ -83,19 +73,7 @@ const Main = ({promoFilm}) => {
 
       <div className="page-content">
         <MoviesCatalog />
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </React.Fragment>
   );

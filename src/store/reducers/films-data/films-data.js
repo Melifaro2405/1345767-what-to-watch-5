@@ -1,12 +1,10 @@
 import {extend} from "../../../utils";
 import {ActionType} from "../../action";
-import {COUNT_SHOWN_FILMS} from "../../../consts";
 
 const initialState = {
-  promoFilm: null,
+  promoFilm: {},
   films: [],
   favoriteFilms: [],
-  film: null,
   genres: [],
   comments: []
 };
@@ -24,9 +22,12 @@ export const filmsData = (state = initialState, action) => {
         favoriteFilms: action.payload,
       });
 
-    case ActionType.GET_FILM_BY_ID:
+    case ActionType.ADD_FILM_TO_MY_LIST:
+      const updateFilm = action.payload.film;
       return extend(state, {
-        film: action.payload,
+        film: updateFilm,
+        promoFilm: action.payload,
+        films: action.payload,
       });
 
     case ActionType.LOAD_PROMO_FILM:
@@ -42,12 +43,6 @@ export const filmsData = (state = initialState, action) => {
     case ActionType.UPDATE_GENRES:
       return extend(state, {
         genres: action.payload,
-      });
-
-    case ActionType.GET_FILM_LIST_BY_GENRE:
-      return extend(state, {
-        films: action.payload,
-        countShownFilms: COUNT_SHOWN_FILMS
       });
   }
   return state;

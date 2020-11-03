@@ -5,6 +5,8 @@ import {fetchFavoriteFilmList} from "../../serviсes/api-actions";
 import MoviesListFavorite from "../movies-list-favorite/movies-list-favorite";
 import {filmProptypes} from "../../props-validation";
 import {Link} from "react-router-dom";
+import {Footer} from "../footer/footer";
+import {AppRoute} from "../../consts";
 
 class MyList extends PureComponent {
 
@@ -14,13 +16,14 @@ class MyList extends PureComponent {
   }
 
   render() {
-    const {favoriteFilms} = this.props;
+    const {favoriteFilms, login} = this.props;
+    const {avatar} = login;
 
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <Link to={`/`} className="logo__link">
+            <Link to={AppRoute.ROOT} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -31,12 +34,7 @@ class MyList extends PureComponent {
 
           <div className="user-block">
             <div className="user-block__avatar">
-              <img
-                src="img/avatar.jpg"
-                alt="User avatar"
-                width="63"
-                height="63"
-              />
+              <img src={avatar} alt="User avatar" width="63" height="63"/>
             </div>
           </div>
         </header>
@@ -49,19 +47,7 @@ class MyList extends PureComponent {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to={`/`} className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     );
   }
@@ -69,11 +55,15 @@ class MyList extends PureComponent {
 
 MyList.propTypes = {
   favoriteFilms: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
-  loadFavoriteFilms: PropTypes.func.isRequired
+  loadFavoriteFilms: PropTypes.func.isRequired,
+  login: PropTypes.shape({
+    avatar: PropTypes.string.isRequired
+  }).isRequired
 };
 
-const mapStateToProps = ({DATA}) => ({
-  favoriteFilms: DATA.favoriteFilms
+const mapStateToProps = ({DATA, USER}) => ({
+  favoriteFilms: DATA.favoriteFilms,
+  login: USER.login
 });
 
 const mapDispatchToProps = (dispatch) => ({

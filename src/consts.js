@@ -8,5 +8,28 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
-export {ALL_GENRES, COUNT_SHOWN_GENRES, COUNT_SHOWN_FILMS, COUNT_LIKE_GENRE_FILMS, AuthorizationStatus};
+const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  FILM_BY_ID: `/films/:id`,
+  ADD_REVIEW: `/films/:id/review`,
+  PLAYER: `/player/:id`,
+};
 
+const APIRoute = {
+  FILMS: `/films`,
+  FAVORITE_FILMS: `/favorite`,
+  PROMO_FILM: `/films/promo`,
+  LOGIN: `/login`
+};
+
+export {
+  ALL_GENRES,
+  COUNT_SHOWN_GENRES,
+  COUNT_SHOWN_FILMS,
+  COUNT_LIKE_GENRE_FILMS,
+  AuthorizationStatus,
+  AppRoute,
+  APIRoute
+};
