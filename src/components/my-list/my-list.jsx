@@ -2,11 +2,11 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {fetchFavoriteFilmList} from "../../serviсes/api-actions";
-import MoviesListFavorite from "../movies-list-favorite/movies-list-favorite";
 import {filmProptypes} from "../../props-validation";
 import {Link} from "react-router-dom";
 import {Footer} from "../footer/footer";
 import {AppRoute} from "../../consts";
+import MoviesList from "../movies-list/movies-list";
 
 class MyList extends PureComponent {
 
@@ -43,7 +43,7 @@ class MyList extends PureComponent {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <div className="catalog__movies-list">
-            <MoviesListFavorite favoriteFilms={favoriteFilms} />
+            <MoviesList films={favoriteFilms} />
           </div>
         </section>
 

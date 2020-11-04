@@ -13,7 +13,6 @@ import {
 import {APIRoute, AppRoute, AuthorizationStatus} from "../consts";
 import {adaptFilmToClient, adaptUserInfoToClient} from "./adapters/adapt-to-client";
 import {getGenres} from "../utils";
-import {adaptFilmToServer} from "./adapters/adapt-to-server";
 
 export const fetchFilmList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
@@ -33,7 +32,11 @@ export const fetchFavoriteFilmList = () => (dispatch, _getState, api) => (
 export const updateFilmStatus = (id, status) => (dispatch, _getState, api) => (
   api.post(`/favorite/${id}/${status}`)
     .then(({data}) => {
-      dispatch(addFilmTyMyList(adaptFilmToClient(data), id));
+      const film = adaptFilmToClient(data);
+
+      dispatch(addFilmTyMyList(film));
+
+      return film;
     })
 );
 

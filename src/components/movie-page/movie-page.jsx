@@ -19,7 +19,6 @@ class MoviePage extends PureComponent {
 
     this.state = {
       film: null,
-      status:
     };
 
     this._handleChangeFilmStatus = this._handleChangeFilmStatus.bind(this);
@@ -46,13 +45,15 @@ class MoviePage extends PureComponent {
   _handleChangeFilmStatus() {
     const {changeFilmStatus, id} = this.props;
     const {film} = this.state;
-    console.log(`статус`, !film.moreInfo.isAddToMyList);
+
     const status = Number(!film.moreInfo.isAddToMyList);
 
-    this.setState({
-      status: !this.state.status
+    changeFilmStatus(id, status)
+    .then((receivedFilm) => {
+      this.setState({
+        film: receivedFilm
+      });
     });
-    changeFilmStatus(id, status);
   }
 
   render() {
@@ -116,9 +117,14 @@ class MoviePage extends PureComponent {
                     className="btn btn--list movie-card__button"
                     type="button"
                   >
-                    <svg viewBox="0 0 19 20" width="19" height="20">
+                    {(!moreInfo.isAddToMyList) && <svg viewBox="0 0 19 20" width="19" height="20">
                       <use xlinkHref="#add"/>
-                    </svg>
+                    </svg>}
+
+                    {(moreInfo.isAddToMyList) && <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"/>
+                    </svg>}
+
                     <span>My list</span>
                   </button>
 
@@ -181,7 +187,7 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(fetchFilmByID(id));
   },
   changeFilmStatus(id, status) {
-    dispatch(updateFilmStatus(id, status));
+    return dispatch(updateFilmStatus(id, status));
   }
 });
 

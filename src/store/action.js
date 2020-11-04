@@ -34,12 +34,9 @@ export const loadFavoriteFilms = (favoriteFilms) => ({
   payload: favoriteFilms
 });
 
-export const addFilmTyMyList = (film, id) => ({
+export const addFilmTyMyList = (film) => ({
   type: ActionType.ADD_FILM_TO_MY_LIST,
-  payload: {
-    film,
-    id
-  }
+  payload: film
 });
 
 export const updateGenres = (genres) => ({

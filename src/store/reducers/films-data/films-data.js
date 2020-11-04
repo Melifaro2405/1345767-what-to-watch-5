@@ -23,12 +23,26 @@ export const filmsData = (state = initialState, action) => {
       });
 
     case ActionType.ADD_FILM_TO_MY_LIST:
-      const updateFilm = action.payload.film;
-      return extend(state, {
-        film: updateFilm,
-        promoFilm: action.payload,
-        films: action.payload,
-      });
+      const changingFilm = action.payload;
+
+      const filmID = state.films.findIndex((film) => film.id === changingFilm.id);
+
+      const updatedFilms = [
+        ...state.films.slice(0, filmID),
+        changingFilm,
+        ...state.films.slice(filmID)
+      ];
+
+      const changingState = {
+        film: changingFilm,
+        films: updatedFilms,
+      };
+
+      if (changingFilm.id === state.promoFilm.id) {
+        changingState[`promoFilm`] = changingFilm;
+      }
+
+      return extend(state, changingState);
 
     case ActionType.LOAD_PROMO_FILM:
       return extend(state, {
