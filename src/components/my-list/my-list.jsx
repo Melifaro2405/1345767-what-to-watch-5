@@ -42,9 +42,7 @@ class MyList extends PureComponent {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <div className="catalog__movies-list">
-            <MoviesList films={favoriteFilms} />
-          </div>
+          <MoviesList films={favoriteFilms} />
         </section>
 
         <Footer />

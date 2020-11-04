@@ -35,7 +35,7 @@ const AddReview = ({film}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">
+                <Link to={`${AppRoute.FILMS}/${id}`} className="breadcrumbs__link">
                   {title}
                 </Link>
               </li>

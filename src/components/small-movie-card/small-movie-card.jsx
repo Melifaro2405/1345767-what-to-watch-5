@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import MoviePreview from "../movie-preview/movie-preview";
 import {filmProptypes} from "../../props-validation";
+import {AppRoute} from "../../consts";
 
 const SmallMovieCard = ({film, onMouseOver, onMouseOut, isPlayingVideo}) => {
   const {id, moreInfo, preview} = film;
@@ -11,7 +12,7 @@ const SmallMovieCard = ({film, onMouseOver, onMouseOut, isPlayingVideo}) => {
 
   return (
     <article className="small-movie-card catalog__movies-card">
-      <Link className="small-movie-card__link" to={`/films/${id}`}>
+      <Link className="small-movie-card__link" to={`${AppRoute.FILMS}/${id}`}>
         <div className="small-movie-card__image"
           onMouseOver={onMouseOver}
           onMouseOut={onMouseOut}>

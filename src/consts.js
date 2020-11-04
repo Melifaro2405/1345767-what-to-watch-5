@@ -12,15 +12,18 @@ const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
+  FILMS: `/films`,
   FILM_BY_ID: `/films/:id`,
   ADD_REVIEW: `/films/:id/review`,
-  PLAYER: `/player/:id`,
+  PLAYER: `/player`,
+  PLAYER_BY_ID: `/player/:id`,
 };
 
 const APIRoute = {
   FILMS: `/films`,
   FAVORITE_FILMS: `/favorite`,
   PROMO_FILM: `/films/promo`,
+  COMMENTS: `/comments`,
   LOGIN: `/login`
 };
 

@@ -30,7 +30,7 @@ export const fetchFavoriteFilmList = () => (dispatch, _getState, api) => (
 );
 
 export const updateFilmStatus = (id, status) => (dispatch, _getState, api) => (
-  api.post(`/favorite/${id}/${status}`)
+  api.post(`${APIRoute.FAVORITE_FILMS}/${id}/${status}`)
     .then(({data}) => {
       const film = adaptFilmToClient(data);
 
@@ -41,7 +41,7 @@ export const updateFilmStatus = (id, status) => (dispatch, _getState, api) => (
 );
 
 export const fetchFilmByID = (id) => (_dispatch, _getState, api) => (
-  api.get(`/films/${id}`)
+  api.get(`${APIRoute.FILMS}/${id}`)
     .then(({data}) => adaptFilmToClient(data))
 );
 
@@ -53,7 +53,7 @@ export const fetchPromoFilm = () => (dispatch, _getState, api) => (
 );
 
 export const fetchReviews = (id) => (dispatch, _getState, api) => (
-  api.get(`/comments/${id}`)
+  api.get(`${APIRoute.COMMENTS}/${id}`)
   .then(({data}) => {
     dispatch(loadComments(data));
   })

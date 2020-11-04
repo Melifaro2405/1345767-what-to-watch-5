@@ -30,7 +30,7 @@ export const filmsData = (state = initialState, action) => {
       const updatedFilms = [
         ...state.films.slice(0, filmID),
         changingFilm,
-        ...state.films.slice(filmID)
+        ...state.films.slice(filmID + 1)
       ];
 
       const changingState = {
