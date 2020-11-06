@@ -14,16 +14,18 @@ import browserHistory from "../../browser-history";
 import {AppRoute} from "../../consts";
 import withPlayingVideo from "../../hocs/with-playing-video/with-playing-video";
 import withAddFilmByID from "../../hocs/with-add-film-by-id/with-add-film-by-id";
+import withChangeAuthValues from "../../hocs/with-change-auth-values/with-change-auth-values";
 
 const PlayerWrapped = withPlayingVideo(Player);
 const MoviePageWrapped = withAddFilmByID(MoviePage);
+const SignInWrapped = withChangeAuthValues(SignIn);
 
 const App = ({films}) => {
   return (
     <Router history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.ROOT} component={Main} />
-        <Route exact path={AppRoute.LOGIN} component={SignIn} />
+        <Route exact path={AppRoute.LOGIN} component={SignInWrapped} />
         <PrivateRoute exact path={AppRoute.MY_LIST} render={() => (
           <MyList />
         )}/>

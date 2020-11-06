@@ -8,7 +8,7 @@ import UserBlock from "../user-block/user-block";
 import ButtonChangeFilmStatus from "../button-change-film-status/button-change-film-status";
 import {connect} from "react-redux";
 import {updateFilmStatus} from "../../serviсes/api-actions";
-import { AppRoute } from "../../consts";
+import {AppRoute} from "../../consts";
 
 const Main = ({promoFilm, changeFilmStatus}) => {
   const {preview, moreInfo, id} = promoFilm;
