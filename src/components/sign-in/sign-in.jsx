@@ -1,25 +1,34 @@
 import React from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {login} from "../../serviсes/api-actions";
+import {Footer} from "../footer/footer";
+import {AppRoute} from "../../consts";
 
-const SignIn = () => {
+const SignIn = ({onSubmit, onChangeEmail, onChangePassword, email, password}) => {
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
-          <a href="main.html" className="logo__link">
+          <Link to={AppRoute.ROOT} className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form">
+        <form action="#" className="sign-in__form" onSubmit={onSubmit}>
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input
+                value={email}
+                onChange={onChangeEmail}
                 className="sign-in__input"
                 type="email"
                 placeholder="Email address"
@@ -32,6 +41,8 @@ const SignIn = () => {
             </div>
             <div className="sign-in__field">
               <input
+                value={password}
+                onChange={onChangePassword}
                 className="sign-in__input"
                 type="password"
                 placeholder="Password"
@@ -51,21 +62,25 @@ const SignIn = () => {
         </form>
       </div>
 
-      <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
 
-export default SignIn;
+SignIn.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onChangeEmail: PropTypes.func.isRequired,
+  onChangePassword: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+};
+
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(authData) {
+    dispatch(login(authData));
+  }
+});
+
+export {SignIn};
+export default connect(null, mapDispatchToProps)(SignIn);

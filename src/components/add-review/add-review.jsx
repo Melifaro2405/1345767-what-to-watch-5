@@ -4,18 +4,19 @@ import FormReview from "../form-review/form-review";
 import {Link} from "react-router-dom";
 import {filmProptypes} from "../../props-validation";
 import withChangeValues from "../../hocs/with-change-values/with-change-values";
+import {AppRoute} from "../../consts";
 
 const FormReviewWrapped = withChangeValues(FormReview);
 
 const AddReview = ({film}) => {
-  const {id, moreInfo: {backGroundSrc, posterSrc}, preview: {title}} = film;
+  const {id, moreInfo: {backgroundSrc, posterSrc}, preview: {title}} = film;
 
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
           <img
-            src={backGroundSrc}
+            src={backgroundSrc}
             alt={title}
           />
         </div>
@@ -24,7 +25,7 @@ const AddReview = ({film}) => {
 
         <header className="page-header">
           <div className="logo">
-            <Link to={`/`} className="logo__link">
+            <Link to={AppRoute.ROOT} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -34,7 +35,7 @@ const AddReview = ({film}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">
+                <Link to={`${AppRoute.FILMS}/${id}`} className="breadcrumbs__link">
                   {title}
                 </Link>
               </li>

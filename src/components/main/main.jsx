@@ -3,9 +3,20 @@ import PropTypes from "prop-types";
 import MoviesCatalog from "../movies-catalog/movies-catalog";
 import {Link} from "react-router-dom";
 import {filmProptypes} from "../../props-validation";
+import {Footer} from "../footer/footer";
+import UserBlock from "../user-block/user-block";
+import ButtonChangeFilmStatus from "../button-change-film-status/button-change-film-status";
+import {connect} from "react-redux";
+import {updateFilmStatus} from "../../serviсes/api-actions";
+import {AppRoute} from "../../consts";
 
-const Main = ({promoFilm}) => {
+const Main = ({promoFilm, changeFilmStatus}) => {
   const {preview, moreInfo, id} = promoFilm;
+  const isAddToMyList = moreInfo.isAddToMyList;
+  const status = Number(!isAddToMyList);
+
+  const getNewFilmStatus = () => changeFilmStatus(id, status);
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -26,19 +37,7 @@ const Main = ({promoFilm}) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <Link to={`/mylist`}>
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width="63"
-                  height="63"
-                />
-              </Link>
-            </div>
-          </div>
+          <UserBlock />
         </header>
 
         <div className="movie-card__wrap">
@@ -60,21 +59,15 @@ const Main = ({promoFilm}) => {
               </p>
 
               <div className="movie-card__buttons">
-                <Link to={`/player/${id}`} className="btn btn--play movie-card__button" type="button">
+                <Link to={`${AppRoute.PLAYER}/${id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button
-                  className="btn btn--list movie-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"/>
-                  </svg>
-                  <span>My list</span>
-                </button>
+
+                <ButtonChangeFilmStatus isAddToMyList={isAddToMyList} handleChangeFilmStatus={getNewFilmStatus}/>
+
               </div>
             </div>
           </div>
@@ -83,26 +76,26 @@ const Main = ({promoFilm}) => {
 
       <div className="page-content">
         <MoviesCatalog />
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </React.Fragment>
   );
 };
 
 Main.propTypes = {
-  promoFilm: PropTypes.shape(filmProptypes)
+  promoFilm: PropTypes.shape(filmProptypes),
+  changeFilmStatus: PropTypes.func.isRequired
 };
 
-export default Main;
+const mapStateToProps = ({DATA}) => ({
+  promoFilm: DATA.promoFilm
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  changeFilmStatus(id, status) {
+    dispatch(updateFilmStatus(id, status));
+  }
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
