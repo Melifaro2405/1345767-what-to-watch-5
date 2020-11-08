@@ -7,6 +7,7 @@ export const ActionType = {
   ADD_FILM_TO_MY_LIST: `ADD_FILM_TO_MY_LIST`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   LOAD_COMMENTS_BY_FILM_ID: `LOAD_COMMENTS_BY_FILM_ID`,
+  SUBMIT_COMMENT: `SUBMIT_COMMENT`,
   CHANGE_FILTER_BY_GENRE: `CHANGE_FILTER_BY_GENRE`,
   CHANGE_COUNT_SHOWN_FILMS: `CHANGE_COUNT_SHOWN_FILMS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
@@ -52,6 +53,11 @@ export const loadPromoFilm = (film) => ({
 export const loadComments = (comments) => ({
   type: ActionType.LOAD_COMMENTS_BY_FILM_ID,
   payload: comments
+});
+
+export const submitComment = (comment) => ({
+  type: ActionType.SUBMIT_COMMENT,
+  payload: comment
 });
 
 export const requireAuthorization = (status) => ({

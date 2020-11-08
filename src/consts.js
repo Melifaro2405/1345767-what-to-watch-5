@@ -8,6 +8,11 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+const CommentLength = {
+  MIN: 50,
+  MAX: 400
+};
+
 const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
@@ -33,6 +38,7 @@ export {
   COUNT_SHOWN_FILMS,
   COUNT_LIKE_GENRE_FILMS,
   AuthorizationStatus,
+  CommentLength,
   AppRoute,
   APIRoute
 };
