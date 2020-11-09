@@ -10,21 +10,26 @@ const withChangeReviewValues = (Component) => {
         text: ``,
         rating: ``,
         isActive: false,
-        isSent: false
+        isLoading: false,
+        isError: false
       };
 
-      this._handleChangeIsSent = this._handleChangeIsSent.bind(this);
+      this._changeIsLoading = this._changeIsLoading.bind(this);
+      this._changeIsError = this._changeIsError.bind(this);
       this._handleChangeText = this._handleChangeText.bind(this);
       this._handleChangeRating = this._handleChangeRating.bind(this);
     }
 
-    _changeIsSent(value) {
-      this.setState({isSent: value});
+    _changeIsLoading(value) {
+      this.setState({
+        isLoading: value
+      });
     }
 
-    _handleChangeIsSent() {
-      this._changeIsSent(true);
-      setTimeout(this._changeIsSent(false), 3000);
+    _changeIsError(value) {
+      this.setState({
+        isError: value
+      });
     }
 
     _successData() {
@@ -47,9 +52,11 @@ const withChangeReviewValues = (Component) => {
       return (
         <Component
           {...this.props}
+          isLoading={this.state.isLoading}
+          isError={this.state.isError}
+          changeIsLoading={this._changeIsLoading}
+          changeIsError={this._changeIsError}
           isActive={this.state.isActive}
-          isSent={this.state.isSent}
-          changeIsSent={this._handleChangeIsSent}
           onChangeText={this._handleChangeText}
           onChangeRating={this._handleChangeRating}
           text = {this.state.text}

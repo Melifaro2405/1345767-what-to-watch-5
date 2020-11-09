@@ -8,7 +8,9 @@ import {
   redirectToRoute,
   getUserInfo,
   addFilmTyMyList,
-  submitComment
+  submitComment,
+  requestSubmitComment,
+  submitCommentError
 } from "../store/action";
 
 import {APIRoute, AppRoute, AuthorizationStatus} from "../consts";
@@ -62,10 +64,7 @@ export const sendReview = ({id, rating, comment}) => (dispatch, _getState, api) 
   api.post(`${APIRoute.COMMENTS}/${id}`, {rating, comment})
     .then(({data}) => {
       dispatch(submitComment(data));
-      // dispatch(redirectToRoute(`${AppRoute.FILMS}/${id}`));
-    })
-    .catch(() => {
-      throw new Error(`ERROR!`);
+      dispatch(redirectToRoute(`${AppRoute.FILMS}/${id}`));
     })
 );
 

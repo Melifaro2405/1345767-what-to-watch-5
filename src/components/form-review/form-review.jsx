@@ -8,26 +8,30 @@ const RATING_MULTIPLIER = 2;
 
 const FormReview = ({
   isActive,
-  isSent,
+  isLoading,
+  isError,
+  changeIsLoading,
+  changeIsError,
   filmID,
   onSubmit,
   text,
   rating,
   onChangeText,
-  onChangeRating,
-  changeIsSent
+  onChangeRating
 }) => {
 
   const handleSubmitReview = (evt) => {
     evt.preventDefault();
-
-    changeIsSent(true);
-    // onSubmit({
-    //   id: Number(filmID),
-    //   rating: Number(rating) * RATING_MULTIPLIER,
-    //   comment: text
-    // });
-    changeIsSent(false);
+    changeIsLoading(true);
+    onSubmit({
+      id: filmID,
+      rating: Number(rating) * RATING_MULTIPLIER,
+      comment: text
+    })
+    .catch(() => {
+      changeIsLoading(false);
+      changeIsError(true);
+    });
   };
 
   return (
@@ -70,31 +74,35 @@ const FormReview = ({
           <button
             className="add-review__btn"
             type="submit"
-            disabled={!isActive || isSent}
+            disabled={!isActive || isLoading}
           >Post
           </button>
         </div>
       </div>
-      {/* {isActive && <p>Please enter a valid data</p>} */}
+      {isError && <p style={{fontWeight: `bold`, textAlign: `center`, color: `red`}}>
+        ОШИБКА ОТПРАВКИ ФОРМЫ
+      </p>}
     </form>
   );
 };
 
 FormReview.propTypes = {
   filmID: PropTypes.number.isRequired,
-  changeIsSent: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChangeText: PropTypes.func.isRequired,
   onChangeRating: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   rating: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
-  isSent: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
+  changeIsLoading: PropTypes.func.isRequired,
+  changeIsError: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(comment) {
-    dispatch(sendReview(comment));
+    return dispatch(sendReview(comment));
   }
 });
 
