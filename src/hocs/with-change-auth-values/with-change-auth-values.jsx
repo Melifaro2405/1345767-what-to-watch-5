@@ -1,7 +1,4 @@
 import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {login} from "../../serviсes/api-actions";
 
 const withChangeAuthValues = (Component) => {
   class WithChangeAuthValues extends PureComponent {
@@ -10,12 +7,19 @@ const withChangeAuthValues = (Component) => {
 
       this.state = {
         email: ``,
-        password: ``
+        password: ``,
+        isError: false
       };
 
+      this._changeIsError = this._changeIsError.bind(this);
       this._handleChangeEmail = this._handleChangeEmail.bind(this);
       this._handleChangePassword = this._handleChangePassword.bind(this);
-      this._handleSubmit = this._handleSubmit.bind(this);
+    }
+
+    _changeIsError(value) {
+      this.setState({
+        isError: value
+      });
     }
 
     _handleChangeEmail(evt) {
@@ -26,42 +30,24 @@ const withChangeAuthValues = (Component) => {
       this.setState({password: evt.target.value});
     }
 
-    _handleSubmit(evt) {
-      const {onSubmit} = this.props;
-
-      evt.preventDefault();
-
-      onSubmit({
-        email: this.state.email,
-        password: this.state.password,
-      });
-    }
-
     render() {
+      const {email, password, isError} = this.state;
+
       return (
         <Component
           {...this.props}
+          email = {email}
+          password = {password}
+          isError={isError}
+          changeIsError={this._changeIsError}
           onChangeEmail={this._handleChangeEmail}
           onChangePassword={this._handleChangePassword}
-          onSubmitAuth={this._handleSubmit}
-          email = {this.state.email}
-          password = {this.state.password}
         />
       );
     }
   }
 
-  WithChangeAuthValues.propTypes = {
-    onSubmit: PropTypes.func.isRequired
-  };
-
-  const mapDispatchToProps = (dispatch) => ({
-    onSubmit(authData) {
-      dispatch(login(authData));
-    }
-  });
-
-  return connect(null, mapDispatchToProps)(WithChangeAuthValues);
+  return WithChangeAuthValues;
 };
 
 export default withChangeAuthValues;

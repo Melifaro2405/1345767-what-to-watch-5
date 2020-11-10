@@ -35,9 +35,9 @@ const withChangeReviewValues = (Component) => {
     _successData() {
       const {rating, text} = this.state;
 
-      return (text.length > CommentLength.MIN && text.length < CommentLength.MAX && rating)
-        ? this.setState({isActive: true})
-        : this.setState({isActive: false});
+      this.setState({
+        isActive: text.length > CommentLength.MIN && text.length < CommentLength.MAX && rating
+      });
     }
 
     _handleChangeText(evt) {
@@ -49,18 +49,19 @@ const withChangeReviewValues = (Component) => {
     }
 
     render() {
+      const {text, rating, isLoading, isActive, isError} = this.state;
       return (
         <Component
           {...this.props}
-          isLoading={this.state.isLoading}
-          isError={this.state.isError}
+          text = {text}
+          rating = {rating}
+          isLoading={isLoading}
+          isActive={isActive}
+          isError={isError}
           changeIsLoading={this._changeIsLoading}
           changeIsError={this._changeIsError}
-          isActive={this.state.isActive}
           onChangeText={this._handleChangeText}
           onChangeRating={this._handleChangeRating}
-          text = {this.state.text}
-          rating = {this.state.rating}
         />
       );
     }

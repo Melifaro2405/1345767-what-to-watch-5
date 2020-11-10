@@ -22,6 +22,7 @@ const FormReview = ({
 
   const handleSubmitReview = (evt) => {
     evt.preventDefault();
+
     changeIsLoading(true);
     onSubmit({
       id: filmID,

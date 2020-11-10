@@ -8,9 +8,7 @@ import {
   redirectToRoute,
   getUserInfo,
   addFilmTyMyList,
-  submitComment,
-  requestSubmitComment,
-  submitCommentError
+  submitComment
 } from "../store/action";
 
 import {APIRoute, AppRoute, AuthorizationStatus} from "../consts";
