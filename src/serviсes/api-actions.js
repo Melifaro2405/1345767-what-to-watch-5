@@ -7,7 +7,8 @@ import {
   loadFavoriteFilms,
   redirectToRoute,
   getUserInfo,
-  addFilmTyMyList
+  addFilmTyMyList,
+  submitComment
 } from "../store/action";
 
 import {APIRoute, AppRoute, AuthorizationStatus} from "../consts";
@@ -33,9 +34,7 @@ export const updateFilmStatus = (id, status) => (dispatch, _getState, api) => (
   api.post(`${APIRoute.FAVORITE_FILMS}/${id}/${status}`)
     .then(({data}) => {
       const film = adaptFilmToClient(data);
-
       dispatch(addFilmTyMyList(film));
-
       return film;
     })
 );
@@ -47,16 +46,24 @@ export const fetchFilmByID = (id) => (_dispatch, _getState, api) => (
 
 export const fetchPromoFilm = () => (dispatch, _getState, api) => (
   api.get(APIRoute.PROMO_FILM)
-  .then(({data}) => {
-    dispatch(loadPromoFilm(adaptFilmToClient(data)));
-  })
+    .then(({data}) => {
+      dispatch(loadPromoFilm(adaptFilmToClient(data)));
+    })
 );
 
 export const fetchReviews = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.COMMENTS}/${id}`)
-  .then(({data}) => {
-    dispatch(loadComments(data));
-  })
+    .then(({data}) => {
+      dispatch(loadComments(data));
+    })
+);
+
+export const sendReview = ({id, rating, comment}) => (dispatch, _getState, api) => (
+  api.post(`${APIRoute.COMMENTS}/${id}`, {rating, comment})
+    .then(({data}) => {
+      dispatch(submitComment(data));
+      dispatch(redirectToRoute(`${AppRoute.FILMS}/${id}`));
+    })
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
@@ -65,13 +72,14 @@ export const checkAuth = () => (dispatch, _getState, api) => (
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(getUserInfo(adaptUserInfoToClient(data)));
     })
-    .catch(() => {
-      dispatch(redirectToRoute(AppRoute.ROOT));
-    })
+    .catch(() => {})
 );
 
 export const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
-  .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-  .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
+    .then(({data}) => {
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(getUserInfo(adaptUserInfoToClient(data)));
+      dispatch(redirectToRoute(AppRoute.ROOT));
+    })
 );

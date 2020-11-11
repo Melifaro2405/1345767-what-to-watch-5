@@ -1,15 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
-import FormReview from "../form-review/form-review";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {filmProptypes} from "../../props-validation";
-import withChangeValues from "../../hocs/with-change-values/with-change-values";
+import PropTypes from "prop-types";
 import {AppRoute} from "../../consts";
+import FormReview from "../form-review/form-review";
+import {filmProptypes} from "../../props-validation";
+import withChangeReviewValues from "../../hocs/with-change-review-values/with-change-review-values";
 
-const FormReviewWrapped = withChangeValues(FormReview);
+const FormReviewWrapped = withChangeReviewValues(FormReview);
 
-const AddReview = ({film}) => {
+const AddReview = ({film, login}) => {
   const {id, moreInfo: {backgroundSrc, posterSrc}, preview: {title}} = film;
+  const {avatar} = login;
 
   return (
     <section className="movie-card movie-card--full">
@@ -47,12 +49,7 @@ const AddReview = ({film}) => {
 
           <div className="user-block">
             <div className="user-block__avatar">
-              <img
-                src="img/avatar.jpg"
-                alt="User avatar"
-                width="63"
-                height="63"
-              />
+              <img src={avatar} alt="User avatar" width="63" height="63"/>
             </div>
           </div>
         </header>
@@ -68,14 +65,22 @@ const AddReview = ({film}) => {
       </div>
 
       <div className="add-review">
-        <FormReviewWrapped />
+        <FormReviewWrapped filmID={id} />
       </div>
     </section>
   );
 };
 
 AddReview.propTypes = {
-  film: PropTypes.shape(filmProptypes).isRequired
+  film: PropTypes.shape(filmProptypes).isRequired,
+  login: PropTypes.shape({
+    avatar: PropTypes.string.isRequired
+  }).isRequired
 };
 
-export default AddReview;
+const mapStateToProps = ({USER}) => ({
+  login: USER.login
+});
+
+export {AddReview};
+export default connect(mapStateToProps)(AddReview);

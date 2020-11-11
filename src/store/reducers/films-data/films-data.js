@@ -54,6 +54,11 @@ export const filmsData = (state = initialState, action) => {
         comments: action.payload,
       });
 
+    case ActionType.SUBMIT_COMMENT:
+      return extend(state, {
+        comment: action.payload
+      });
+
     case ActionType.UPDATE_GENRES:
       return extend(state, {
         genres: action.payload,

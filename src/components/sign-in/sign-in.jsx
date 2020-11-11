@@ -2,11 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {login} from "../../serviсes/api-actions";
 import {Footer} from "../footer/footer";
 import {AppRoute} from "../../consts";
+import {login} from "../../serviсes/api-actions";
 
-const SignIn = ({onSubmit, onChangeEmail, onChangePassword, email, password}) => {
+const SignIn = ({email, password, isError, changeIsError, onSubmit, onChangeEmail, onChangePassword}) => {
+
+  const onSubmitAuth = (evt) => {
+    evt.preventDefault();
+
+    onSubmit({email, password})
+      .catch(() => {
+        changeIsError(true);
+      });
+  };
 
   return (
     <div className="user-page">
@@ -23,7 +32,13 @@ const SignIn = ({onSubmit, onChangeEmail, onChangePassword, email, password}) =>
       </header>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form" onSubmit={onSubmit}>
+        <form action="#" className="sign-in__form" onSubmit={onSubmitAuth}>
+
+          {isError &&
+          <div className="sign-in__message">
+            <p>Ошибка отправки данных</p>
+          </div>}
+
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input
@@ -68,17 +83,18 @@ const SignIn = ({onSubmit, onChangeEmail, onChangePassword, email, password}) =>
 };
 
 SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onChangeEmail: PropTypes.func.isRequired,
-  onChangePassword: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  isError: PropTypes.bool.isRequired,
+  changeIsError: PropTypes.func.isRequired,
+  onChangeEmail: PropTypes.func.isRequired,
+  onChangePassword: PropTypes.func.isRequired,
 };
-
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
-    dispatch(login(authData));
+    return dispatch(login(authData));
   }
 });
 
