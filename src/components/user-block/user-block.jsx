@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {AppRoute, AuthorizationStatus} from "../../consts";
 
-const UserBlock = ({authorizationStatus, login}) => {
+const UserBlock = ({authorizationStatus, avatar}) => {
   return (
     <div className="user-block">
       {(authorizationStatus === AuthorizationStatus.NO_AUTH) && (
@@ -15,7 +15,7 @@ const UserBlock = ({authorizationStatus, login}) => {
       {(authorizationStatus === AuthorizationStatus.AUTH) && (
         <div className="user-block__avatar">
           <Link to={AppRoute.MY_LIST}>
-            <img src={login.avatar} alt="User avatar" width="63" height="63"/>
+            <img src={avatar} alt="User avatar" width="63" height="63"/>
           </Link>
         </div>
       )}
@@ -25,14 +25,12 @@ const UserBlock = ({authorizationStatus, login}) => {
 
 UserBlock.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.shape({
-    avatar: PropTypes.string
-  })
+  avatar: PropTypes.string
 };
 
 const mapStateToProps = ({USER}) => ({
   authorizationStatus: USER.authorizationStatus,
-  login: USER.login
+  avatar: USER.login.avatar
 });
 
 export {UserBlock};

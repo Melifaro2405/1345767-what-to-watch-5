@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../consts";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer className="page-footer">
       <div className="logo">
@@ -19,3 +19,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;

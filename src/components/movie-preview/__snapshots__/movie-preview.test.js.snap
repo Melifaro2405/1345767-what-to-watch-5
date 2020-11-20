@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should MoviePreview render correctly 1`] = `
+<video
+  autoPlay={true}
+  className="player__video"
+  muted={true}
+  poster="test"
+  src="test"
+/>
+`;
