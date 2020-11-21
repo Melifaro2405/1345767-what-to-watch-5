@@ -12,15 +12,6 @@ const noop = () => {};
 it(`Should form submit`, () => {
   const handleGetFilm = jest.fn().mockResolvedValue();
   const handleUpdateFilmByID = jest.fn();
-  // const noopPromise = () => {
-  //   return {
-  //     then: (data) => {
-  //       console.log(`wwwww`, data);
-  //       data();
-  //       expect(handleUpdateFilmByID).toHaveBeenCalledTimes(1);
-  //     }
-  //   };
-  // };
 
   shallow(
       <MoviePage
@@ -35,8 +26,5 @@ it(`Should form submit`, () => {
       />
   );
 
-
-  // const formReview = wrapper.find(`form.add-review__form`);
-  // formReview.simulate(`submit`, {preventDefault: noop});
   expect(handleGetFilm).toHaveBeenCalledTimes(1);
 });
