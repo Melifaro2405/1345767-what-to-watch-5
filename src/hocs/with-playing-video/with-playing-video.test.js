@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import PropTypes from "prop-types";
 import withPlayingVideo from "./with-playing-video";
 
-const film = {
+export const film = {
   id: 1,
   preview: {
     src: `img/the-grand-budapest-hotel-poster.jpg`,

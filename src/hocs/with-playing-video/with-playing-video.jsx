@@ -90,11 +90,10 @@ const withPlayingVideo = (Component) => {
 
   WithPlayingVideo.propTypes = {
     film: PropTypes.shape(filmProptypes).isRequired,
-    onExitButtonClick: PropTypes.func.isRequired,
+    onExitButtonClick: PropTypes.func
   };
 
   return WithPlayingVideo;
 };
-
 
 export default withPlayingVideo;

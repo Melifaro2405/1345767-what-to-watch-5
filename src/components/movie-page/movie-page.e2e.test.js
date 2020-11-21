@@ -5,13 +5,13 @@ import {MoviePage} from "./movie-page";
 import {film, films} from "./movie-page.test";
 import {AuthorizationStatus} from "../../consts";
 
-configure({adapter: new Adapter()});
-
+jest.mock(`../user-block/user-block`, () => `UserBlock`);
 const noop = () => {};
 
-it(`Should form submit`, () => {
+configure({adapter: new Adapter()});
+
+it(`Should called handler with get film by id`, () => {
   const handleGetFilm = jest.fn().mockResolvedValue();
-  const handleUpdateFilmByID = jest.fn();
 
   shallow(
       <MoviePage
@@ -19,7 +19,7 @@ it(`Should form submit`, () => {
         film={film}
         films={films}
         getFilm={handleGetFilm}
-        updateFilmByID={handleUpdateFilmByID}
+        updateFilmByID={noop}
         changeFilmStatus={noop}
         updateFilmByStatus={noop}
         authorizationStatus={AuthorizationStatus.AUTH}
@@ -28,3 +28,29 @@ it(`Should form submit`, () => {
 
   expect(handleGetFilm).toHaveBeenCalledTimes(1);
 });
+
+it(`Should called handler with update film by id in state`, () => {
+
+  const updateFilmByID = jest.fn();
+  const getFilmWithPromise = () => {
+    return {
+      then: () => updateFilmByID()
+    };
+  };
+
+  shallow(
+      <MoviePage
+        id={1}
+        film={film}
+        films={films}
+        getFilm={getFilmWithPromise}
+        updateFilmByID={updateFilmByID}
+        changeFilmStatus={noop}
+        updateFilmByStatus={noop}
+        authorizationStatus={AuthorizationStatus.AUTH}
+      />
+  );
+
+  expect(updateFilmByID).toHaveBeenCalledTimes(1);
+});
+

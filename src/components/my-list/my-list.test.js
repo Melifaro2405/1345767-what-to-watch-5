@@ -8,7 +8,7 @@ jest.mock(`../footer/footer`, () => `Footer`);
 
 const noop = () => {};
 
-const films = [
+export const films = [
   {
     id: 1,
     preview: {
@@ -105,7 +105,7 @@ it(`Should MyList render correctly`, () => {
           <MyList
             favoriteFilms={films}
             loadFavoriteFilms={noop}
-            avatar={`test`}
+            login={{avatar: `test`}}
           />
         </BrowserRouter>
     )

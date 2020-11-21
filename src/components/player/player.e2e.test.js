@@ -20,8 +20,8 @@ it(`Should pause button be pressed`, () => {
         isPlaying={true}
         videoProgress={10}
         videoTimeLeft={700}
-        handlePlayVideo={noop}
         handlePauseVideo={handlePauseVideo}
+        handlePlayVideo={noop}
         handleClickFullScreen={noop}
         onExitButtonClick={noop}
       />
@@ -41,8 +41,8 @@ it(`Should play button be pressed`, () => {
         isPlaying={false}
         videoProgress={10}
         videoTimeLeft={700}
-        handlePlayVideo={handlePlayVideo}
         handlePauseVideo={noop}
+        handlePlayVideo={handlePlayVideo}
         handleClickFullScreen={noop}
         onExitButtonClick={noop}
       />
@@ -62,8 +62,8 @@ it(`Should fullscreen button be pressed`, () => {
         isPlaying={true}
         videoProgress={10}
         videoTimeLeft={700}
-        handlePlayVideo={noop}
         handlePauseVideo={noop}
+        handlePlayVideo={noop}
         handleClickFullScreen={handleClickFullScreen}
         onExitButtonClick={noop}
       />
@@ -83,8 +83,8 @@ it(`Should button for close player be pressed`, () => {
         isPlaying={true}
         videoProgress={10}
         videoTimeLeft={700}
-        handlePlayVideo={noop}
         handlePauseVideo={noop}
+        handlePlayVideo={noop}
         handleClickFullScreen={noop}
         onExitButtonClick={handleClosePlayer}
       />

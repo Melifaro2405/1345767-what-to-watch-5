@@ -12,40 +12,116 @@ const ratingValue = `3`;
 const MockComponent = () => <div />;
 const MockComponentWrapped = withChangeReviewValues(MockComponent);
 
-it(`Should change state depending on sending film's review`, () => {
-  const wrapper = shallow(
-      <MockComponentWrapped/>
-  );
+describe(`Should change state depending by sending film's review`, () => {
+  it(`Should check initial state`, () => {
+    const wrapper = shallow(
+        <MockComponentWrapped/>
+    );
 
-  expect(wrapper.state().text).toEqual(``);
-  expect(wrapper.state().rating).toEqual(``);
-  expect(wrapper.state().isActive).toEqual(false);
-  expect(wrapper.state().isLoading).toEqual(false);
-  expect(wrapper.state().isError).toEqual(false);
+    expect(wrapper.state()).toEqual({
+      text: ``,
+      rating: ``,
+      isActive: false,
+      isLoading: false,
+      isError: false
+    });
+  });
 
-  wrapper.instance()._changeIsLoading(true);
-  expect(wrapper.state().isLoading).toEqual(true);
+  it(`Should change isLoading in state`, () => {
+    const wrapper = shallow(
+        <MockComponentWrapped/>
+    );
 
-  wrapper.instance()._changeIsError(true);
-  expect(wrapper.state().isError).toEqual(true);
+    wrapper.instance()._changeIsLoading(true);
+    expect(wrapper.state()).toEqual({
+      text: ``,
+      rating: ``,
+      isActive: false,
+      isLoading: true,
+      isError: false
+    });
+  });
 
-  wrapper.instance()._handleChangeText({target: {value: textValidValue}});
-  wrapper.instance()._handleChangeRating({target: {value: ``}});
-  expect(wrapper.state().text).toEqual(textValidValue);
-  expect(wrapper.state().rating).toEqual(``);
-  expect(wrapper.state().isActive).toEqual(false);
+  it(`Should change isError in state`, () => {
+    const wrapper = shallow(
+        <MockComponentWrapped/>
+    );
 
-  wrapper.instance()._handleChangeText({target: {value: ``}});
-  wrapper.instance()._handleChangeRating({target: {value: ratingValue}});
-  expect(wrapper.state().text).toEqual(``);
-  expect(wrapper.state().rating).toEqual(ratingValue);
-  expect(wrapper.state().isActive).toEqual(false);
+    wrapper.instance()._changeIsError(true);
+    expect(wrapper.state()).toEqual({
+      text: ``,
+      rating: ``,
+      isActive: false,
+      isLoading: false,
+      isError: true
+    });
+  });
 
-  wrapper.instance()._handleChangeText({target: {value: textInvalidValue}});
-  wrapper.instance()._handleChangeRating({target: {value: ratingValue}});
-  expect(wrapper.state().isActive).toEqual(false);
+  it(`Should check isActive false in state with empty rating`, () => {
+    const wrapper = shallow(
+        <MockComponentWrapped/>
+    );
 
-  wrapper.instance()._handleChangeText({target: {value: textValidValue}});
-  wrapper.instance()._handleChangeRating({target: {value: ratingValue}});
-  expect(wrapper.state().isActive).toEqual(true);
+    wrapper.instance()._handleChangeText({target: {value: textValidValue}});
+    wrapper.instance()._handleChangeRating({target: {value: ``}});
+
+    expect(wrapper.state()).toEqual({
+      text: textValidValue,
+      rating: ``,
+      isActive: false,
+      isLoading: false,
+      isError: false
+    });
+  });
+
+  it(`Should check isActive false in state with empty text`, () => {
+    const wrapper = shallow(
+        <MockComponentWrapped/>
+    );
+
+    wrapper.instance()._handleChangeText({target: {value: ``}});
+    wrapper.instance()._handleChangeRating({target: {value: ratingValue}});
+
+    expect(wrapper.state()).toEqual({
+      text: ``,
+      rating: ratingValue,
+      isActive: false,
+      isLoading: false,
+      isError: false
+    });
+  });
+
+  it(`Should check isActive false in state with invalid text value`, () => {
+    const wrapper = shallow(
+        <MockComponentWrapped/>
+    );
+
+    wrapper.instance()._handleChangeText({target: {value: textInvalidValue}});
+    wrapper.instance()._handleChangeRating({target: {value: ratingValue}});
+
+    expect(wrapper.state()).toEqual({
+      text: textInvalidValue,
+      rating: ratingValue,
+      isActive: false,
+      isLoading: false,
+      isError: false
+    });
+  });
+
+  it(`Should check isActive true in state with all valid data`, () => {
+    const wrapper = shallow(
+        <MockComponentWrapped/>
+    );
+
+    wrapper.instance()._handleChangeText({target: {value: textValidValue}});
+    wrapper.instance()._handleChangeRating({target: {value: ratingValue}});
+
+    expect(wrapper.state()).toEqual({
+      text: textValidValue,
+      rating: ratingValue,
+      isActive: true,
+      isLoading: false,
+      isError: false
+    });
+  });
 });

@@ -16,7 +16,8 @@ class MyList extends PureComponent {
   }
 
   render() {
-    const {favoriteFilms, avatar} = this.props;
+    const {favoriteFilms, login} = this.props;
+    const {avatar} = login;
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -51,12 +52,14 @@ class MyList extends PureComponent {
 MyList.propTypes = {
   favoriteFilms: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
   loadFavoriteFilms: PropTypes.func.isRequired,
-  avatar: PropTypes.string.isRequired
+  login: PropTypes.shape({
+    avatar: PropTypes.string
+  })
 };
 
 const mapStateToProps = ({DATA, USER}) => ({
   favoriteFilms: DATA.favoriteFilms,
-  avatar: USER.login.avatar
+  login: USER.login
 });
 
 const mapDispatchToProps = (dispatch) => ({

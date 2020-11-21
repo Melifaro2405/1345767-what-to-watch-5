@@ -11,7 +11,7 @@ describe(`Should UserBlock render correctly`, () => {
           <BrowserRouter>
             <UserBlock
               authorizationStatus={AuthorizationStatus.NO_AUTH}
-              avatar={`test`}
+              login={{avatar: `test`}}
             />
           </BrowserRouter>
       )
@@ -25,7 +25,7 @@ describe(`Should UserBlock render correctly`, () => {
           <BrowserRouter>
             <UserBlock
               authorizationStatus={AuthorizationStatus.AUTH}
-              avatar={`test`}
+              login={{avatar: `test`}}
             />
           </BrowserRouter>
       )

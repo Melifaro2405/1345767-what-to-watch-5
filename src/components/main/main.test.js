@@ -9,7 +9,7 @@ jest.mock(`../footer/footer`, () => `Footer`);
 
 const noop = () => {};
 
-const promoFilm = {
+export const promoFilm = {
   id: 1,
   preview: {
     src: `img/the-grand-budapest-hotel-poster.jpg`,

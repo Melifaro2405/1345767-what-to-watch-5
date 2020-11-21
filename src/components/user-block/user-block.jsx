@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {AppRoute, AuthorizationStatus} from "../../consts";
 
-const UserBlock = ({authorizationStatus, avatar}) => {
+const UserBlock = ({authorizationStatus, login}) => {
+  const {avatar} = login;
   return (
     <div className="user-block">
       {(authorizationStatus === AuthorizationStatus.NO_AUTH) && (
@@ -25,12 +26,14 @@ const UserBlock = ({authorizationStatus, avatar}) => {
 
 UserBlock.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  avatar: PropTypes.string
+  login: PropTypes.shape({
+    avatar: PropTypes.string
+  })
 };
 
 const mapStateToProps = ({USER}) => ({
   authorizationStatus: USER.authorizationStatus,
-  avatar: USER.login.avatar
+  login: USER.login
 });
 
 export {UserBlock};

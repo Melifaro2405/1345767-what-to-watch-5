@@ -56,6 +56,8 @@ it(`Should value input change rating`, () => {
 });
 
 it(`Should form submit`, () => {
+  const handleChangeIsLoading = jest.fn();
+  const handleChangeIsError = jest.fn();
   const handleSubmitForm = jest.fn().mockResolvedValue();
 
   const wrapper = shallow(
@@ -66,8 +68,8 @@ it(`Should form submit`, () => {
         isActive={true}
         isLoading={false}
         isError={false}
-        changeIsLoading={noop}
-        changeIsError={noop}
+        changeIsLoading={handleChangeIsLoading}
+        changeIsError={handleChangeIsError}
         onChangeText={noop}
         onChangeRating={noop}
         onSubmit={handleSubmitForm}
@@ -77,4 +79,41 @@ it(`Should form submit`, () => {
   const formReview = wrapper.find(`form.add-review__form`);
   formReview.simulate(`submit`, {preventDefault: noop});
   expect(handleSubmitForm).toHaveBeenCalledTimes(1);
+  expect(handleChangeIsLoading).toHaveBeenCalledTimes(1);
+  expect(handleChangeIsError).toHaveBeenCalledTimes(0);
+});
+
+it(`Should form submit called changeIsLoading & changeIsError`, () => {
+  const handleChangeIsLoading = jest.fn();
+  const handleChangeIsError = jest.fn();
+  const handleSubmitForm = () => {
+    return {
+      then: () => handleChangeIsLoading(),
+      catch: () => {
+        handleChangeIsError();
+        handleChangeIsLoading();
+      }
+    };
+  };
+
+  const wrapper = shallow(
+      <FormReview
+        text={`test`}
+        rating={`3`}
+        filmID={1}
+        isActive={true}
+        isLoading={false}
+        isError={false}
+        changeIsLoading={handleChangeIsLoading}
+        changeIsError={handleChangeIsError}
+        onChangeText={noop}
+        onChangeRating={noop}
+        onSubmit={handleSubmitForm}
+      />
+  );
+
+  const formReview = wrapper.find(`form.add-review__form`);
+  formReview.simulate(`submit`, {preventDefault: noop});
+  expect(handleChangeIsLoading).toHaveBeenCalledTimes(2);
+  expect(handleChangeIsError).toHaveBeenCalledTimes(1);
 });
