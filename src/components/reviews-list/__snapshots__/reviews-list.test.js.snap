@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should ReviewsList render correctly 1`] = `
+Array [
+  <div
+    className="review"
+  >
+    <blockquote
+      className="review__quote"
+    >
+      <p
+        className="review__text"
+      >
+        A movie that will take you to another world full of emotions.
+      </p>
+      <footer
+        className="review__details"
+      >
+        <cite
+          className="review__author"
+        >
+          Jack
+        </cite>
+        <time
+          className="review__date"
+          dateTime="2020-11-03"
+        >
+          November 03, 2020
+        </time>
+      </footer>
+    </blockquote>
+    <div
+      className="review__rating"
+    >
+      8.6
+    </div>
+  </div>,
+  <div
+    className="review"
+  >
+    <blockquote
+      className="review__quote"
+    >
+      <p
+        className="review__text"
+      >
+        A movie that will take you to another world null of emotions.
+      </p>
+      <footer
+        className="review__details"
+      >
+        <cite
+          className="review__author"
+        >
+          John
+        </cite>
+        <time
+          className="review__date"
+          dateTime="2020-11-03"
+        >
+          November 03, 2020
+        </time>
+      </footer>
+    </blockquote>
+    <div
+      className="review__rating"
+    >
+      1.6
+    </div>
+  </div>,
+]
+`;

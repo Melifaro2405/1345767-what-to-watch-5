@@ -4,9 +4,9 @@ import {connect} from "react-redux";
 import {fetchFavoriteFilmList} from "../../serviсes/api-actions";
 import {filmProptypes} from "../../props-validation";
 import {Link} from "react-router-dom";
-import {Footer} from "../footer/footer";
-import {AppRoute} from "../../consts";
 import MoviesList from "../movies-list/movies-list";
+import Footer from "../footer/footer";
+import {AppRoute} from "../../consts";
 
 class MyList extends PureComponent {
 
@@ -18,7 +18,6 @@ class MyList extends PureComponent {
   render() {
     const {favoriteFilms, login} = this.props;
     const {avatar} = login;
-
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -41,7 +40,6 @@ class MyList extends PureComponent {
 
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
           <MoviesList films={favoriteFilms} />
         </section>
 
@@ -55,8 +53,8 @@ MyList.propTypes = {
   favoriteFilms: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,
   loadFavoriteFilms: PropTypes.func.isRequired,
   login: PropTypes.shape({
-    avatar: PropTypes.string.isRequired
-  }).isRequired
+    avatar: PropTypes.string
+  })
 };
 
 const mapStateToProps = ({DATA, USER}) => ({
@@ -72,5 +70,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {MyList};
 export default connect(mapStateToProps, mapDispatchToProps)(MyList);
-
-

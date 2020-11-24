@@ -15,9 +15,7 @@ const Tabs = ({activeTab, handleClickTab, film, id}) => {
       case MovieTabs.DETAILS:
         return <MovieDetails film={film} />;
       case MovieTabs.REVIEWS:
-        return <MovieReviews
-          id={id}
-        />;
+        return <MovieReviews id={id} />;
     }
     return null;
   };

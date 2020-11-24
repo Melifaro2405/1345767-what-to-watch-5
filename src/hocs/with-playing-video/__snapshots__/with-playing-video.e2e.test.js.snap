@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withPlayingVideo is rendered correctly 1`] = `
+<div>
+  <video
+    className="player__video"
+    onTimeUpdate={[Function]}
+    poster="img/player-poster.jpg"
+    src="https://some-link"
+  />
+</div>
+`;

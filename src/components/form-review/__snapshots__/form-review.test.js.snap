@@ -1,0 +1,949 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should FormReview render correctly with all false 1`] = `
+<form
+  action="#"
+  className="add-review__form"
+  onSubmit={[Function]}
+>
+  <div
+    className="rating"
+  >
+    <div
+      className="rating__stars"
+      onChange={[Function]}
+    >
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-1"
+        name="rating"
+        type="radio"
+        value={1}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-1"
+      >
+        Rating 1
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-2"
+        name="rating"
+        type="radio"
+        value={2}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-2"
+      >
+        Rating 2
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={true}
+        id="star-3"
+        name="rating"
+        type="radio"
+        value={3}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-3"
+      >
+        Rating 3
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-4"
+        name="rating"
+        type="radio"
+        value={4}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-4"
+      >
+        Rating 4
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-5"
+        name="rating"
+        type="radio"
+        value={5}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-5"
+      >
+        Rating 5
+      </label>
+    </div>
+  </div>
+  <div
+    className="add-review__text"
+  >
+    <textarea
+      className="add-review__textarea"
+      id="review-text"
+      maxLength="400"
+      minLength="50"
+      name="review-text"
+      onChange={[Function]}
+      placeholder="Review text"
+      value="test"
+    />
+    <div
+      className="add-review__submit"
+    >
+      <button
+        className="add-review__btn"
+        disabled={true}
+        type="submit"
+      >
+        Post
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Should FormReview render correctly with all true 1`] = `
+<form
+  action="#"
+  className="add-review__form"
+  onSubmit={[Function]}
+>
+  <div
+    className="rating"
+  >
+    <div
+      className="rating__stars"
+      onChange={[Function]}
+    >
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-1"
+        name="rating"
+        type="radio"
+        value={1}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-1"
+      >
+        Rating 1
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-2"
+        name="rating"
+        type="radio"
+        value={2}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-2"
+      >
+        Rating 2
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={true}
+        id="star-3"
+        name="rating"
+        type="radio"
+        value={3}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-3"
+      >
+        Rating 3
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-4"
+        name="rating"
+        type="radio"
+        value={4}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-4"
+      >
+        Rating 4
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-5"
+        name="rating"
+        type="radio"
+        value={5}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-5"
+      >
+        Rating 5
+      </label>
+    </div>
+  </div>
+  <div
+    className="add-review__text"
+  >
+    <textarea
+      className="add-review__textarea"
+      id="review-text"
+      maxLength="400"
+      minLength="50"
+      name="review-text"
+      onChange={[Function]}
+      placeholder="Review text"
+      value="test"
+    />
+    <div
+      className="add-review__submit"
+    >
+      <button
+        className="add-review__btn"
+        disabled={true}
+        type="submit"
+      >
+        Post
+      </button>
+    </div>
+  </div>
+  <p
+    style={
+      Object {
+        "color": "red",
+        "fontWeight": "bold",
+        "textAlign": "center",
+      }
+    }
+  >
+    ОШИБКА ОТПРАВКИ ФОРМЫ
+  </p>
+</form>
+`;
+
+exports[`Should FormReview render correctly with isActive & isError true, isLoading false 1`] = `
+<form
+  action="#"
+  className="add-review__form"
+  onSubmit={[Function]}
+>
+  <div
+    className="rating"
+  >
+    <div
+      className="rating__stars"
+      onChange={[Function]}
+    >
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-1"
+        name="rating"
+        type="radio"
+        value={1}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-1"
+      >
+        Rating 1
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-2"
+        name="rating"
+        type="radio"
+        value={2}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-2"
+      >
+        Rating 2
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={true}
+        id="star-3"
+        name="rating"
+        type="radio"
+        value={3}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-3"
+      >
+        Rating 3
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-4"
+        name="rating"
+        type="radio"
+        value={4}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-4"
+      >
+        Rating 4
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-5"
+        name="rating"
+        type="radio"
+        value={5}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-5"
+      >
+        Rating 5
+      </label>
+    </div>
+  </div>
+  <div
+    className="add-review__text"
+  >
+    <textarea
+      className="add-review__textarea"
+      id="review-text"
+      maxLength="400"
+      minLength="50"
+      name="review-text"
+      onChange={[Function]}
+      placeholder="Review text"
+      value="test"
+    />
+    <div
+      className="add-review__submit"
+    >
+      <button
+        className="add-review__btn"
+        disabled={false}
+        type="submit"
+      >
+        Post
+      </button>
+    </div>
+  </div>
+  <p
+    style={
+      Object {
+        "color": "red",
+        "fontWeight": "bold",
+        "textAlign": "center",
+      }
+    }
+  >
+    ОШИБКА ОТПРАВКИ ФОРМЫ
+  </p>
+</form>
+`;
+
+exports[`Should FormReview render correctly with isActive & isLoading true, isError false 1`] = `
+<form
+  action="#"
+  className="add-review__form"
+  onSubmit={[Function]}
+>
+  <div
+    className="rating"
+  >
+    <div
+      className="rating__stars"
+      onChange={[Function]}
+    >
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-1"
+        name="rating"
+        type="radio"
+        value={1}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-1"
+      >
+        Rating 1
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-2"
+        name="rating"
+        type="radio"
+        value={2}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-2"
+      >
+        Rating 2
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={true}
+        id="star-3"
+        name="rating"
+        type="radio"
+        value={3}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-3"
+      >
+        Rating 3
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-4"
+        name="rating"
+        type="radio"
+        value={4}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-4"
+      >
+        Rating 4
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-5"
+        name="rating"
+        type="radio"
+        value={5}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-5"
+      >
+        Rating 5
+      </label>
+    </div>
+  </div>
+  <div
+    className="add-review__text"
+  >
+    <textarea
+      className="add-review__textarea"
+      id="review-text"
+      maxLength="400"
+      minLength="50"
+      name="review-text"
+      onChange={[Function]}
+      placeholder="Review text"
+      value="test"
+    />
+    <div
+      className="add-review__submit"
+    >
+      <button
+        className="add-review__btn"
+        disabled={true}
+        type="submit"
+      >
+        Post
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Should FormReview render correctly with isActive true, isLoading & isError false 1`] = `
+<form
+  action="#"
+  className="add-review__form"
+  onSubmit={[Function]}
+>
+  <div
+    className="rating"
+  >
+    <div
+      className="rating__stars"
+      onChange={[Function]}
+    >
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-1"
+        name="rating"
+        type="radio"
+        value={1}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-1"
+      >
+        Rating 1
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-2"
+        name="rating"
+        type="radio"
+        value={2}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-2"
+      >
+        Rating 2
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={true}
+        id="star-3"
+        name="rating"
+        type="radio"
+        value={3}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-3"
+      >
+        Rating 3
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-4"
+        name="rating"
+        type="radio"
+        value={4}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-4"
+      >
+        Rating 4
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-5"
+        name="rating"
+        type="radio"
+        value={5}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-5"
+      >
+        Rating 5
+      </label>
+    </div>
+  </div>
+  <div
+    className="add-review__text"
+  >
+    <textarea
+      className="add-review__textarea"
+      id="review-text"
+      maxLength="400"
+      minLength="50"
+      name="review-text"
+      onChange={[Function]}
+      placeholder="Review text"
+      value="test"
+    />
+    <div
+      className="add-review__submit"
+    >
+      <button
+        className="add-review__btn"
+        disabled={false}
+        type="submit"
+      >
+        Post
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Should FormReview render correctly with isError true, isActive & isLoading false 1`] = `
+<form
+  action="#"
+  className="add-review__form"
+  onSubmit={[Function]}
+>
+  <div
+    className="rating"
+  >
+    <div
+      className="rating__stars"
+      onChange={[Function]}
+    >
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-1"
+        name="rating"
+        type="radio"
+        value={1}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-1"
+      >
+        Rating 1
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-2"
+        name="rating"
+        type="radio"
+        value={2}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-2"
+      >
+        Rating 2
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={true}
+        id="star-3"
+        name="rating"
+        type="radio"
+        value={3}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-3"
+      >
+        Rating 3
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-4"
+        name="rating"
+        type="radio"
+        value={4}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-4"
+      >
+        Rating 4
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-5"
+        name="rating"
+        type="radio"
+        value={5}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-5"
+      >
+        Rating 5
+      </label>
+    </div>
+  </div>
+  <div
+    className="add-review__text"
+  >
+    <textarea
+      className="add-review__textarea"
+      id="review-text"
+      maxLength="400"
+      minLength="50"
+      name="review-text"
+      onChange={[Function]}
+      placeholder="Review text"
+      value="test"
+    />
+    <div
+      className="add-review__submit"
+    >
+      <button
+        className="add-review__btn"
+        disabled={true}
+        type="submit"
+      >
+        Post
+      </button>
+    </div>
+  </div>
+  <p
+    style={
+      Object {
+        "color": "red",
+        "fontWeight": "bold",
+        "textAlign": "center",
+      }
+    }
+  >
+    ОШИБКА ОТПРАВКИ ФОРМЫ
+  </p>
+</form>
+`;
+
+exports[`Should FormReview render correctly with isLoading & isError true, isActive false 1`] = `
+<form
+  action="#"
+  className="add-review__form"
+  onSubmit={[Function]}
+>
+  <div
+    className="rating"
+  >
+    <div
+      className="rating__stars"
+      onChange={[Function]}
+    >
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-1"
+        name="rating"
+        type="radio"
+        value={1}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-1"
+      >
+        Rating 1
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-2"
+        name="rating"
+        type="radio"
+        value={2}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-2"
+      >
+        Rating 2
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={true}
+        id="star-3"
+        name="rating"
+        type="radio"
+        value={3}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-3"
+      >
+        Rating 3
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-4"
+        name="rating"
+        type="radio"
+        value={4}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-4"
+      >
+        Rating 4
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-5"
+        name="rating"
+        type="radio"
+        value={5}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-5"
+      >
+        Rating 5
+      </label>
+    </div>
+  </div>
+  <div
+    className="add-review__text"
+  >
+    <textarea
+      className="add-review__textarea"
+      id="review-text"
+      maxLength="400"
+      minLength="50"
+      name="review-text"
+      onChange={[Function]}
+      placeholder="Review text"
+      value="test"
+    />
+    <div
+      className="add-review__submit"
+    >
+      <button
+        className="add-review__btn"
+        disabled={true}
+        type="submit"
+      >
+        Post
+      </button>
+    </div>
+  </div>
+  <p
+    style={
+      Object {
+        "color": "red",
+        "fontWeight": "bold",
+        "textAlign": "center",
+      }
+    }
+  >
+    ОШИБКА ОТПРАВКИ ФОРМЫ
+  </p>
+</form>
+`;
+
+exports[`Should FormReview render correctly with isLoading true, isActive & isError false 1`] = `
+<form
+  action="#"
+  className="add-review__form"
+  onSubmit={[Function]}
+>
+  <div
+    className="rating"
+  >
+    <div
+      className="rating__stars"
+      onChange={[Function]}
+    >
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-1"
+        name="rating"
+        type="radio"
+        value={1}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-1"
+      >
+        Rating 1
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-2"
+        name="rating"
+        type="radio"
+        value={2}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-2"
+      >
+        Rating 2
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={true}
+        id="star-3"
+        name="rating"
+        type="radio"
+        value={3}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-3"
+      >
+        Rating 3
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-4"
+        name="rating"
+        type="radio"
+        value={4}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-4"
+      >
+        Rating 4
+      </label>
+      <input
+        className="rating__input"
+        defaultChecked={false}
+        id="star-5"
+        name="rating"
+        type="radio"
+        value={5}
+      />
+      <label
+        className="rating__label"
+        htmlFor="star-5"
+      >
+        Rating 5
+      </label>
+    </div>
+  </div>
+  <div
+    className="add-review__text"
+  >
+    <textarea
+      className="add-review__textarea"
+      id="review-text"
+      maxLength="400"
+      minLength="50"
+      name="review-text"
+      onChange={[Function]}
+      placeholder="Review text"
+      value="test"
+    />
+    <div
+      className="add-review__submit"
+    >
+      <button
+        className="add-review__btn"
+        disabled={true}
+        type="submit"
+      >
+        Post
+      </button>
+    </div>
+  </div>
+</form>
+`;

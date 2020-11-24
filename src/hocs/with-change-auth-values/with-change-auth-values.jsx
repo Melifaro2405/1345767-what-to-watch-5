@@ -8,17 +8,25 @@ const withChangeAuthValues = (Component) => {
       this.state = {
         email: ``,
         password: ``,
-        isError: false
+        isInvalidEmail: false,
+        isSubmitError: false
       };
 
-      this._changeIsError = this._changeIsError.bind(this);
+      this._changeIsInvalidEmail = this._changeIsInvalidEmail.bind(this);
+      this._changeIsSubmitError = this._changeIsSubmitError.bind(this);
       this._handleChangeEmail = this._handleChangeEmail.bind(this);
       this._handleChangePassword = this._handleChangePassword.bind(this);
     }
 
-    _changeIsError(value) {
+    _changeIsInvalidEmail(value) {
       this.setState({
-        isError: value
+        isInvalidEmail: value
+      });
+    }
+
+    _changeIsSubmitError(value) {
+      this.setState({
+        isSubmitError: value
       });
     }
 
@@ -31,15 +39,17 @@ const withChangeAuthValues = (Component) => {
     }
 
     render() {
-      const {email, password, isError} = this.state;
+      const {email, password, isInvalidEmail, isSubmitError} = this.state;
 
       return (
         <Component
           {...this.props}
           email = {email}
           password = {password}
-          isError={isError}
-          changeIsError={this._changeIsError}
+          isInvalidEmail={isInvalidEmail}
+          isSubmitError={isSubmitError}
+          changeIsInvalidEmail={this._changeIsInvalidEmail}
+          changeIsSubmitError={this._changeIsSubmitError}
           onChangeEmail={this._handleChangeEmail}
           onChangePassword={this._handleChangePassword}
         />

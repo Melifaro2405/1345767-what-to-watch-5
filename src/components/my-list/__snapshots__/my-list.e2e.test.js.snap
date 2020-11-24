@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should MyList render correctly 1`] = `
+<div
+  className="user-page"
+>
+  <header
+    className="page-header user-page__head"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <h1
+      className="page-title user-page__title"
+    >
+      My list
+    </h1>
+    <div
+      className="user-block"
+    >
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="test"
+          width="63"
+        />
+      </div>
+    </div>
+  </header>
+  <section
+    className="catalog"
+  >
+    <h2
+      className="catalog__title visually-hidden"
+    >
+      Catalog
+    </h2>
+    <div
+      className="catalog__movies-list"
+    >
+      <article
+        className="small-movie-card catalog__movies-card"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/1"
+          onClick={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+          >
+            <img
+              alt="The Grand Budapest Hotel"
+              height="175"
+              src="img/the-grand-budapest-hotel-poster.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            The Grand Budapest Hotel
+          </h3>
+        </a>
+      </article>
+      <article
+        className="small-movie-card catalog__movies-card"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/2"
+          onClick={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+          >
+            <img
+              alt="The Grand Budapest Hotel"
+              height="175"
+              src="img/the-grand-budapest-hotel-poster.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            The Grand Budapest Hotel
+          </h3>
+        </a>
+      </article>
+      <article
+        className="small-movie-card catalog__movies-card"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/3"
+          onClick={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+          >
+            <img
+              alt="The Grand Budapest Hotel"
+              height="175"
+              src="img/the-grand-budapest-hotel-poster.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            The Grand Budapest Hotel
+          </h3>
+        </a>
+      </article>
+    </div>
+  </section>
+  <footer
+    className="page-footer"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link logo__link--light"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="copyright"
+    >
+      <p>
+        © 2019 What to watch Ltd.
+      </p>
+    </div>
+  </footer>
+</div>
+`;

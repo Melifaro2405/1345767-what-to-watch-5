@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should AddReview render correctly 1`] = `
+<section
+  className="movie-card movie-card--full"
+>
+  <div
+    className="movie-card__header"
+  >
+    <div
+      className="movie-card__bg"
+    >
+      <img
+        alt="test"
+        src="test"
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <header
+      className="page-header"
+    >
+      <div
+        className="logo"
+      >
+        <a
+          className="logo__link"
+          href="/"
+          onClick={[Function]}
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <nav
+        className="breadcrumbs"
+      >
+        <ul
+          className="breadcrumbs__list"
+        >
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+              href="/films/1"
+              onClick={[Function]}
+            >
+              test
+            </a>
+          </li>
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+            >
+              Add review
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <UserBlock />
+    </header>
+    <div
+      className="movie-card__poster movie-card__poster--small"
+    >
+      <img
+        alt="test"
+        height="327"
+        src="test"
+        width="218"
+      />
+    </div>
+  </div>
+  <div
+    className="add-review"
+  >
+    <FormReview
+      changeIsError={[Function]}
+      changeIsLoading={[Function]}
+      filmID={1}
+      isActive={false}
+      isError={false}
+      isLoading={false}
+      onChangeRating={[Function]}
+      onChangeText={[Function]}
+      rating=""
+      text=""
+    />
+  </div>
+</section>
+`;

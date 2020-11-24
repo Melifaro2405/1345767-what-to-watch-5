@@ -73,7 +73,7 @@ const Player = ({
 
 Player.propTypes = {
   film: PropTypes.shape(filmProptypes).isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   isPlaying: PropTypes.bool.isRequired,
   handlePlayVideo: PropTypes.func.isRequired,
   handlePauseVideo: PropTypes.func.isRequired,

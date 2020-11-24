@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {AppRoute, AuthorizationStatus} from "../../consts";
 
 const UserBlock = ({authorizationStatus, login}) => {
+
   return (
     <div className="user-block">
       {(authorizationStatus === AuthorizationStatus.NO_AUTH) && (

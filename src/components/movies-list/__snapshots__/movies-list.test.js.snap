@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should MoviesList render correctly 1`] = `
+<div
+  className="catalog__movies-list"
+>
+  <SmallMovieCard
+    film={
+      Object {
+        "details": Object {
+          "runtime": 99,
+        },
+        "id": 1,
+        "moreInfo": Object {
+          "backgroundColor": "#ffffff",
+          "backgroundSrc": "img/the-grand-budapest-hotel-bg.jpg",
+          "genre": "Comedy",
+          "isAddToMyList": false,
+          "playPreviewSrc": "https://some-link",
+          "playVideoSrc": "https://some-link",
+          "posterSrc": "img/the-grand-budapest-hotel-poster.jpg",
+          "releaseDate": 2014,
+        },
+        "overview": Object {
+          "actorsList": Array [
+            "Bill Murray",
+            "Edward Norton",
+            "Jude Law",
+            "Willem Dafoe",
+            "Saoirse Ronan",
+          ],
+          "description": "In the 1930s, the Grand Budapest Hotel is a popular European ski resort,
+        presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy,
+        becomes Gustave's friend and protege.",
+          "director": "Wes Andreson",
+          "rating": 8.9,
+          "ratingCount": 240,
+        },
+        "preview": Object {
+          "src": "img/the-grand-budapest-hotel-poster.jpg",
+          "title": "The Grand Budapest Hotel",
+        },
+      }
+    }
+    isPlayingVideo={false}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  />
+  <SmallMovieCard
+    film={
+      Object {
+        "details": Object {
+          "runtime": 99,
+        },
+        "id": 2,
+        "moreInfo": Object {
+          "backgroundColor": "#ffffff",
+          "backgroundSrc": "img/the-grand-budapest-hotel-bg.jpg",
+          "genre": "Comedy",
+          "isAddToMyList": false,
+          "playPreviewSrc": "https://some-link",
+          "playVideoSrc": "https://some-link",
+          "posterSrc": "img/the-grand-budapest-hotel-poster.jpg",
+          "releaseDate": 2014,
+        },
+        "overview": Object {
+          "actorsList": Array [
+            "Bill Murray",
+            "Edward Norton",
+            "Jude Law",
+            "Willem Dafoe",
+            "Saoirse Ronan",
+          ],
+          "description": "In the 1930s, the Grand Budapest Hotel is a popular European ski resort,
+        presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy,
+        becomes Gustave's friend and protege.",
+          "director": "Wes Andreson",
+          "rating": 8.9,
+          "ratingCount": 240,
+        },
+        "preview": Object {
+          "src": "img/the-grand-budapest-hotel-poster.jpg",
+          "title": "The Grand Budapest Hotel",
+        },
+      }
+    }
+    isPlayingVideo={false}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  />
+  <SmallMovieCard
+    film={
+      Object {
+        "details": Object {
+          "runtime": 99,
+        },
+        "id": 3,
+        "moreInfo": Object {
+          "backgroundColor": "#ffffff",
+          "backgroundSrc": "img/the-grand-budapest-hotel-bg.jpg",
+          "genre": "Comedy",
+          "isAddToMyList": false,
+          "playPreviewSrc": "https://some-link",
+          "playVideoSrc": "https://some-link",
+          "posterSrc": "img/the-grand-budapest-hotel-poster.jpg",
+          "releaseDate": 2014,
+        },
+        "overview": Object {
+          "actorsList": Array [
+            "Bill Murray",
+            "Edward Norton",
+            "Jude Law",
+            "Willem Dafoe",
+            "Saoirse Ronan",
+          ],
+          "description": "In the 1930s, the Grand Budapest Hotel is a popular European ski resort,
+        presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy,
+        becomes Gustave's friend and protege.",
+          "director": "Wes Andreson",
+          "rating": 8.9,
+          "ratingCount": 240,
+        },
+        "preview": Object {
+          "src": "img/the-grand-budapest-hotel-poster.jpg",
+          "title": "The Grand Budapest Hotel",
+        },
+      }
+    }
+    isPlayingVideo={false}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  />
+</div>
+`;

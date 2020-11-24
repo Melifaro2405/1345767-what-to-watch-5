@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MoviesCatalog from "../movies-catalog/movies-catalog";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {filmProptypes} from "../../props-validation";
-import {Footer} from "../footer/footer";
-import UserBlock from "../user-block/user-block";
+import MoviesCatalog from "../movies-catalog/movies-catalog";
 import ButtonChangeFilmStatus from "../button-change-film-status/button-change-film-status";
-import {connect} from "react-redux";
+import UserBlock from "../user-block/user-block";
+import Footer from "../footer/footer";
 import {updateFilmStatus} from "../../serviсes/api-actions";
 import {AppRoute} from "../../consts";
 

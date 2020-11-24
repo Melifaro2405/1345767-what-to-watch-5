@@ -2,19 +2,33 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {Footer} from "../footer/footer";
-import {AppRoute} from "../../consts";
 import {login} from "../../serviсes/api-actions";
+import Footer from "../footer/footer";
+import {AppRoute} from "../../consts";
 
-const SignIn = ({email, password, isError, changeIsError, onSubmit, onChangeEmail, onChangePassword}) => {
+const SignIn = ({
+  email,
+  password,
+  isInvalidEmail,
+  isSubmitError,
+  changeIsInvalidEmail,
+  changeIsSubmitError,
+  onSubmit,
+  onChangeEmail,
+  onChangePassword
+}) => {
 
   const onSubmitAuth = (evt) => {
+    const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
     evt.preventDefault();
 
-    onSubmit({email, password})
-      .catch(() => {
-        changeIsError(true);
-      });
+    changeIsSubmitError(!email.length || !password.length);
+    changeIsInvalidEmail(!reg.test(email));
+
+    if (!isInvalidEmail && !isSubmitError) {
+      onSubmit({email, password});
+    }
   };
 
   return (
@@ -34,13 +48,18 @@ const SignIn = ({email, password, isError, changeIsError, onSubmit, onChangeEmai
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={onSubmitAuth}>
 
-          {isError &&
+          {isInvalidEmail &&
           <div className="sign-in__message">
-            <p>Ошибка отправки данных</p>
+            <p>Please enter a valid email address</p>
+          </div>}
+
+          {isSubmitError &&
+          <div className="sign-in__message">
+            <p>We can’t recognize this email and password combination. Please try again.</p>
           </div>}
 
           <div className="sign-in__fields">
-            <div className="sign-in__field">
+            <div className={`sign-in__field ${isInvalidEmail && `sign-in__field--error`}`}>
               <input
                 value={email}
                 onChange={onChangeEmail}
@@ -49,6 +68,7 @@ const SignIn = ({email, password, isError, changeIsError, onSubmit, onChangeEmai
                 placeholder="Email address"
                 name="user-email"
                 id="user-email"
+                required
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">
                 Email address
@@ -63,6 +83,7 @@ const SignIn = ({email, password, isError, changeIsError, onSubmit, onChangeEmai
                 placeholder="Password"
                 name="user-password"
                 id="user-password"
+                required
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">
                 Password
@@ -86,8 +107,10 @@ SignIn.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  isError: PropTypes.bool.isRequired,
-  changeIsError: PropTypes.func.isRequired,
+  isInvalidEmail: PropTypes.bool.isRequired,
+  isSubmitError: PropTypes.bool.isRequired,
+  changeIsInvalidEmail: PropTypes.func.isRequired,
+  changeIsSubmitError: PropTypes.func.isRequired,
   onChangeEmail: PropTypes.func.isRequired,
   onChangePassword: PropTypes.func.isRequired,
 };

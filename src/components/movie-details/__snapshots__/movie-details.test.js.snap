@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should MovieDetails render correctly 1`] = `
+<div
+  className="movie-card__text movie-card__row"
+>
+  <div
+    className="movie-card__text-col"
+  >
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Director
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        Wes Andreson
+      </span>
+    </p>
+    <div
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Starring
+      </strong>
+      <div
+        className="movie-card__details-value"
+      >
+        <ul
+          style={
+            Object {
+              "listStyleType": "none",
+              "margin": 0,
+              "padding": 0,
+            }
+          }
+        >
+          <li>
+            Bill Murray
+            ,
+          </li>
+          <li>
+            Edward Norton
+            ,
+          </li>
+          <li>
+            Jude Law
+            ,
+          </li>
+          <li>
+            Willem Dafoe
+            ,
+          </li>
+          <li>
+            Saoirse Ronan
+            ,
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    className="movie-card__text-col"
+  >
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Run Time
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        1h 39m
+      </span>
+    </p>
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Genre
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        Comedy
+      </span>
+    </p>
+    <p
+      className="movie-card__details-item"
+    >
+      <strong
+        className="movie-card__details-name"
+      >
+        Released
+      </strong>
+      <span
+        className="movie-card__details-value"
+      >
+        2014
+      </span>
+    </p>
+  </div>
+</div>
+`;
