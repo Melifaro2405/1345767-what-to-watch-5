@@ -15,7 +15,6 @@ it(`Should button for change film status be pressed`, () => {
       />
   );
 
-  const buttonChangeStatus = wrapper.find(`button.btn--list`);
-  buttonChangeStatus.simulate(`click`);
+  wrapper.find(`button.btn--list`).simulate(`click`);
   expect(handleChangeFilmStatus).toHaveBeenCalledTimes(1);
 });

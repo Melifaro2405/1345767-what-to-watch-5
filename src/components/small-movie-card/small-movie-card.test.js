@@ -38,29 +38,16 @@ export const film = {
 };
 
 describe(`Should SmallMovieCard render correctly`, () => {
-  it(`with playing video`, () => {
+  test.each([
+    [`with`, true],
+    [`without`, false],
+  ])(`%s playing video`, (_expected, isPlayingVideo) => {
     const tree = renderer
       .create(
           <BrowserRouter>
             <SmallMovieCard
               film={film}
-              isPlayingVideo={true}
-              onMouseOver={noop}
-              onMouseOut={noop}
-            />
-          </BrowserRouter>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`without playing video`, () => {
-    const tree = renderer
-      .create(
-          <BrowserRouter>
-            <SmallMovieCard
-              film={film}
-              isPlayingVideo={false}
+              isPlayingVideo={isPlayingVideo}
               onMouseOver={noop}
               onMouseOut={noop}
             />

@@ -7,7 +7,7 @@ configure({adapter: new Adapter()});
 
 const noop = () => {};
 
-it(`Should value input email`, () => {
+it(`Should change email value with input email`, () => {
   const handleInputEmail = jest.fn();
 
   const wrapper = shallow(
@@ -24,12 +24,11 @@ it(`Should value input email`, () => {
       />
   );
 
-  const inputEmail = wrapper.find(`#user-email`);
-  inputEmail.simulate(`change`);
+  wrapper.find(`#user-email`).simulate(`change`);
   expect(handleInputEmail).toHaveBeenCalledTimes(1);
 });
 
-it(`Should value input password`, () => {
+it(`Should change password value with input password`, () => {
   const handleInputPassword = jest.fn();
 
   const wrapper = shallow(
@@ -46,12 +45,11 @@ it(`Should value input password`, () => {
       />
   );
 
-  const inputPassword = wrapper.find(`#user-password`);
-  inputPassword.simulate(`change`);
+  wrapper.find(`#user-password`).simulate(`change`);
   expect(handleInputPassword).toHaveBeenCalledTimes(1);
 });
 
-it(`Should submit user data`, () => {
+it(`Should submit user data with authorization`, () => {
   const handleSubmitUserData = jest.fn().mockResolvedValue();
 
   const wrapper = shallow(
@@ -68,8 +66,7 @@ it(`Should submit user data`, () => {
       />
   );
 
-  const formAuth = wrapper.find(`form.sign-in__form`);
-  formAuth.simulate(`submit`, {preventDefault: noop});
+  wrapper.find(`form.sign-in__form`).simulate(`submit`, {preventDefault: noop});
   expect(handleSubmitUserData).toHaveBeenCalledTimes(1);
 });
 
@@ -91,8 +88,7 @@ it(`Should changed isInvalidEmail with invalid email & isSubmitError with empty 
       />
   );
 
-  const formAuth = wrapper.find(`form.sign-in__form`);
-  formAuth.simulate(`submit`, {preventDefault: noop});
+  wrapper.find(`form.sign-in__form`).simulate(`submit`, {preventDefault: noop});
   expect(changeIsInvalidEmail).toHaveBeenCalledTimes(1);
   expect(changeIsSubmitError).toHaveBeenCalledTimes(1);
 });

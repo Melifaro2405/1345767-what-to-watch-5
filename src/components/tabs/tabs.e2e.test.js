@@ -8,6 +8,7 @@ configure({adapter: new Adapter()});
 
 it(`Should button be pressed for change tab on movie page`, () => {
   const handleClickTab = jest.fn();
+  const clickLinkPrevention = jest.fn();
 
   const wrapper = shallow(
       <Tabs
@@ -18,14 +19,18 @@ it(`Should button be pressed for change tab on movie page`, () => {
       />
   );
 
-  const buttonTabOverview = wrapper.find(`a.movie-nav__link`).at(`0`);
-  buttonTabOverview.simulate(`click`, {preventDefault: () => {}});
+  wrapper.find(`a.movie-nav__link`).at(`0`).simulate(`click`, {
+    preventDefault: clickLinkPrevention
+  });
 
-  const buttonTabDetails = wrapper.find(`a.movie-nav__link`).at(`1`);
-  buttonTabDetails.simulate(`click`, {preventDefault: () => {}});
+  wrapper.find(`a.movie-nav__link`).at(`1`).simulate(`click`, {
+    preventDefault: clickLinkPrevention
+  });
 
-  const buttonTabReviews = wrapper.find(`a.movie-nav__link`).at(`2`);
-  buttonTabReviews.simulate(`click`, {preventDefault: () => {}});
+  wrapper.find(`a.movie-nav__link`).at(`2`).simulate(`click`, {
+    preventDefault: clickLinkPrevention
+  });
 
   expect(handleClickTab).toHaveBeenCalledTimes(3);
+  expect(clickLinkPrevention).toHaveBeenCalledTimes(3);
 });

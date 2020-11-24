@@ -6,17 +6,16 @@ import {GenresList} from "./genres-list";
 configure({adapter: new Adapter()});
 
 it(`Should button for change film filter be pressed`, () => {
-  const handlechangeActiveFilter = jest.fn();
+  const handleChangeActiveFilter = jest.fn();
 
   const wrapper = shallow(
       <GenresList
         genres={[`test1, test2, test3`]}
         activeGenre={`test`}
-        changeActiveFilterAction={handlechangeActiveFilter}
+        changeActiveFilterAction={handleChangeActiveFilter}
       />
   );
 
-  const buttonForChangeFilter = wrapper.find(`li.catalog__genres-item`);
-  buttonForChangeFilter.simulate(`click`, {preventDefault: () => {}});
-  expect(handlechangeActiveFilter).toHaveBeenCalledTimes(1);
+  wrapper.find(`li.catalog__genres-item`).simulate(`click`, {preventDefault: () => {}});
+  expect(handleChangeActiveFilter).toHaveBeenCalledTimes(1);
 });

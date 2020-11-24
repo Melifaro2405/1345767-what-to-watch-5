@@ -17,7 +17,7 @@ const loginFromServer = {
 const adaptedLogin = adaptUserInfoToClient(loginFromServer);
 
 it(`Reducer without additional parameters should return initial state`, () => {
-  expect(user(void 0, {})).toEqual({
+  expect(user(undefined, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
     login: null
   });

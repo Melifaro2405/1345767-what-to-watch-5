@@ -6,6 +6,11 @@ jest.mock(`../genres-list/genres-list`, () => `GenresList`);
 jest.mock(`../movies-list/movies-list`, () => `MoviesList`);
 jest.mock(`../button-show-more/button-show-more`, () => `ButtonShowMore`);
 
+const CountFilms = {
+  LESS_DISPLAYED: 1,
+  MORE_DISPLAYED: 8
+};
+
 const films = [
   {
     id: 1,
@@ -97,26 +102,15 @@ const films = [
 ];
 
 describe(`Should MoviesCatalog render correctly`, () => {
-  it(`without buttonShowMore`, () => {
+  test.each([
+    [`with`, CountFilms.LESS_DISPLAYED],
+    [`without`, CountFilms.MORE_DISPLAYED],
+  ])(`%s buttonShowMore`, (_expected, countShownFilms) => {
     const tree = renderer
-      .create(
-          <MoviesCatalog
-            filteredFilms={films}
-            countShownFilms={8}
-          />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`with buttonShowMore`, () => {
-    const tree = renderer
-      .create(
-          <MoviesCatalog
-            filteredFilms={films}
-            countShownFilms={1}
-          />
-      )
+      .create(<MoviesCatalog
+        filteredFilms={films}
+        countShownFilms={countShownFilms}
+      />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

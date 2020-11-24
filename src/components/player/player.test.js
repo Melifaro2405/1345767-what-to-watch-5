@@ -35,38 +35,21 @@ export const film = {
 };
 
 describe(`Should Player render correctly`, () => {
-  it(`with player on play`, () => {
+  test.each([
+    [`player on play`, true],
+    [`player on pause`, false],
+  ])(`with %s`, (_expected, isPlaying) => {
     const tree = renderer
-      .create(
-          <Player
-            film={film}
-            isPlaying={true}
-            videoProgress={10}
-            videoTimeLeft={700}
-            handlePlayVideo={noop}
-            handlePauseVideo={noop}
-            handleClickFullScreen={noop}
-            onExitButtonClick={noop}
-          />
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`with player on pause`, () => {
-    const tree = renderer
-      .create(
-          <Player
-            film={film}
-            isPlaying={false}
-            videoProgress={10}
-            videoTimeLeft={700}
-            handlePlayVideo={noop}
-            handlePauseVideo={noop}
-            handleClickFullScreen={noop}
-            onExitButtonClick={noop}
-          />
-      )
+      .create(<Player
+        film={film}
+        isPlaying={isPlaying}
+        videoProgress={10}
+        videoTimeLeft={700}
+        handlePlayVideo={noop}
+        handlePauseVideo={noop}
+        handleClickFullScreen={noop}
+        onExitButtonClick={noop}
+      />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

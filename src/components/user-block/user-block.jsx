@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {AppRoute, AuthorizationStatus} from "../../consts";
 
 const UserBlock = ({authorizationStatus, login}) => {
-  const {avatar} = login;
+
   return (
     <div className="user-block">
       {(authorizationStatus === AuthorizationStatus.NO_AUTH) && (
@@ -16,7 +16,7 @@ const UserBlock = ({authorizationStatus, login}) => {
       {(authorizationStatus === AuthorizationStatus.AUTH) && (
         <div className="user-block__avatar">
           <Link to={AppRoute.MY_LIST}>
-            <img src={avatar} alt="User avatar" width="63" height="63"/>
+            <img src={login.avatar} alt="User avatar" width="63" height="63"/>
           </Link>
         </div>
       )}

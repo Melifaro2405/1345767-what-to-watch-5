@@ -50,7 +50,10 @@ export const film = {
 export const films = [film];
 
 describe(`Should MoviePage render correctly`, () => {
-  it(`with authorization`, () => {
+  test.each([
+    [`with`, AuthorizationStatus.AUTH],
+    [`without`, AuthorizationStatus.NO_AUTH],
+  ])(`%s authorization`, (_expected, authorizationStatus) => {
     const tree = renderer
       .create(
           <BrowserRouter>
@@ -62,27 +65,7 @@ describe(`Should MoviePage render correctly`, () => {
               updateFilmByID={noop}
               changeFilmStatus={noop}
               updateFilmByStatus={noop}
-              authorizationStatus={AuthorizationStatus.AUTH}
-            />
-          </BrowserRouter>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`without authorization`, () => {
-    const tree = renderer
-      .create(
-          <BrowserRouter>
-            <MoviePage
-              id={1}
-              film={film}
-              films={films}
-              getFilm={noopPromise}
-              updateFilmByID={noop}
-              changeFilmStatus={noop}
-              updateFilmByStatus={noop}
-              authorizationStatus={AuthorizationStatus.NO_AUTH}
+              authorizationStatus={authorizationStatus}
             />
           </BrowserRouter>
       )

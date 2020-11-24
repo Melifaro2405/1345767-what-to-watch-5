@@ -27,8 +27,7 @@ it(`Should pause button be pressed`, () => {
       />
   );
 
-  const playButton = wrapper.find(`button.player__play`);
-  playButton.simulate(`click`);
+  wrapper.find(`button.player__play`).simulate(`click`);
   expect(handlePauseVideo).toHaveBeenCalledTimes(1);
 });
 
@@ -48,8 +47,7 @@ it(`Should play button be pressed`, () => {
       />
   );
 
-  const playButton = wrapper.find(`button.player__play`);
-  playButton.simulate(`click`);
+  wrapper.find(`button.player__play`).simulate(`click`);
   expect(handlePlayVideo).toHaveBeenCalledTimes(1);
 });
 
@@ -69,8 +67,7 @@ it(`Should fullscreen button be pressed`, () => {
       />
   );
 
-  const fullScreenButton = wrapper.find(`button.player__full-screen`);
-  fullScreenButton.simulate(`click`);
+  wrapper.find(`button.player__full-screen`).simulate(`click`);
   expect(handleClickFullScreen).toHaveBeenCalledTimes(1);
 });
 
@@ -90,7 +87,6 @@ it(`Should button for close player be pressed`, () => {
       />
   );
 
-  const closePlayerButton = wrapper.find(`button.player__exit`);
-  closePlayerButton.simulate(`click`);
+  wrapper.find(`button.player__exit`).simulate(`click`);
   expect(handleClosePlayer).toHaveBeenCalledTimes(1);
 });

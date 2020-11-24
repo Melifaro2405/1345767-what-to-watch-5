@@ -26,8 +26,7 @@ it(`Should value input change text`, () => {
       />
   );
 
-  const inputTextReview = wrapper.find(`.add-review__textarea`);
-  inputTextReview.simulate(`change`);
+  wrapper.find(`.add-review__textarea`).simulate(`change`);
   expect(handleChangeText).toHaveBeenCalledTimes(1);
 });
 
@@ -50,8 +49,7 @@ it(`Should value input change rating`, () => {
       />
   );
 
-  const ratingStars = wrapper.find(`.rating__stars`);
-  ratingStars.simulate(`change`);
+  wrapper.find(`.rating__stars`).simulate(`change`);
   expect(handleChangeRating).toHaveBeenCalledTimes(1);
 });
 
@@ -76,8 +74,7 @@ it(`Should form submit`, () => {
       />
   );
 
-  const formReview = wrapper.find(`form.add-review__form`);
-  formReview.simulate(`submit`, {preventDefault: noop});
+  wrapper.find(`form.add-review__form`).simulate(`submit`, {preventDefault: noop});
   expect(handleSubmitForm).toHaveBeenCalledTimes(1);
   expect(handleChangeIsLoading).toHaveBeenCalledTimes(1);
   expect(handleChangeIsError).toHaveBeenCalledTimes(0);
@@ -112,8 +109,7 @@ it(`Should form submit called changeIsLoading & changeIsError`, () => {
       />
   );
 
-  const formReview = wrapper.find(`form.add-review__form`);
-  formReview.simulate(`submit`, {preventDefault: noop});
+  wrapper.find(`form.add-review__form`).simulate(`submit`, {preventDefault: noop});
   expect(handleChangeIsLoading).toHaveBeenCalledTimes(2);
   expect(handleChangeIsError).toHaveBeenCalledTimes(1);
 });

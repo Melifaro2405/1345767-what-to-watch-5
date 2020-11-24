@@ -5,26 +5,15 @@ import {UserBlock} from './user-block';
 import {AuthorizationStatus} from '../../consts';
 
 describe(`Should UserBlock render correctly`, () => {
-  it(`without authorization`, () => {
+  test.each([
+    [`without`, AuthorizationStatus.NO_AUTH],
+    [`with`, AuthorizationStatus.AUTH],
+  ])(`%s authorization`, (_expected, authorizationStatus) => {
     const tree = renderer
       .create(
           <BrowserRouter>
             <UserBlock
-              authorizationStatus={AuthorizationStatus.NO_AUTH}
-              login={{avatar: `test`}}
-            />
-          </BrowserRouter>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`with authorization`, () => {
-    const tree = renderer
-      .create(
-          <BrowserRouter>
-            <UserBlock
-              authorizationStatus={AuthorizationStatus.AUTH}
+              authorizationStatus={authorizationStatus}
               login={{avatar: `test`}}
             />
           </BrowserRouter>

@@ -35,9 +35,9 @@ const withChangeReviewValues = (Component) => {
     _successData() {
       const {rating, text} = this.state;
 
-      if (text.length > CommentLength.MIN && text.length < CommentLength.MAX && rating) {
-        this.setState({isActive: true});
-      }
+      this.setState({
+        isActive: !!(text.length > CommentLength.MIN && text.length < CommentLength.MAX && rating)
+      });
     }
 
     _handleChangeText(evt) {

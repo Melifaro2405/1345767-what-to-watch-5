@@ -3,7 +3,7 @@ import {ActionType} from "../../action";
 import {filmsApp} from "./films-app";
 
 it(`Reducer filmsApp without additional parameters should return initial state`, () => {
-  expect(filmsApp(void 0, {})).toEqual({
+  expect(filmsApp(undefined, {})).toEqual({
     activeGenre: ALL_GENRES,
     countShownFilms: COUNT_SHOWN_FILMS
   });

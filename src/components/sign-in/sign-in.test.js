@@ -8,57 +8,19 @@ jest.mock(`../footer/footer`, () => `Footer`);
 const noop = () => {};
 
 describe(`Should SignIn render correctly`, () => {
-  it(`with valid email`, () => {
+  test.each([
+    [`valid email`, `test@test.ru`, `test`, false, false],
+    [`invalid email`, `test`, `test`, true, false],
+    [`empty input`, `test@test.ru`, ``, false, true],
+  ])(`with %s`, (_expected, email, password, isInvalidEmail, isSubmitError) => {
     const tree = renderer
       .create(
           <BrowserRouter>
             <SignIn
-              email={`test@test.ru`}
-              password={`test`}
-              isInvalidEmail={false}
-              isSubmitError={false}
-              changeIsInvalidEmail={noop}
-              changeIsSubmitError={noop}
-              onSubmit={noop}
-              onChangeEmail={noop}
-              onChangePassword={noop}
-            />
-          </BrowserRouter>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`with invalid email`, () => {
-    const tree = renderer
-      .create(
-          <BrowserRouter>
-            <SignIn
-              email={`test`}
-              password={`test`}
-              isInvalidEmail={true}
-              isSubmitError={false}
-              changeIsInvalidEmail={noop}
-              changeIsSubmitError={noop}
-              onSubmit={noop}
-              onChangeEmail={noop}
-              onChangePassword={noop}
-            />
-          </BrowserRouter>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`with empty input`, () => {
-    const tree = renderer
-      .create(
-          <BrowserRouter>
-            <SignIn
-              email={`test@test.ru`}
-              password={``}
-              isInvalidEmail={false}
-              isSubmitError={true}
+              email={email}
+              password={password}
+              isInvalidEmail={isInvalidEmail}
+              isSubmitError={isSubmitError}
               changeIsInvalidEmail={noop}
               changeIsSubmitError={noop}
               onSubmit={noop}

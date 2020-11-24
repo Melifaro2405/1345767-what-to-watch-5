@@ -5,20 +5,13 @@ import ButtonChangeFilmStatus from './button-change-film-status';
 const noop = () => {};
 
 describe(`Should ButtonChangeFilmStatus render correctly`, () => {
-  it(`with isAddToMyList true`, () => {
+  test.each([
+    [`with`, true],
+    [`without`, false],
+  ])(`%s isAddToMyList`, (_expected, isAddToMyList) => {
     const tree = renderer
       .create(<ButtonChangeFilmStatus
-        isAddToMyList={true}
-        handleChangeFilmStatus={noop}
-      />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`with isAddToMyList false`, () => {
-    const tree = renderer
-      .create(<ButtonChangeFilmStatus
-        isAddToMyList={false}
+        isAddToMyList={isAddToMyList}
         handleChangeFilmStatus={noop}
       />)
       .toJSON();

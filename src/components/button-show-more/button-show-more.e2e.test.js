@@ -15,7 +15,6 @@ it(`Should button show more be pressed`, () => {
       />
   );
 
-  const buttonShowMore = wrapper.find(`button.catalog__button`);
-  buttonShowMore.simulate(`click`);
+  wrapper.find(`button.catalog__button`).simulate(`click`);
   expect(handleChangeShownFilms).toHaveBeenCalledTimes(1);
 });

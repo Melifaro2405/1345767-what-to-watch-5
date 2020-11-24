@@ -7,9 +7,8 @@ export const getGenres = (films) => {
   return Array.from(new Set(allGenres)).slice(0, COUNT_SHOWN_GENRES);
 };
 
-const addZeroForTime = (timePeriod) => (timePeriod < 10) ? `0${timePeriod}` : timePeriod;
-
 export const returnElapsedTime = (elapsedTimeFilm) => {
+  const addZeroForTime = (timePeriod) => (timePeriod < 10) ? `0${timePeriod}` : timePeriod;
   const hours = addZeroForTime(Math.floor(elapsedTimeFilm / 3600));
   const minutes = addZeroForTime(Math.floor((elapsedTimeFilm - (hours * 3600)) / 60));
   const seconds = Math.floor(elapsedTimeFilm % 60);
