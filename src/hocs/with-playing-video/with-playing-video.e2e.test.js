@@ -24,7 +24,7 @@ MockComponent.propTypes = {
 window.HTMLMediaElement.prototype.pause = () => {};
 const playStub = jest
   .spyOn(window.HTMLMediaElement.prototype, `play`)
-  .mockImplementation(() => {});
+  .mockResolvedValue();
 
 it(`Should change state depending on play film`, () => {
   const wrapper = mount(

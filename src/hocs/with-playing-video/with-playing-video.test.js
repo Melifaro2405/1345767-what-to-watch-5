@@ -33,8 +33,6 @@ export const film = {
   }
 };
 
-const noop = () => {};
-
 const MockComponent = (props) => {
   const {children} = props;
   return (
@@ -54,6 +52,13 @@ MockComponent.propTypes = {
 const MockComponentWrapped = withPlayingVideo(MockComponent);
 
 it(`withPlayingVideo is rendered correctly`, () => {
+  const noop = () => {};
+  const noopPromise = () => {
+    return {
+      catch: noop
+    };
+  };
+
   const tree = renderer.create(
       <MockComponentWrapped
         film={film}
@@ -63,8 +68,8 @@ it(`withPlayingVideo is rendered correctly`, () => {
       </MockComponentWrapped>, {
         createNodeMock: () => {
           return {
-            play: () => {},
-            pause: () => {},
+            play: noopPromise,
+            pause: noop,
             src: `test`,
           };
         }

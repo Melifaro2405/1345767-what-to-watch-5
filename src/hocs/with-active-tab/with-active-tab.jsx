@@ -22,7 +22,7 @@ const withActiveTab = (Component) => {
         <Component
           {...this.props}
           activeTab = {this.state.activeTab}
-          handleClickTab={this._handleClickTab}
+          onClickTab={this._handleClickTab}
         />
       );
     }

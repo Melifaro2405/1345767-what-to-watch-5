@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {filmProptypes} from "../../props-validation";
+import fscreen from "fscreen";
 
 const withPlayingVideo = (Component) => {
   class WithPlayingVideo extends PureComponent {
@@ -26,14 +27,22 @@ const withPlayingVideo = (Component) => {
       const {playVideoSrc} = this.props.film.moreInfo;
 
       video.src = playVideoSrc;
-      video.play();
+      video.play()
+        .catch(() => this._handlePauseVideo());
     }
 
     componentDidUpdate() {
       const video = this._videoRef.current;
       const {isPlaying} = this.state;
 
-      return (isPlaying) ? video.play() : video.pause();
+      return (isPlaying)
+        ? video .play()
+          .catch(() => this._handlePauseVideo())
+        : video.pause();
+    }
+
+    componentWillUnmount() {
+      this._handlePlayVideo();
     }
 
     _handlePlayVideo() {
@@ -46,7 +55,7 @@ const withPlayingVideo = (Component) => {
 
     _handleClickFullScreen() {
       const video = this._videoRef.current;
-      video.requestFullscreen();
+      fscreen.requestFullscreen(video);
     }
 
     _handleTimeUpdate() {
@@ -69,9 +78,9 @@ const withPlayingVideo = (Component) => {
         <Component
           {...this.props}
           isPlaying={isPlaying}
-          handlePlayVideo={this._handlePlayVideo}
-          handlePauseVideo={this._handlePauseVideo}
-          handleClickFullScreen={this._handleClickFullScreen}
+          onPlayVideo={this._handlePlayVideo}
+          onPauseVideo={this._handlePauseVideo}
+          onClickFullScreen={this._handleClickFullScreen}
           onExitButtonClick={onExitButtonClick}
           videoProgress={videoProgress}
           videoTimeLeft={videoTimeLeft}

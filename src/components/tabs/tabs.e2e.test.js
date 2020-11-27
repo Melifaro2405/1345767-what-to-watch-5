@@ -15,7 +15,7 @@ it(`Should button be pressed for change tab on movie page`, () => {
         id={1}
         film={film}
         activeTab={`test`}
-        handleClickTab={handleClickTab}
+        onClickTab={handleClickTab}
       />
   );
 

@@ -12,6 +12,10 @@ const withPlayingPreviewVideo = (Component) => {
       this._handleMouseOut = this._handleMouseOut.bind(this);
     }
 
+    componentWillUnmount() {
+      clearTimeout(this._timeoutId);
+    }
+
     _handleMouseOver() {
       this._timeoutId = setTimeout(() => {
         this.setState({isPlayingVideo: true});
@@ -22,10 +26,6 @@ const withPlayingPreviewVideo = (Component) => {
       this.setState({isPlayingVideo: false});
       clearTimeout(this._timeoutId);
       this._timeoutId = null;
-    }
-
-    componentWillUnmount() {
-      clearTimeout(this._timeoutId);
     }
 
     render() {
