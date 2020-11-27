@@ -12,7 +12,7 @@ describe(`Should ButtonChangeFilmStatus render correctly`, () => {
     const tree = renderer
       .create(<ButtonChangeFilmStatus
         isAddToMyList={isAddToMyList}
-        handleChangeFilmStatus={noop}
+        onChangeFilmStatus={noop}
       />)
       .toJSON();
     expect(tree).toMatchSnapshot();

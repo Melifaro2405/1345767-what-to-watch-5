@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ButtonChangeFilmStatus = ({isAddToMyList, handleChangeFilmStatus}) => {
+const ButtonChangeFilmStatus = ({isAddToMyList, onChangeFilmStatus}) => {
 
   return (
     <button
-      onClick={handleChangeFilmStatus}
+      onClick={onChangeFilmStatus}
       className="btn btn--list movie-card__button"
       type="button"
     >
@@ -24,7 +24,7 @@ const ButtonChangeFilmStatus = ({isAddToMyList, handleChangeFilmStatus}) => {
 
 ButtonChangeFilmStatus.propTypes = {
   isAddToMyList: PropTypes.bool.isRequired,
-  handleChangeFilmStatus: PropTypes.func.isRequired
+  onChangeFilmStatus: PropTypes.func.isRequired
 };
 
 export default ButtonChangeFilmStatus;

@@ -66,7 +66,7 @@ const Main = ({promoFilm, changeFilmStatus}) => {
                   <span>Play</span>
                 </Link>
 
-                <ButtonChangeFilmStatus isAddToMyList={isAddToMyList} handleChangeFilmStatus={getNewFilmStatus}/>
+                <ButtonChangeFilmStatus isAddToMyList={isAddToMyList} onChangeFilmStatus={getNewFilmStatus}/>
 
               </div>
             </div>

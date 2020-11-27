@@ -108,7 +108,7 @@ class MoviePage extends PureComponent {
                     <span>Play</span>
                   </Link>
 
-                  <ButtonChangeFilmStatus isAddToMyList={isAddToMyList} handleChangeFilmStatus={this._handleChangeFilmStatus}/>
+                  <ButtonChangeFilmStatus isAddToMyList={isAddToMyList} onChangeFilmStatus={this._handleChangeFilmStatus}/>
 
                   {(authorizationStatus === AuthorizationStatus.AUTH) ?
                     <Link to={`${AppRoute.FILMS}/${id}/review`} className="btn movie-card__button">

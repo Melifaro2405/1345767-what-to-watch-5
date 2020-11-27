@@ -42,7 +42,8 @@ const withPlayingVideo = (Component) => {
     }
 
     componentWillUnmount() {
-      this._handlePlayVideo();
+      const video = this._videoRef.current;
+      video.pause();
     }
 
     _handlePlayVideo() {

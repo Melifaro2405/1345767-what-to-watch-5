@@ -11,7 +11,7 @@ it(`Should button for change film status be pressed`, () => {
   const wrapper = shallow(
       <ButtonChangeFilmStatus
         isAddToMyList={true}
-        handleChangeFilmStatus={handleChangeFilmStatus}
+        onChangeFilmStatus={handleChangeFilmStatus}
       />
   );
 
