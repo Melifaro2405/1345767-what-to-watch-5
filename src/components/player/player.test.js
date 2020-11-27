@@ -45,9 +45,9 @@ describe(`Should Player render correctly`, () => {
         isPlaying={isPlaying}
         videoProgress={10}
         videoTimeLeft={700}
-        handlePlayVideo={noop}
-        handlePauseVideo={noop}
-        handleClickFullScreen={noop}
+        onPlayVideo={noop}
+        onPauseVideo={noop}
+        onClickFullScreen={noop}
         onExitButtonClick={noop}
       />)
       .toJSON();

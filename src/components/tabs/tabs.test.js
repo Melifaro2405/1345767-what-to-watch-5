@@ -41,7 +41,7 @@ it(`Should Tabs render correctly`, () => {
           id={1}
           film={film}
           activeTab={`test`}
-          handleClickTab={noop}
+          onClickTab={noop}
         />
     )
     .toJSON();

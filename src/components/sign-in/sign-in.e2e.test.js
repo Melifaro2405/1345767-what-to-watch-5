@@ -14,8 +14,10 @@ it(`Should change email value with input email`, () => {
       <SignIn
         email={``}
         password={``}
+        isAuthError={false}
         isInvalidEmail={false}
         isSubmitError={false}
+        changeIsAuthError={noop}
         changeIsInvalidEmail={noop}
         changeIsSubmitError={noop}
         onChangeEmail={handleInputEmail}
@@ -35,8 +37,10 @@ it(`Should change password value with input password`, () => {
       <SignIn
         email={``}
         password={``}
+        isAuthError={false}
         isInvalidEmail={false}
         isSubmitError={false}
+        changeIsAuthError={noop}
         changeIsInvalidEmail={noop}
         changeIsSubmitError={noop}
         onChangeEmail={noop}
@@ -56,8 +60,10 @@ it(`Should submit user data with authorization`, () => {
       <SignIn
         email={`test@test.ru`}
         password={`test`}
+        isAuthError={false}
         isInvalidEmail={false}
         isSubmitError={false}
+        changeIsAuthError={noop}
         changeIsInvalidEmail={noop}
         changeIsSubmitError={noop}
         onChangeEmail={noop}
@@ -71,24 +77,36 @@ it(`Should submit user data with authorization`, () => {
 });
 
 it(`Should changed isInvalidEmail with invalid email & isSubmitError with empty password on submit form`, () => {
+  const changeIsAuthError = jest.fn();
   const changeIsInvalidEmail = jest.fn();
   const changeIsSubmitError = jest.fn();
+
+  const handleSubmitAuth = () => {
+    return {
+      catch: () => {
+        changeIsAuthError();
+      }
+    };
+  };
 
   const wrapper = shallow(
       <SignIn
         email={`test`}
         password={``}
+        isAuthError={false}
         isInvalidEmail={false}
         isSubmitError={false}
+        changeIsAuthError={changeIsAuthError}
         changeIsInvalidEmail={changeIsInvalidEmail}
         changeIsSubmitError={changeIsSubmitError}
         onChangeEmail={noop}
         onChangePassword={noop}
-        onSubmit={noop}
+        onSubmit={handleSubmitAuth}
       />
   );
 
   wrapper.find(`form.sign-in__form`).simulate(`submit`, {preventDefault: noop});
+  expect(changeIsAuthError).toHaveBeenCalledTimes(1);
   expect(changeIsInvalidEmail).toHaveBeenCalledTimes(1);
   expect(changeIsSubmitError).toHaveBeenCalledTimes(1);
 });

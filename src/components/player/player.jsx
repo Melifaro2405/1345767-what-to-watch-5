@@ -10,9 +10,9 @@ const Player = ({
   isPlaying,
   videoProgress,
   videoTimeLeft,
-  handlePlayVideo,
-  handlePauseVideo,
-  handleClickFullScreen,
+  onPlayVideo,
+  onPauseVideo,
+  onClickFullScreen,
   onExitButtonClick
 }) => {
   const {preview: {title}} = film;
@@ -40,7 +40,7 @@ const Player = ({
         </div>
 
         <div className="player__controls-row">
-          <button onClick={isPlaying ? handlePauseVideo : handlePlayVideo} type="button"
+          <button onClick={isPlaying ? onPauseVideo : onPlayVideo} type="button"
             className="player__play">
             {!isPlaying && (
               <React.Fragment>
@@ -59,7 +59,7 @@ const Player = ({
           </button>
           <div className="player__name">{title}</div>
 
-          <button onClick={handleClickFullScreen} type="button" className="player__full-screen">
+          <button onClick={onClickFullScreen} type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"/>
             </svg>
@@ -75,9 +75,9 @@ Player.propTypes = {
   film: PropTypes.shape(filmProptypes).isRequired,
   children: PropTypes.node,
   isPlaying: PropTypes.bool.isRequired,
-  handlePlayVideo: PropTypes.func.isRequired,
-  handlePauseVideo: PropTypes.func.isRequired,
-  handleClickFullScreen: PropTypes.func.isRequired,
+  onPlayVideo: PropTypes.func.isRequired,
+  onPauseVideo: PropTypes.func.isRequired,
+  onClickFullScreen: PropTypes.func.isRequired,
   onExitButtonClick: PropTypes.func.isRequired,
   videoProgress: PropTypes.number,
   videoTimeLeft: PropTypes.number

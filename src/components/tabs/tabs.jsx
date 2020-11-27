@@ -6,7 +6,7 @@ import MovieOverview from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
 import MovieReviews from "../movie-reviews/movie-reviews";
 
-const Tabs = ({activeTab, handleClickTab, film, id}) => {
+const Tabs = ({activeTab, onClickTab, film, id}) => {
 
   const getTabContent = () => {
     switch (activeTab) {
@@ -29,7 +29,7 @@ const Tabs = ({activeTab, handleClickTab, film, id}) => {
               className={`movie-nav__item ` + (activeTab === type ? `movie-nav__item--active` : ``)}>
               <a href="#" className="movie-nav__link" onClick={(evt) => {
                 evt.preventDefault();
-                handleClickTab(type);
+                onClickTab(type);
               }}>{type}</a>
             </li>
           )}
@@ -44,7 +44,7 @@ Tabs.propTypes = {
   film: PropTypes.shape(filmProptypes).isRequired,
   id: PropTypes.number.isRequired,
   activeTab: PropTypes.string.isRequired,
-  handleClickTab: PropTypes.func.isRequired
+  onClickTab: PropTypes.func.isRequired
 };
 
 export default Tabs;

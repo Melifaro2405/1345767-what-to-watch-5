@@ -9,8 +9,10 @@ import {AppRoute} from "../../consts";
 const SignIn = ({
   email,
   password,
+  isAuthError,
   isInvalidEmail,
   isSubmitError,
+  changeIsAuthError,
   changeIsInvalidEmail,
   changeIsSubmitError,
   onSubmit,
@@ -27,7 +29,10 @@ const SignIn = ({
     changeIsInvalidEmail(!reg.test(email));
 
     if (!isInvalidEmail && !isSubmitError) {
-      onSubmit({email, password});
+      onSubmit({email, password})
+        .catch(() => {
+          changeIsAuthError(true);
+        });
     }
   };
 
@@ -47,6 +52,11 @@ const SignIn = ({
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={onSubmitAuth}>
+
+          {isAuthError &&
+          <div className="sign-in__message">
+            <p>Authorization error. Access is restricted</p>
+          </div>}
 
           {isInvalidEmail &&
           <div className="sign-in__message">
@@ -107,8 +117,10 @@ SignIn.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  isAuthError: PropTypes.bool.isRequired,
   isInvalidEmail: PropTypes.bool.isRequired,
   isSubmitError: PropTypes.bool.isRequired,
+  changeIsAuthError: PropTypes.func.isRequired,
   changeIsInvalidEmail: PropTypes.func.isRequired,
   changeIsSubmitError: PropTypes.func.isRequired,
   onChangeEmail: PropTypes.func.isRequired,

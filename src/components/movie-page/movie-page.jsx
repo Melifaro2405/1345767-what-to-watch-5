@@ -21,6 +21,16 @@ class MoviePage extends PureComponent {
     this._handleChangeFilmStatus = this._handleChangeFilmStatus.bind(this);
   }
 
+  componentDidMount() {
+    this._getUpdatedFilm();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id !== prevProps.id) {
+      this._getUpdatedFilm();
+    }
+  }
+
   _getUpdatedFilm() {
     const {id, getFilm, updateFilmByID} = this.props;
 
@@ -38,16 +48,6 @@ class MoviePage extends PureComponent {
     .then((receivedFilm) => {
       updateFilmByStatus(receivedFilm);
     });
-  }
-
-  componentDidMount() {
-    this._getUpdatedFilm();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.id !== prevProps.id) {
-      this._getUpdatedFilm();
-    }
   }
 
   render() {

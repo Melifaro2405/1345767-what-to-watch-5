@@ -176,8 +176,8 @@ Array [
                 },
               }
             }
-            handleClickTab={[Function]}
             id={1}
+            onClickTab={[Function]}
           />
         </div>
       </div>
@@ -373,8 +373,8 @@ Array [
                 },
               }
             }
-            handleClickTab={[Function]}
             id={1}
+            onClickTab={[Function]}
           />
         </div>
       </div>
