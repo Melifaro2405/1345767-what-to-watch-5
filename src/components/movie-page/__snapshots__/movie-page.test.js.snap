@@ -104,8 +104,8 @@ Array [
               </span>
             </a>
             <ButtonChangeFilmStatus
-              handleChangeFilmStatus={[Function]}
               isAddToMyList={false}
+              onChangeFilmStatus={[Function]}
             />
             <a
               className="btn movie-card__button"
@@ -307,8 +307,8 @@ Array [
               </span>
             </a>
             <ButtonChangeFilmStatus
-              handleChangeFilmStatus={[Function]}
               isAddToMyList={false}
+              onChangeFilmStatus={[Function]}
             />
             
           </div>

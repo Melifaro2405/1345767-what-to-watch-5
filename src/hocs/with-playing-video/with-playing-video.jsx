@@ -9,6 +9,7 @@ const withPlayingVideo = (Component) => {
       super(props);
 
       this._videoRef = createRef();
+      this._mounted = false;
 
       this.state = {
         isPlaying: true,
@@ -23,12 +24,15 @@ const withPlayingVideo = (Component) => {
     }
 
     componentDidMount() {
+      this._mounted = true;
+
       const video = this._videoRef.current;
       const {playVideoSrc} = this.props.film.moreInfo;
 
       video.src = playVideoSrc;
       video.play()
-        .catch(() => this._handlePauseVideo());
+        .catch(() => this._handlePauseVideo())
+      ;
     }
 
     componentDidUpdate() {
@@ -36,22 +40,25 @@ const withPlayingVideo = (Component) => {
       const {isPlaying} = this.state;
 
       return (isPlaying)
-        ? video .play()
-          .catch(() => this._handlePauseVideo())
+        ? video.play()
+            .catch(() => this._handlePauseVideo())
         : video.pause();
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
-      video.pause();
+      this._mounted = false;
     }
 
     _handlePlayVideo() {
-      this.setState({isPlaying: true});
+      if (this._mounted) {
+        this.setState({isPlaying: true});
+      }
     }
 
     _handlePauseVideo() {
-      this.setState({isPlaying: false});
+      if (this._mounted) {
+        this.setState({isPlaying: false});
+      }
     }
 
     _handleClickFullScreen() {
