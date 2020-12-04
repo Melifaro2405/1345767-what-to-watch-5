@@ -5,8 +5,6 @@ import SmallMovieCard from './small-movie-card';
 
 jest.mock(`../movie-preview/movie-preview`, () => `MoviePreview`);
 
-const noop = () => {};
-
 export const film = {
   id: 1,
   preview: {
@@ -37,23 +35,16 @@ export const film = {
   }
 };
 
-describe(`Should SmallMovieCard render correctly`, () => {
-  test.each([
-    [`with`, true],
-    [`without`, false],
-  ])(`%s playing video`, (_expected, isPlayingVideo) => {
-    const tree = renderer
-      .create(
-          <BrowserRouter>
-            <SmallMovieCard
-              film={film}
-              isPlayingVideo={isPlayingVideo}
-              onMouseOver={noop}
-              onMouseOut={noop}
-            />
-          </BrowserRouter>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+it(`Should SmallMovieCard render correctly`, () => {
+  const tree = renderer
+  .create(
+      <BrowserRouter>
+        <SmallMovieCard
+          film={film}
+        />
+      </BrowserRouter>
+  )
+.toJSON();
+
+  expect(tree).toMatchSnapshot();
 });

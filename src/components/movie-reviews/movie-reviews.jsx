@@ -1,41 +1,30 @@
-import React, {PureComponent} from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {reviewProptypes} from "../../props-validation";
 import ReviewsList from "../reviews-list/reviews-list";
 import {connect} from "react-redux";
 import {fetchReviews} from "../../serviсes/api-actions";
 
-class MovieReviews extends PureComponent {
+const MovieReviews = ({id, reviews, loadReviews}) => {
 
-  componentDidMount() {
-    const {loadReviews, id} = this.props;
+  useEffect(() => {
     loadReviews(id);
-  }
+  }, [id]);
 
-  componentDidUpdate(prevProps) {
-    const {loadReviews, id} = this.props;
-    if (id !== prevProps.id) {
-      loadReviews(id);
-    }
-  }
+  const evenReviews = reviews.filter((_, index) => index % 2 !== 0);
+  const oddReviews = reviews.filter((_, index) => index % 2 === 0);
 
-  render() {
-    const {reviews} = this.props;
-    const evenReviews = reviews.filter((_, index) => index % 2 !== 0);
-    const oddReviews = reviews.filter((_, index) => index % 2 === 0);
-
-    return (
-      <div className="movie-card__reviews movie-card__row">
-        <div className="movie-card__reviews-col">
-          <ReviewsList reviews={oddReviews}/>
-        </div>
-        <div className="movie-card__reviews-col">
-          <ReviewsList reviews={evenReviews}/>
-        </div>
+  return (
+    <div className="movie-card__reviews movie-card__row">
+      <div className="movie-card__reviews-col">
+        <ReviewsList reviews={oddReviews}/>
       </div>
-    );
-  }
-}
+      <div className="movie-card__reviews-col">
+        <ReviewsList reviews={evenReviews}/>
+      </div>
+    </div>
+  );
+};
 
 MovieReviews.propTypes = {
   id: PropTypes.number.isRequired,

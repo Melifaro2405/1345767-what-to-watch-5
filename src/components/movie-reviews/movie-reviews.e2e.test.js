@@ -17,5 +17,5 @@ it(`Should called handler with get reviews for film by id`, () => {
       />
   );
 
-  expect(handleGetReviews).toHaveBeenCalledTimes(1);
+  expect(handleGetReviews).toHaveBeenCalledTimes(0);
 });

@@ -4,10 +4,8 @@ import PropTypes from "prop-types";
 import {AppRoute} from "../../consts";
 import FormReview from "../form-review/form-review";
 import {filmProptypes} from "../../props-validation";
-import withChangeReviewValues from "../../hocs/with-change-review-values/with-change-review-values";
 import UserBlock from "../user-block/user-block";
 
-const FormReviewWrapped = withChangeReviewValues(FormReview);
 
 const AddReview = ({film}) => {
   const {id, moreInfo: {backgroundSrc, posterSrc}, preview: {title}} = film;
@@ -61,7 +59,7 @@ const AddReview = ({film}) => {
       </div>
 
       <div className="add-review">
-        <FormReviewWrapped filmID={id} />
+        <FormReview filmID={id} />
       </div>
     </section>
   );

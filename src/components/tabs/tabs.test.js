@@ -2,8 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Tabs from './tabs';
 
-const noop = () => {};
-
 export const film = {
   id: 1,
   preview: {
@@ -40,8 +38,6 @@ it(`Should Tabs render correctly`, () => {
         <Tabs
           id={1}
           film={film}
-          activeTab={`test`}
-          onClickTab={noop}
         />
     )
     .toJSON();

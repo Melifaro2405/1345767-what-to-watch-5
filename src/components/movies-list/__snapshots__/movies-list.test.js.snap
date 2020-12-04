@@ -42,9 +42,6 @@ exports[`Should MoviesList render correctly 1`] = `
         },
       }
     }
-    isPlayingVideo={false}
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
   />
   <SmallMovieCard
     film={
@@ -84,9 +81,6 @@ exports[`Should MoviesList render correctly 1`] = `
         },
       }
     }
-    isPlayingVideo={false}
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
   />
   <SmallMovieCard
     film={
@@ -126,9 +120,6 @@ exports[`Should MoviesList render correctly 1`] = `
         },
       }
     }
-    isPlayingVideo={false}
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
   />
 </div>
 `;

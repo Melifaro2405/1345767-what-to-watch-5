@@ -17,7 +17,7 @@ const noopPromise = () => {
   };
 };
 
-export const film = {
+const film = {
   id: 1,
   preview: {
     src: `img/the-grand-budapest-hotel-poster.jpg`,
@@ -59,12 +59,9 @@ describe(`Should MoviePage render correctly`, () => {
           <BrowserRouter>
             <MoviePage
               id={1}
-              film={film}
               films={films}
               getFilm={noopPromise}
-              updateFilmByID={noop}
               changeFilmStatus={noop}
-              updateFilmByStatus={noop}
               authorizationStatus={authorizationStatus}
             />
           </BrowserRouter>

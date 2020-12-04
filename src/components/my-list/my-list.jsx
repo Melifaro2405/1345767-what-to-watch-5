@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {fetchFavoriteFilmList} from "../../serviсes/api-actions";
@@ -8,46 +8,43 @@ import MoviesList from "../movies-list/movies-list";
 import Footer from "../footer/footer";
 import {AppRoute} from "../../consts";
 
-class MyList extends PureComponent {
+const MyList = ({loadFavoriteFilms, favoriteFilms, login}) => {
 
-  componentDidMount() {
-    const {loadFavoriteFilms} = this.props;
+  const {avatar} = login;
+
+  useEffect(() => {
     loadFavoriteFilms();
-  }
+  }, []);
 
-  render() {
-    const {favoriteFilms, login} = this.props;
-    const {avatar} = login;
-    return (
-      <div className="user-page">
-        <header className="page-header user-page__head">
-          <div className="logo">
-            <Link to={AppRoute.ROOT} className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
+  return (
+    <div className="user-page">
+      <header className="page-header user-page__head">
+        <div className="logo">
+          <Link to={AppRoute.ROOT} className="logo__link">
+            <span className="logo__letter logo__letter--1">W</span>
+            <span className="logo__letter logo__letter--2">T</span>
+            <span className="logo__letter logo__letter--3">W</span>
+          </Link>
+        </div>
+
+        <h1 className="page-title user-page__title">My list</h1>
+
+        <div className="user-block">
+          <div className="user-block__avatar">
+            <img src={avatar} alt="User avatar" width="63" height="63"/>
           </div>
+        </div>
+      </header>
 
-          <h1 className="page-title user-page__title">My list</h1>
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
+        <MoviesList films={favoriteFilms} />
+      </section>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src={avatar} alt="User avatar" width="63" height="63"/>
-            </div>
-          </div>
-        </header>
-
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <MoviesList films={favoriteFilms} />
-        </section>
-
-        <Footer />
-      </div>
-    );
-  }
-}
+      <Footer />
+    </div>
+  );
+};
 
 MyList.propTypes = {
   favoriteFilms: PropTypes.arrayOf(PropTypes.shape(filmProptypes)).isRequired,

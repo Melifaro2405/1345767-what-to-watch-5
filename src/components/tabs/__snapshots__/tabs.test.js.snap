@@ -1,45 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should Tabs render correctly 1`] = `
-<nav
-  className="movie-nav movie-card__nav"
->
-  <ul
-    className="movie-nav__list"
+Array [
+  <nav
+    className="movie-nav movie-card__nav"
   >
-    <li
-      className="movie-nav__item "
+    <ul
+      className="movie-nav__list"
     >
-      <a
-        className="movie-nav__link"
-        href="#"
-        onClick={[Function]}
+      <li
+        className="movie-nav__item movie-nav__item--active"
       >
-        Overview
-      </a>
-    </li>
-    <li
-      className="movie-nav__item "
+        <a
+          className="movie-nav__link"
+          href="#"
+          onClick={[Function]}
+        >
+          Overview
+        </a>
+      </li>
+      <li
+        className="movie-nav__item "
+      >
+        <a
+          className="movie-nav__link"
+          href="#"
+          onClick={[Function]}
+        >
+          Details
+        </a>
+      </li>
+      <li
+        className="movie-nav__item "
+      >
+        <a
+          className="movie-nav__link"
+          href="#"
+          onClick={[Function]}
+        >
+          Reviews
+        </a>
+      </li>
+    </ul>
+  </nav>,
+  <div
+    className="movie-rating"
+  >
+    <div
+      className="movie-rating__score"
     >
-      <a
-        className="movie-nav__link"
-        href="#"
-        onClick={[Function]}
-      >
-        Details
-      </a>
-    </li>
-    <li
-      className="movie-nav__item "
+      8.9
+    </div>
+    <p
+      className="movie-rating__meta"
     >
-      <a
-        className="movie-nav__link"
-        href="#"
-        onClick={[Function]}
+      <span
+        className="movie-rating__level"
       >
-        Reviews
-      </a>
-    </li>
-  </ul>
-</nav>
+        Very good
+      </span>
+      <span
+        className="movie-rating__count"
+      >
+        240
+         ratings
+      </span>
+    </p>
+  </div>,
+  <div
+    className="movie-card__text"
+  >
+    In the 1930s, the Grand Budapest Hotel is a popular European ski resort,
+      presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy,
+      becomes Gustave's friend and protege.
+    <p
+      className="movie-card__director"
+    >
+      <strong>
+        Director: 
+        Wes Andreson
+      </strong>
+    </p>
+    <p
+      className="movie-card__starring"
+    >
+      <strong>
+        Starring: 
+        Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan
+      </strong>
+    </p>
+  </div>,
+]
 `;

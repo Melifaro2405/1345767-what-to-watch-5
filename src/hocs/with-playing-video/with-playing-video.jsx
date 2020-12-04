@@ -31,8 +31,7 @@ const withPlayingVideo = (Component) => {
 
       video.src = playVideoSrc;
       video.play()
-        .catch(() => this._handlePauseVideo())
-      ;
+        .catch(() => this._handlePauseVideo());
     }
 
     componentDidUpdate() {

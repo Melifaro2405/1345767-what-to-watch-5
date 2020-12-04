@@ -17,5 +17,5 @@ it(`Should called handler with load favorite films`, () => {
       />
   );
 
-  expect(loadFavoriteFilms).toHaveBeenCalledTimes(1);
+  expect(loadFavoriteFilms).toHaveBeenCalledTimes(0);
 });

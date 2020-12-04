@@ -93,16 +93,7 @@ exports[`Should AddReview render correctly 1`] = `
     className="add-review"
   >
     <FormReview
-      changeIsError={[Function]}
-      changeIsLoading={[Function]}
       filmID={1}
-      isActive={false}
-      isError={false}
-      isLoading={false}
-      onChangeRating={[Function]}
-      onChangeText={[Function]}
-      rating=""
-      text=""
     />
   </div>
 </section>

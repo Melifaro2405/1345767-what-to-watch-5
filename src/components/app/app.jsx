@@ -13,24 +13,20 @@ import {filmProptypes} from "../../props-validation";
 import browserHistory from "../../browser-history";
 import {AppRoute} from "../../consts";
 import withPlayingVideo from "../../hocs/with-playing-video/with-playing-video";
-import withAddFilmByID from "../../hocs/with-add-film-by-id/with-add-film-by-id";
-import withChangeAuthValues from "../../hocs/with-change-auth-values/with-change-auth-values";
 
 const PlayerWrapped = withPlayingVideo(Player);
-const MoviePageWrapped = withAddFilmByID(MoviePage);
-const SignInWrapped = withChangeAuthValues(SignIn);
 
 const App = ({films}) => {
   return (
     <Router history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.ROOT} component={Main} />
-        <Route exact path={AppRoute.LOGIN} component={SignInWrapped} />
+        <Route exact path={AppRoute.LOGIN} component={SignIn} />
         <PrivateRoute exact path={AppRoute.MY_LIST} render={() => (
           <MyList />
         )}/>
         <Route exact path={AppRoute.FILM_BY_ID} render={({match}) => {
-          return <MoviePageWrapped id={Number(match.params.id)} films={films}/>;
+          return <MoviePage id={Number(match.params.id)} films={films}/>;
         }}
         />
         <PrivateRoute exact path={AppRoute.ADD_REVIEW} render={({match}) => {

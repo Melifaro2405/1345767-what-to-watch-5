@@ -7,15 +7,12 @@ import {film} from "./tabs.test";
 configure({adapter: new Adapter()});
 
 it(`Should button be pressed for change tab on movie page`, () => {
-  const handleClickTab = jest.fn();
   const clickLinkPrevention = jest.fn();
 
   const wrapper = shallow(
       <Tabs
         id={1}
         film={film}
-        activeTab={`test`}
-        onClickTab={handleClickTab}
       />
   );
 
@@ -31,6 +28,5 @@ it(`Should button be pressed for change tab on movie page`, () => {
     preventDefault: clickLinkPrevention
   });
 
-  expect(handleClickTab).toHaveBeenCalledTimes(3);
   expect(clickLinkPrevention).toHaveBeenCalledTimes(3);
 });

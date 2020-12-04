@@ -1,37 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {sendReview} from "../../serviсes/api-actions";
 import {connect} from "react-redux";
+import {CommentLength} from "../../consts";
 
 const RATE_STARS = [1, 2, 3, 4, 5];
 const RATING_MULTIPLIER = 2;
 
-const FormReview = ({
-  isActive,
-  isLoading,
-  isError,
-  changeIsLoading,
-  changeIsError,
-  filmID,
-  onSubmit,
-  text,
-  rating,
-  onChangeText,
-  onChangeRating
-}) => {
+const FormReview = ({filmID, onSubmit}) => {
+
+  const [text, setText] = useState(``);
+  const [rating, setRating] = useState(``);
+  const [isActive, setIsActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const successData = () => {
+    setIsActive(!!(text.length > CommentLength.MIN && text.length < CommentLength.MAX && rating));
+  };
+
+  const onChangeText = (evt) => {
+    setText(evt.target.value);
+    successData();
+  };
+
+  const onChangeRating = (evt) => {
+    setRating(evt.target.value);
+    successData();
+  };
 
   const handleSubmitReview = (evt) => {
     evt.preventDefault();
 
-    changeIsLoading(true);
+    setIsLoading(true);
     onSubmit({
       id: filmID,
       rating: Number(rating) * RATING_MULTIPLIER,
       comment: text
     })
     .catch(() => {
-      changeIsLoading(false);
-      changeIsError(true);
+      setIsLoading(false);
+      setIsError(true);
     });
   };
 
@@ -89,16 +98,7 @@ const FormReview = ({
 
 FormReview.propTypes = {
   filmID: PropTypes.number.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onChangeText: PropTypes.func.isRequired,
-  onChangeRating: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
-  changeIsLoading: PropTypes.func.isRequired,
-  changeIsError: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({

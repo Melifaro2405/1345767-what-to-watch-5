@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -6,33 +6,35 @@ import {login} from "../../serviсes/api-actions";
 import Footer from "../footer/footer";
 import {AppRoute} from "../../consts";
 
-const SignIn = ({
-  email,
-  password,
-  isAuthError,
-  isInvalidEmail,
-  isSubmitError,
-  changeIsAuthError,
-  changeIsInvalidEmail,
-  changeIsSubmitError,
-  onSubmit,
-  onChangeEmail,
-  onChangePassword
-}) => {
+const SignIn = ({onSubmit}) => {
+
+  const [email, setEmail] = useState(``);
+  const [password, setPassword] = useState(``);
+  const [isInvalidEmail, setIsInvalidEmail] = useState(false);
+  const [isSubmitError, setIsSubmitError] = useState(false);
+  const [isAuthError, setIsAuthError] = useState(false);
+
+  const onChangeEmail = (evt) => {
+    setEmail(evt.target.value);
+  };
+
+  const onChangePassword = (evt) => {
+    setPassword(evt.target.value);
+  };
 
   const onSubmitAuth = (evt) => {
     const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
     evt.preventDefault();
 
-    changeIsSubmitError(!email.length || !password.length);
-    changeIsInvalidEmail(!reg.test(email));
+    setIsInvalidEmail(!reg.test(email));
+    setIsSubmitError(!email.length || !password.length);
 
     if (!isInvalidEmail && !isSubmitError) {
       onSubmit({email, password})
-        .catch(() => {
-          changeIsAuthError(true);
-        });
+      .catch(() => {
+        setIsAuthError(true);
+      });
     }
   };
 
@@ -114,17 +116,7 @@ const SignIn = ({
 };
 
 SignIn.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  isAuthError: PropTypes.bool.isRequired,
-  isInvalidEmail: PropTypes.bool.isRequired,
-  isSubmitError: PropTypes.bool.isRequired,
-  changeIsAuthError: PropTypes.func.isRequired,
-  changeIsInvalidEmail: PropTypes.func.isRequired,
-  changeIsSubmitError: PropTypes.func.isRequired,
-  onChangeEmail: PropTypes.func.isRequired,
-  onChangePassword: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({

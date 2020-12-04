@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {filmProptypes} from "../../props-validation";
 import {MovieTabs, TabsList} from "./tabs.consts";
@@ -6,7 +6,8 @@ import MovieOverview from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
 import MovieReviews from "../movie-reviews/movie-reviews";
 
-const Tabs = ({activeTab, onClickTab, film, id}) => {
+const Tabs = ({film, id}) => {
+  const [activeTab, setActiveTab] = useState(MovieTabs.OVERVIEW);
 
   const getTabContent = () => {
     switch (activeTab) {
@@ -27,10 +28,11 @@ const Tabs = ({activeTab, onClickTab, film, id}) => {
           {TabsList.map(({type}, index) =>
             <li key={index}
               className={`movie-nav__item ` + (activeTab === type ? `movie-nav__item--active` : ``)}>
-              <a href="#" className="movie-nav__link" onClick={(evt) => {
-                evt.preventDefault();
-                onClickTab(type);
-              }}>{type}</a>
+              <a href="#" className="movie-nav__link"
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  setActiveTab(type);
+                }}>{type}</a>
             </li>
           )}
         </ul>
@@ -42,9 +44,7 @@ const Tabs = ({activeTab, onClickTab, film, id}) => {
 
 Tabs.propTypes = {
   film: PropTypes.shape(filmProptypes).isRequired,
-  id: PropTypes.number.isRequired,
-  activeTab: PropTypes.string.isRequired,
-  onClickTab: PropTypes.func.isRequired
+  id: PropTypes.number.isRequired
 };
 
 export default Tabs;
